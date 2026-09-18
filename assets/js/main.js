@@ -137,11 +137,5 @@
   });
   sy = window.scrollY; update();
 
-  /* ---- Safe Meta Pixel tracking helper (works even before pixel is installed) ---- */
-  window.mpTrack = function (event) {
-    if (typeof window.fbq === 'function') window.fbq('track', event);
-  };
-  document.querySelectorAll('[data-track]').forEach(function (el) {
-    el.addEventListener('click', function () { window.mpTrack(el.dataset.track); });
-  });
+  /* Pixel helpers (window.mpTrack / data-track) now live in pixel.js */
 })();
