@@ -1,5 +1,6 @@
-/* Media Puppies — Careers page: application form
-   Posts to Web3Forms. "Apply" buttons pre-select the role they belong to. */
+/* Media Puppies — Careers page application form.
+   Saves to Supabase + Web3Forms via mpSubmitLead.
+   "Apply" buttons pre-select the role they belong to. */
 (function () {
   'use strict';
   var WEB3FORMS_KEY = '05a4cb54-228e-4084-acaa-d00149d73c23';
@@ -10,10 +11,9 @@
   var roleSelect = document.getElementById('c-role');
   var submitBtn = form.querySelector('[data-submit-btn]');
   var submitLabel = form.querySelector('[data-submit-label]');
-  var blockNotSubmitted = document.querySelector('[data-if="notSubmitted"]');
-  var blockSubmitted = document.querySelector('[data-if="submitted"]');
+  var notSubmitted = document.querySelector('[data-if="notSubmitted"]');
+  var submitted = document.querySelector('[data-if="submitted"]');
 
-  /* Role-specific Apply buttons preselect the dropdown */
   document.querySelectorAll('[data-role]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       if (!roleSelect) return;
@@ -24,25 +24,30 @@
     });
   });
 
+  var started = false;
+  form.addEventListener('focusin', function () {
+    if (started) return;
+    started = true;
+    if (window.mpTrack) window.mpTrack('InitiateCheckout', { content_name: 'careers_form_started' });
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    var fd = new FormData(form);
-    fd.append('access_key', WEB3FORMS_KEY);
-    fd.append('subject', 'New Application — Media Puppies Careers');
+    var fd = new FormData(form), fields = {};
+    fd.forEach(function (v, k) { fields[k] = v; });
 
     if (submitBtn) submitBtn.disabled = true;
-    if (submitLabel) submitLabel.textContent = 'Sending…';
+    if (submitLabel) submitLabel.textContent = 'Sending\u2026';
 
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (!data.success) throw new Error(data.message || 'Submit failed');
-        if (blockNotSubmitted) blockNotSubmitted.style.display = 'none';
-        if (blockSubmitted) {
-          blockSubmitted.style.display = 'block';
-          blockSubmitted.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    window.mpSubmitLead('careers', fields, WEB3FORMS_KEY, 'New Application \u2014 Media Puppies Careers')
+      .then(function () {
+        if (window.mpTrack) window.mpTrack('Lead', { content_category: 'careers' });
+        if (notSubmitted) notSubmitted.style.display = 'none';
+        if (submitted) {
+          submitted.style.display = 'block';
+          submitted.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       })
       .catch(function () {

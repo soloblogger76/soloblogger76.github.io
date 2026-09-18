@@ -2,7 +2,7 @@
    ────────────────────────────────────────────────────────────
    PUT YOUR PIXEL ID ON THE NEXT LINE. That's the only edit needed.
    Until it's filled in, nothing loads and no tracking calls fail. */
-var MP_PIXEL_ID = 'YOUR_PIXEL_ID';
+var MP_PIXEL_ID = '1062533193322093';
 
 (function () {
   'use strict';

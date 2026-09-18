@@ -29,7 +29,7 @@
       if (biz && !biz.checkValidity()) { biz.reportValidity(); return; }
       if (budget && !budget.checkValidity()) { budget.reportValidity(); return; }
       showStep(2);
-      if (typeof window.fbq === 'function') window.fbq('track', 'InitiateCheckout');
+      if (window.mpTrack) window.mpTrack('InitiateCheckout');
     });
   });
 
@@ -39,23 +39,20 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var fd = new FormData(form);
-    fd.append('access_key', WEB3FORMS_KEY);
-    fd.append('subject', 'New Lead — Media Puppies Website');
+
+    var fd = new FormData(form), fields = {};
+    fd.forEach(function (v, k) { fields[k] = v; });
 
     if (submitBtn) submitBtn.disabled = true;
-    if (submitLabel) submitLabel.textContent = 'Sending…';
+    if (submitLabel) submitLabel.textContent = 'Sending\u2026';
 
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (data.success) {
-          if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
-          if (blockNotSubmitted) blockNotSubmitted.style.display = 'none';
-          if (blockSubmitted) blockSubmitted.style.display = 'block';
-          blockSubmitted && blockSubmitted.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          throw new Error(data.message || 'Submit failed');
+    window.mpSubmitLead('client', fields, WEB3FORMS_KEY, 'New Lead \u2014 Media Puppies Website')
+      .then(function () {
+        if (window.mpTrack) window.mpTrack('Lead', { content_category: 'client_enquiry' });
+        if (blockNotSubmitted) blockNotSubmitted.style.display = 'none';
+        if (blockSubmitted) {
+          blockSubmitted.style.display = 'block';
+          blockSubmitted.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       })
       .catch(function () {

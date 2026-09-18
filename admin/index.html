@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Media Puppies</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="icon" href="/assets/img/logo-mark-sm.webp">
+<style>
+*{box-sizing:border-box}
+html{overflow-x:hidden}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:#3038D8;text-decoration:none}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+.card{background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:18px;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+input,select,textarea,button{font-family:inherit;font-size:.95rem;color:#181C4F}
+input,select,textarea{background:#FFF;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;padding:11px 13px;width:100%;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#3038D8;box-shadow:0 0 0 3px rgba(48,56,216,.12)}
+label{display:block;font-size:.8rem;font-weight:700;margin-bottom:6px;color:rgba(24,28,79,.7)}
+.btn{cursor:pointer;border:none;font-weight:700;padding:11px 20px;border-radius:999px;background:linear-gradient(180deg,#3A43E8,#3038D8);color:#FFF;box-shadow:0 8px 22px rgba(48,56,216,.28)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:#FFF;color:#181C4F;border:1.5px solid rgba(24,28,79,.16);box-shadow:none}
+.tab{cursor:pointer;border:none;background:none;font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;color:rgba(24,28,79,.6)}
+.tab[aria-selected="true"]{background:#181C4F;color:#FFF}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(24,28,79,.5);padding:12px 14px;border-bottom:1px solid rgba(24,28,79,.12);white-space:nowrap}
+td{padding:13px 14px;border-bottom:1px solid rgba(24,28,79,.08);vertical-align:top}
+tr.row:hover{background:rgba(48,56,216,.03)}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.muted{color:rgba(24,28,79,.55)}
+.hide{display:none!important}
+select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:999px;width:auto;min-width:112px}
+@media(max-width:800px){.tablewrap{overflow-x:auto}table{min-width:760px}}
+</style>
+<script src="/assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<!-- ============ NOT CONFIGURED ============ -->
+<div id="setup" class="hide" style="padding:60px 0">
+  <div class="wrap" style="max-width:720px">
+    <div class="card" style="padding:38px 32px">
+      <img src="/assets/img/logo-mark-sm.webp" alt="" style="height:40px;margin-bottom:20px">
+      <h1 style="font-size:1.7rem;font-weight:700;margin-bottom:10px">Admin panel isn't connected yet</h1>
+      <p class="muted" style="margin:0 0 26px">Three steps, about twenty minutes. Nothing here works until they're done.</p>
+      <ol style="padding-left:20px;margin:0;display:flex;flex-direction:column;gap:16px;font-size:.98rem">
+        <li>Create a free project at <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a>.</li>
+        <li>Open <strong>SQL Editor → New query</strong>, paste everything from <code>supabase-schema.sql</code> in the repo, and Run. This creates the leads table and locks it down.</li>
+        <li>Open <strong>Project Settings → API</strong>, copy the <strong>Project URL</strong> and the <strong>anon public</strong> key into <code>assets/js/supabase-config.js</code>, then push.</li>
+      </ol>
+      <p style="margin:26px 0 0;padding:16px 18px;background:rgba(255,172,28,.12);border-left:3px solid #FFAC1C;border-radius:0 10px 10px 0;font-size:.92rem">
+        <strong>Never paste the <code>service_role</code> key.</strong> It bypasses every security rule. Only the <em>anon public</em> key belongs in the site.
+      </p>
+      <p style="margin:18px 0 0;font-size:.92rem">Finally, add yourself as a user: Supabase → <strong>Authentication → Users → Add user</strong>. That email and password is your login here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOGIN ============ -->
+<div id="login" class="hide" style="padding:80px 0">
+  <div class="wrap" style="max-width:420px">
+    <div class="card" style="padding:36px 30px">
+      <img src="/assets/img/logo-mark-sm.webp" alt="" style="height:40px;margin-bottom:18px">
+      <h1 style="font-size:1.55rem;font-weight:700;margin-bottom:6px">Admin sign in</h1>
+      <p class="muted" style="margin:0 0 24px;font-size:.93rem">Leads are only readable after you sign in.</p>
+      <form id="loginForm">
+        <div style="margin-bottom:14px"><label for="em">Email</label><input id="em" type="email" required autocomplete="username"></div>
+        <div><label for="pw">Password</label><input id="pw" type="password" required autocomplete="current-password"></div>
+        <button class="btn" style="width:100%;margin-top:20px" type="submit"><span id="loginLabel">Sign in</span></button>
+        <p id="loginErr" class="hide" style="margin:14px 0 0;color:#C0392B;font-size:.88rem;font-weight:700"></p>
+      </form>
+    </div>
+    <p style="text-align:center;margin-top:18px"><a href="/" class="muted" style="font-size:.88rem">← Back to site</a></p>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="app" class="hide">
+  <header style="background:#FFF;border-bottom:1px solid rgba(24,28,79,.12);position:sticky;top:0;z-index:20">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="/assets/img/logo-mark-sm.webp" alt="" style="height:32px">
+        <strong style="font-family:'Clash Display',sans-serif;font-size:1.05rem">Admin</strong>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span id="whoami" class="muted" style="font-size:.85rem"></span>
+        <button id="refresh" class="btn ghost" style="padding:8px 16px;font-size:.85rem">Refresh</button>
+        <button id="logout" class="btn ghost" style="padding:8px 16px;font-size:.85rem">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding:28px 20px 80px">
+
+    <!-- STATS -->
+    <div id="stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:14px;margin-bottom:22px"></div>
+
+    <!-- CHART -->
+    <div class="card" style="padding:24px;margin-bottom:22px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:18px">
+        <h2 style="font-size:1.1rem;font-weight:600">Submissions, last 30 days</h2>
+        <span id="chartTotal" class="muted" style="font-size:.85rem"></span>
+      </div>
+      <div id="chart" style="display:flex;align-items:flex-end;gap:3px;height:120px"></div>
+      <div id="chartAxis" class="muted" style="display:flex;justify-content:space-between;font-size:.72rem;margin-top:8px"></div>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="card" style="padding:24px;margin-bottom:22px">
+      <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:16px">Where they came from</h2>
+      <div id="sources" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px"></div>
+    </div>
+
+    <!-- FILTERS -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+      <div id="tabs" style="display:flex;gap:4px;flex-wrap:wrap;background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:999px;padding:4px"></div>
+      <select id="statusFilter" style="width:auto;padding:9px 13px">
+        <option value="">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="qualified">Qualified</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+      <input id="search" type="search" placeholder="Search name, phone, email, campaign…" style="width:auto;flex:1;min-width:210px">
+      <button id="csv" class="btn ghost" style="padding:10px 18px;font-size:.87rem">Export CSV</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card tablewrap">
+      <table>
+        <thead><tr>
+          <th style="width:112px">When</th><th>Who</th><th>Contact</th>
+          <th>Details</th><th>Source</th><th style="width:130px">Status</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div id="empty" class="hide" style="padding:52px 24px;text-align:center">
+        <p class="muted" style="margin:0;font-size:.98rem">Nothing here yet.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  if (typeof MP_SUPABASE_READY === 'undefined' || !MP_SUPABASE_READY) {
+    $('setup').classList.remove('hide');
+    return;
+  }
+
+  var sb = window.supabase.createClient(MP_SUPABASE_URL, MP_SUPABASE_ANON_KEY);
+  var all = [], kind = '', STATUSES = ['new','contacted','qualified','won','lost'];
+  var KINDS = [['','All'],['client','Client enquiries'],['internship','Internship'],['careers','Careers']];
+  var TONE = {
+    new:       ['rgba(48,56,216,.12)', '#3038D8'],
+    contacted: ['rgba(255,172,28,.18)', '#8A5A00'],
+    qualified: ['rgba(37,211,102,.16)', '#1F8A3B'],
+    won:       ['#1F8A3B', '#FFFFFF'],
+    lost:      ['rgba(24,28,79,.09)', 'rgba(24,28,79,.55)']
+  };
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+    });
+  }
+  function fmtDate(iso) {
+    var d = new Date(iso);
+    return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short' }) + '<br><span class="muted" style="font-size:.78rem">' +
+           d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' }) + '</span>';
+  }
+
+  /* ---------- auth ---------- */
+  function showLogin() { $('login').classList.remove('hide'); $('app').classList.add('hide'); }
+  function showApp(user) {
+    $('login').classList.add('hide');
+    $('app').classList.remove('hide');
+    $('whoami').textContent = user.email;
+    load();
+  }
+
+  sb.auth.getSession().then(function (r) {
+    if (r.data.session) showApp(r.data.session.user); else showLogin();
+  });
+
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button'), err = $('loginErr');
+    btn.disabled = true; $('loginLabel').textContent = 'Signing in…'; err.classList.add('hide');
+    sb.auth.signInWithPassword({ email: $('em').value.trim(), password: $('pw').value })
+      .then(function (r) {
+        if (r.error) throw r.error;
+        showApp(r.data.user);
+      })
+      .catch(function (ex) {
+        err.textContent = ex.message || 'Could not sign in.';
+        err.classList.remove('hide');
+      })
+      .finally(function () { btn.disabled = false; $('loginLabel').textContent = 'Sign in'; });
+  });
+
+  $('logout').addEventListener('click', function () {
+    sb.auth.signOut().then(function () { location.reload(); });
+  });
+  $('refresh').addEventListener('click', load);
+
+  /* ---------- data ---------- */
+  function load() {
+    sb.from('leads').select('*').order('created_at', { ascending: false }).limit(2000)
+      .then(function (r) {
+        if (r.error) { alert('Could not load leads: ' + r.error.message); return; }
+        all = r.data || [];
+        renderStats(); renderChart(); renderSources(); renderTabs(); renderRows();
+      });
+  }
+
+  function visible() {
+    var s = $('statusFilter').value;
+    var q = $('search').value.trim().toLowerCase();
+    return all.filter(function (l) {
+      if (kind && l.kind !== kind) return false;
+      if (s && l.status !== s) return false;
+      if (!q) return true;
+      return ['name','email','phone','city','company','college','role','utm_campaign','utm_source','message']
+        .some(function (f) { return (l[f] || '').toLowerCase().indexOf(q) > -1; });
+    });
+  }
+
+  /* ---------- render ---------- */
+  function renderStats() {
+    var weekAgo = Date.now() - 7 * 864e5;
+    var week = all.filter(function (l) { return new Date(l.created_at).getTime() > weekAgo; });
+    var won = all.filter(function (l) { return l.status === 'won'; }).length;
+    var untouched = all.filter(function (l) { return l.status === 'new'; }).length;
+    var rate = all.length ? Math.round(won / all.length * 100) : 0;
+    var tiles = [
+      ['Total', all.length, '#3038D8'],
+      ['Last 7 days', week.length, '#3038D8'],
+      ['Not contacted yet', untouched, untouched > 0 ? '#C0392B' : '#1F8A3B'],
+      ['Won', won, '#1F8A3B'],
+      ['Win rate', rate + '%', '#181C4F']
+    ];
+    $('stats').innerHTML = tiles.map(function (t) {
+      return '<div class="card" style="padding:20px 18px">' +
+        '<div style="font-family:\'Clash Display\',sans-serif;font-weight:700;font-size:1.85rem;line-height:1.1;color:' + t[2] + '">' + t[1] + '</div>' +
+        '<div class="muted" style="font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-top:4px">' + t[0] + '</div></div>';
+    }).join('');
+  }
+
+  function renderChart() {
+    var days = [], counts = {};
+    for (var i = 29; i >= 0; i--) {
+      var d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+      days.push(d); counts[d] = 0;
+    }
+    all.forEach(function (l) {
+      var d = (l.created_at || '').slice(0, 10);
+      if (d in counts) counts[d]++;
+    });
+    var max = Math.max(1, Math.max.apply(null, days.map(function (d) { return counts[d]; })));
+    var total = days.reduce(function (a, d) { return a + counts[d]; }, 0);
+    $('chartTotal').textContent = total + ' in this window';
+    $('chart').innerHTML = days.map(function (d) {
+      var h = Math.round(counts[d] / max * 100);
+      return '<div title="' + d + ': ' + counts[d] + '" style="flex:1;height:' + Math.max(h, 2) + '%;' +
+        'background:' + (counts[d] ? 'linear-gradient(180deg,#3A43E8,#3038D8)' : 'rgba(24,28,79,.1)') +
+        ';border-radius:4px 4px 0 0;min-height:3px"></div>';
+    }).join('');
+    $('chartAxis').innerHTML = '<span>' + days[0].slice(5) + '</span><span>' + days[29].slice(5) + '</span>';
+  }
+
+  function renderSources() {
+    var by = {};
+    all.forEach(function (l) {
+      var k = l.utm_campaign || l.utm_source || (l.referrer ? 'referral' : 'direct');
+      by[k] = (by[k] || 0) + 1;
+    });
+    var rows = Object.keys(by).sort(function (a, b) { return by[b] - by[a]; }).slice(0, 8);
+    if (!rows.length) { $('sources').innerHTML = '<p class="muted" style="margin:0;font-size:.92rem">No submissions yet.</p>'; return; }
+    var max = by[rows[0]];
+    $('sources').innerHTML = rows.map(function (k) {
+      return '<div><div style="display:flex;justify-content:space-between;gap:10px;font-size:.88rem;font-weight:700;margin-bottom:6px">' +
+        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(k) + '</span><span class="muted">' + by[k] + '</span></div>' +
+        '<div style="height:7px;background:rgba(24,28,79,.08);border-radius:999px;overflow:hidden">' +
+        '<div style="height:100%;width:' + (by[k] / max * 100) + '%;background:linear-gradient(90deg,#3038D8,#FFAC1C);border-radius:999px"></div></div></div>';
+    }).join('');
+  }
+
+  function renderTabs() {
+    $('tabs').innerHTML = KINDS.map(function (k) {
+      var n = k[0] ? all.filter(function (l) { return l.kind === k[0]; }).length : all.length;
+      return '<button class="tab" role="tab" data-kind="' + k[0] + '" aria-selected="' + (kind === k[0]) + '">' +
+             k[1] + ' <span style="opacity:.6">' + n + '</span></button>';
+    }).join('');
+    Array.prototype.forEach.call($('tabs').children, function (b) {
+      b.addEventListener('click', function () { kind = b.dataset.kind; renderTabs(); renderRows(); });
+    });
+  }
+
+  function renderRows() {
+    var list = visible();
+    $('empty').classList.toggle('hide', list.length > 0);
+    $('rows').innerHTML = list.map(function (l) {
+      var tone = TONE[l.status] || TONE.new;
+      var details = [];
+      if (l.kind === 'client') {
+        if (l.business_type) details.push('<strong>' + esc(l.business_type) + '</strong>');
+        if (l.company) details.push(esc(l.company));
+        if (l.budget) details.push(esc(l.budget));
+        if (l.city) details.push(esc(l.city));
+      } else {
+        if (l.role) details.push('<strong>' + esc(l.role) + '</strong>');
+        if (l.college) details.push(esc(l.college));
+        if (l.link) details.push('<a href="' + esc(l.link) + '" target="_blank" rel="noopener noreferrer nofollow">link</a>');
+      }
+      if (l.message) details.push('<span class="muted" style="display:block;margin-top:5px;max-width:34ch">' + esc(l.message.slice(0, 130)) + (l.message.length > 130 ? '…' : '') + '</span>');
+
+      var src = l.utm_campaign || l.utm_source || (l.referrer ? 'referral' : 'direct');
+      var srcSub = [l.utm_medium, l.utm_content].filter(Boolean).join(' · ');
+
+      return '<tr class="row" data-id="' + l.id + '">' +
+        '<td>' + fmtDate(l.created_at) + '</td>' +
+        '<td><strong>' + esc(l.name || '—') + '</strong>' +
+          '<div class="muted" style="font-size:.76rem;text-transform:capitalize">' + esc(l.kind) + '</div></td>' +
+        '<td>' + (l.phone ? '<a href="tel:' + esc(l.phone) + '">' + esc(l.phone) + '</a><br>' : '') +
+          (l.email ? '<a href="mailto:' + esc(l.email) + '" style="font-size:.84rem">' + esc(l.email) + '</a>' : '') + '</td>' +
+        '<td>' + (details.join(' · ') || '<span class="muted">—</span>') + '</td>' +
+        '<td><span class="pill" style="background:rgba(24,28,79,.07);color:rgba(24,28,79,.7)">' + esc(src) + '</span>' +
+          (srcSub ? '<div class="muted" style="font-size:.74rem;margin-top:4px">' + esc(srcSub) + '</div>' : '') +
+          '<div class="muted" style="font-size:.74rem;margin-top:3px">' + esc(l.landing_page || '') + '</div></td>' +
+        '<td><select class="status" data-id="' + l.id + '" style="background:' + tone[0] + ';color:' + tone[1] + ';border-color:transparent">' +
+          STATUSES.map(function (s) {
+            return '<option value="' + s + '"' + (l.status === s ? ' selected' : '') + '>' + s.charAt(0).toUpperCase() + s.slice(1) + '</option>';
+          }).join('') + '</select></td></tr>';
+    }).join('');
+
+    Array.prototype.forEach.call(document.querySelectorAll('select.status'), function (sel) {
+      sel.addEventListener('change', function () {
+        var id = sel.dataset.id, val = sel.value;
+        sel.disabled = true;
+        sb.from('leads').update({ status: val }).eq('id', id).then(function (r) {
+          sel.disabled = false;
+          if (r.error) { alert('Could not save: ' + r.error.message); return; }
+          var rec = all.filter(function (x) { return x.id === id; })[0];
+          if (rec) rec.status = val;
+          var tone = TONE[val] || TONE.new;
+          sel.style.background = tone[0]; sel.style.color = tone[1];
+          renderStats();
+        });
+      });
+    });
+  }
+
+  $('statusFilter').addEventListener('change', renderRows);
+  $('search').addEventListener('input', renderRows);
+
+  $('csv').addEventListener('click', function () {
+    var list = visible();
+    if (!list.length) { alert('Nothing to export with these filters.'); return; }
+    var cols = ['created_at','kind','name','phone','email','business_type','budget','city','company','role','college','link','message','status','utm_source','utm_medium','utm_campaign','utm_content','landing_page','referrer'];
+    var csv = [cols.join(',')].concat(list.map(function (l) {
+      return cols.map(function (c) { return '"' + String(l[c] == null ? '' : l[c]).replace(/"/g, '""') + '"'; }).join(',');
+    })).join('\n');
+    var url = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'media-puppies-leads-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+})();
+</script>
+</body>
+</html>

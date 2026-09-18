@@ -1,5 +1,6 @@
 /* Media Puppies — Internship page application form.
-   Posts to Web3Forms. Fires Meta Pixel ViewContent / InitiateCheckout / Lead. */
+   Saves to Supabase (your record) + Web3Forms (your email) via mpSubmitLead.
+   Fires Meta Pixel ViewContent / InitiateCheckout / Lead. */
 (function () {
   'use strict';
   var WEB3FORMS_KEY = '05a4cb54-228e-4084-acaa-d00149d73c23';
@@ -12,15 +13,10 @@
   var notSubmitted = document.querySelector('[data-if="notSubmitted"]');
   var submitted = document.querySelector('[data-if="submitted"]');
 
-  /* Page view of a specific job listing */
   if (window.mpTrack) {
-    window.mpTrack('ViewContent', {
-      content_name: 'Content Writing Internship',
-      content_category: 'internship'
-    });
+    window.mpTrack('ViewContent', { content_name: 'Content Writing Internship', content_category: 'internship' });
   }
 
-  /* First real interaction with the form = intent signal, fired once */
   var started = false;
   form.addEventListener('focusin', function () {
     if (started) return;
@@ -32,23 +28,17 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    var fd = new FormData(form);
-    fd.append('access_key', WEB3FORMS_KEY);
-    fd.append('subject', 'New Internship Application — Content Writer');
-    fd.append('role', 'Content Writer Intern (Remote)');
+    var fd = new FormData(form), fields = {};
+    fd.forEach(function (v, k) { fields[k] = v; });
+    fields.role = 'Content Writer Intern (Remote)';
 
     if (submitBtn) submitBtn.disabled = true;
-    if (submitLabel) submitLabel.textContent = 'Sending…';
+    if (submitLabel) submitLabel.textContent = 'Sending\u2026';
 
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (!data.success) throw new Error(data.message || 'Submit failed');
+    window.mpSubmitLead('internship', fields, WEB3FORMS_KEY, 'New Internship Application \u2014 Content Writer')
+      .then(function () {
         if (window.mpTrack) {
-          window.mpTrack('Lead', {
-            content_name: 'Content Writing Internship',
-            content_category: 'internship'
-          });
+          window.mpTrack('Lead', { content_name: 'Content Writing Internship', content_category: 'internship' });
         }
         if (notSubmitted) notSubmitted.style.display = 'none';
         if (submitted) {
