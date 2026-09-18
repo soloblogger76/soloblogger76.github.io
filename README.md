@@ -48,7 +48,7 @@ script tag therefore carries `?v=<date>`.
 file**, or visitors keep the stale copy:
 
 ```bash
-find . -name "*.html" -not -path "./.git/*" -exec sed -i '' 's/?v=20260918a/?v=20260919a/g' {} +
+find . -name "*.html" -not -path "./.git/*" -exec sed -i '' 's/?v=20260919a/?v=20260919a/g' {} +
 ```
 
 ## Leads
