@@ -75,3 +75,42 @@ create policy "only signed-in users can update leads"
   using (true) with check (true);
 
 -- No delete policy on purpose: leads cannot be destroyed from the browser.
+
+-- ============================================================
+-- Page views — first-party traffic analytics for /admin/
+-- Same RLS shape: anyone may record a view, only a signed-in
+-- admin may read them.
+-- ============================================================
+
+create table if not exists public.page_views (
+  id            bigint generated always as identity primary key,
+  created_at    timestamptz not null default now(),
+  session_id    text not null,
+  path          text not null,
+  referrer      text,
+  utm_source    text,
+  utm_medium    text,
+  utm_campaign  text,
+  utm_content   text,
+  fbclid        text,
+  gclid         text,
+  device        text,
+  screen_w      int
+);
+
+create index if not exists page_views_created_at_idx on public.page_views (created_at desc);
+create index if not exists page_views_path_idx       on public.page_views (path);
+create index if not exists page_views_session_idx    on public.page_views (session_id);
+create index if not exists page_views_campaign_idx   on public.page_views (utm_campaign);
+
+alter table public.page_views enable row level security;
+
+create policy "anyone can record a page view"
+  on public.page_views for insert
+  to anon, authenticated
+  with check (true);
+
+create policy "only signed-in users can read page views"
+  on public.page_views for select
+  to authenticated
+  using (true);

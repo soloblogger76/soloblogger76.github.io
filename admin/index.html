@@ -39,7 +39,7 @@ tr.row:hover{background:rgba(48,56,216,.03)}
 select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:999px;width:auto;min-width:112px}
 @media(max-width:800px){.tablewrap{overflow-x:auto}table{min-width:760px}}
 </style>
-<script src="/assets/js/supabase-config.js?v=20260918b"></script>
+<script src="/assets/js/supabase-config.js?v=20260918c"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0/dist/umd/supabase.min.js"></script>
 </head>
 <body>
@@ -119,6 +119,22 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
       <div id="sources" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px"></div>
     </div>
 
+
+    <!-- TRAFFIC -->
+    <div id="trafficTiles" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:14px;margin-bottom:22px"></div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px;margin-bottom:22px">
+      <div class="card" style="padding:24px">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:16px">Most visited pages</h2>
+        <div id="topPages"></div>
+      </div>
+      <div class="card" style="padding:24px">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:6px">Campaign performance</h2>
+        <p class="muted" style="margin:0 0 16px;font-size:.85rem">Sessions, the leads they produced, and what share converted.</p>
+        <div class="tablewrap"><table id="campaignTable"><thead><tr><th>Campaign / source</th><th style="width:78px">Sessions</th><th style="width:66px">Leads</th><th style="width:66px">Conv.</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </div>
+
     <!-- FILTERS -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
       <div id="tabs" style="display:flex;gap:4px;flex-wrap:wrap;background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:999px;padding:4px"></div>
@@ -161,7 +177,7 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
   }
 
   var sb = window.supabase.createClient(MP_SUPABASE_URL, MP_SUPABASE_ANON_KEY);
-  var all = [], kind = '', STATUSES = ['new','contacted','qualified','won','lost'];
+  var all = [], views = [], kind = '', STATUSES = ['new','contacted','qualified','won','lost'];
   var KINDS = [['','All'],['client','Client enquiries'],['internship','Internship'],['careers','Careers']];
   var TONE = {
     new:       ['rgba(48,56,216,.12)', '#3038D8'],
@@ -218,12 +234,18 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
 
   /* ---------- data ---------- */
   function load() {
-    sb.from('leads').select('*').order('created_at', { ascending: false }).limit(2000)
-      .then(function (r) {
-        if (r.error) { alert('Could not load leads: ' + r.error.message); return; }
-        all = r.data || [];
-        renderStats(); renderChart(); renderSources(); renderTabs(); renderRows();
-      });
+    var since = new Date(Date.now() - 30 * 864e5).toISOString();
+    Promise.all([
+      sb.from('leads').select('*').order('created_at', { ascending: false }).limit(2000),
+      sb.from('page_views').select('session_id,path,utm_source,utm_campaign,device,created_at')
+        .gte('created_at', since).order('created_at', { ascending: false }).limit(20000)
+    ]).then(function (res) {
+      if (res[0].error) { alert('Could not load leads: ' + res[0].error.message); return; }
+      all = res[0].data || [];
+      /* Traffic is a bonus view — if it fails, the leads inbox still works */
+      views = res[1].error ? [] : (res[1].data || []);
+      renderStats(); renderChart(); renderSources(); renderTabs(); renderRows(); renderTraffic();
+    });
   }
 
   function visible() {
@@ -361,6 +383,85 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
         });
       });
     });
+  }
+
+
+  function renderTraffic() {
+    var t = document.getElementById('trafficTiles');
+    if (!views.length) {
+      t.innerHTML = '<div class="card" style="padding:20px 18px;grid-column:1/-1">' +
+        '<strong style="font-family:\'Clash Display\',sans-serif">No traffic recorded yet</strong>' +
+        '<div class="muted" style="font-size:.88rem;margin-top:4px">Page views start appearing as soon as someone visits the site. Your own visits to /admin/ are never counted.</div></div>';
+      document.getElementById('topPages').innerHTML = '';
+      document.querySelector('#campaignTable tbody').innerHTML = '';
+      return;
+    }
+
+    var since = Date.now() - 30 * 864e5;
+    var sessions = {};
+    views.forEach(function (v) { sessions[v.session_id] = 1; });
+    var sessionCount = Object.keys(sessions).length;
+    var leads30 = all.filter(function (l) { return new Date(l.created_at).getTime() > since; }).length;
+    var conv = sessionCount ? (leads30 / sessionCount * 100) : 0;
+    var mobile = views.filter(function (v) { return v.device === 'mobile'; }).length;
+    var mobilePct = views.length ? Math.round(mobile / views.length * 100) : 0;
+
+    var tiles = [
+      ['Page views · 30d', views.length, '#3038D8'],
+      ['Sessions · 30d', sessionCount, '#3038D8'],
+      ['Leads · 30d', leads30, '#3038D8'],
+      ['Conversion', conv.toFixed(1) + '%', conv >= 2 ? '#1F8A3B' : '#181C4F'],
+      ['On mobile', mobilePct + '%', '#181C4F']
+    ];
+    t.innerHTML = tiles.map(function (x) {
+      return '<div class="card" style="padding:20px 18px">' +
+        '<div style="font-family:\'Clash Display\',sans-serif;font-weight:700;font-size:1.85rem;line-height:1.1;color:' + x[2] + '">' + x[1] + '</div>' +
+        '<div class="muted" style="font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-top:4px">' + x[0] + '</div></div>';
+    }).join('');
+
+    /* --- most visited pages --- */
+    var byPath = {};
+    views.forEach(function (v) {
+      var k = v.path || '/';
+      if (!byPath[k]) byPath[k] = { hits: 0, s: {} };
+      byPath[k].hits++;
+      byPath[k].s[v.session_id] = 1;
+    });
+    var paths = Object.keys(byPath).sort(function (a, b) { return byPath[b].hits - byPath[a].hits; }).slice(0, 8);
+    var maxHits = byPath[paths[0]].hits;
+    document.getElementById('topPages').innerHTML = paths.map(function (k) {
+      var n = byPath[k].hits, sc = Object.keys(byPath[k].s).length;
+      return '<div style="margin-bottom:13px"><div style="display:flex;justify-content:space-between;gap:10px;font-size:.88rem;font-weight:700;margin-bottom:6px">' +
+        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(k) + '</span>' +
+        '<span class="muted" style="white-space:nowrap">' + n + ' views · ' + sc + ' sessions</span></div>' +
+        '<div style="height:7px;background:rgba(24,28,79,.08);border-radius:999px;overflow:hidden">' +
+        '<div style="height:100%;width:' + (n / maxHits * 100) + '%;background:linear-gradient(90deg,#3038D8,#FFAC1C);border-radius:999px"></div></div></div>';
+    }).join('');
+
+    /* --- campaign: sessions vs the leads they produced --- */
+    function bucket(o) { return o.utm_campaign || o.utm_source || 'direct'; }
+    var camp = {};
+    views.forEach(function (v) {
+      var k = bucket(v);
+      if (!camp[k]) camp[k] = { s: {}, leads: 0 };
+      camp[k].s[v.session_id] = 1;
+    });
+    all.filter(function (l) { return new Date(l.created_at).getTime() > since; }).forEach(function (l) {
+      var k = bucket(l);
+      if (!camp[k]) camp[k] = { s: {}, leads: 0 };
+      camp[k].leads++;
+    });
+    var keys = Object.keys(camp).sort(function (a, b) {
+      return Object.keys(camp[b].s).length - Object.keys(camp[a].s).length || camp[b].leads - camp[a].leads;
+    }).slice(0, 10);
+    document.querySelector('#campaignTable tbody').innerHTML = keys.map(function (k) {
+      var sc = Object.keys(camp[k].s).length, ld = camp[k].leads;
+      var pct = sc ? (ld / sc * 100) : 0;
+      var tone = !sc ? 'rgba(24,28,79,.4)' : (pct >= 2 ? '#1F8A3B' : (ld ? '#181C4F' : '#C0392B'));
+      return '<tr><td><strong>' + esc(k) + '</strong></td>' +
+        '<td>' + (sc || '—') + '</td><td>' + ld + '</td>' +
+        '<td style="color:' + tone + ';font-weight:700">' + (sc ? pct.toFixed(1) + '%' : '—') + '</td></tr>';
+    }).join('');
   }
 
   $('statusFilter').addEventListener('change', renderRows);
