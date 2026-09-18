@@ -1,16 +1,15 @@
 /* Media Puppies — Supabase connection.
    ────────────────────────────────────────────────────────────
-   Fill these two values from Supabase → Project Settings → API.
+   This key is PUBLIC by design — Supabase calls it a "publishable"
+   key precisely because it belongs in browser code. Your leads are
+   protected by Row Level Security (see supabase-schema.sql), which
+   lets anyone INSERT a lead but only a signed-in admin read one.
 
-   The anon key is PUBLIC by design — it is safe in this file.
-   Your leads are protected by Row Level Security (see
-   supabase-schema.sql), not by hiding this key.
+   NEVER put a secret / service_role key here. Those bypass RLS and
+   would expose every lead to anyone who views source. */
 
-   NEVER put the service_role key here. That one bypasses all
-   security and would expose every lead to anyone. */
-
-var MP_SUPABASE_URL = 'YOUR_SUPABASE_URL';        // e.g. https://abcdefgh.supabase.co
-var MP_SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+var MP_SUPABASE_URL = 'https://ltozrfcjxxyjfvihpiyb.supabase.co';
+var MP_SUPABASE_ANON_KEY = 'sb_publishable_GqqAJ008hJMai4mc5a7OUQ_1tx8AdDV';
 
 var MP_SUPABASE_READY =
   MP_SUPABASE_URL.indexOf('YOUR_') !== 0 &&

@@ -59,33 +59,19 @@ create index if not exists leads_status_idx     on public.leads (status);
 
 alter table public.leads enable row level security;
 
-drop policy if exists "anyone can submit a lead" on public.leads;
 create policy "anyone can submit a lead"
   on public.leads for insert
   to anon, authenticated
   with check (true);
 
-drop policy if exists "only signed-in users can read leads" on public.leads;
 create policy "only signed-in users can read leads"
   on public.leads for select
   to authenticated
   using (true);
 
-drop policy if exists "only signed-in users can update leads" on public.leads;
 create policy "only signed-in users can update leads"
   on public.leads for update
   to authenticated
   using (true) with check (true);
 
 -- No delete policy on purpose: leads cannot be destroyed from the browser.
-
--- ============================================================
--- Daily counts, used by the admin dashboard chart
--- ============================================================
-create or replace view public.leads_daily as
-  select date_trunc('day', created_at)::date as day,
-         kind,
-         count(*) as total
-  from public.leads
-  group by 1, 2
-  order by 1 desc;
