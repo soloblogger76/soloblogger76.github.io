@@ -62,3 +62,5 @@ Allow: /
 Disallow: /admin/
 
 Sitemap: https://mediapuppies.com/sitemap.xml
+Sitemap: https://mediapuppies.com/sitemap-pages.xml
+Sitemap: https://mediapuppies.com/sitemap-blog.xml
