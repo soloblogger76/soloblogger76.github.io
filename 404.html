@@ -19,16 +19,25 @@ a{color:#181C4F;text-decoration:none}
 a:hover{color:#3038D8}
 </style>
 <script>
-/* GitHub Pages is case-sensitive, so /seo/ 404s while /SEO/ works.
-   Catch a case-only mistake and send the visitor to the real page
-   before they ever see this screen. */
+/* Two jobs, both before the visitor ever sees this screen:
+   1. MOVED — /Lead/ and /SEO/ became /lead-generation/ and /seo-services/
+      on 2026-09-21. Cloudflare 301s them at the edge, so this only fires
+      if a request reaches the origin unproxied.
+   2. CASE — GitHub Pages is case-sensitive, so /Services/ 404s while
+      /services/ works. Catch a case-only mistake and fix it. */
 (function () {
-  var REAL = ['/', '/services/', '/work/', '/careers/', '/internship/', '/SEO/',
-              '/blog/', '/Lead/', '/privacy-policy/'];
   var here = location.pathname.replace(/\/+$/, '').toLowerCase() + '/';
+  var tail = location.search + location.hash;
+
+  var MOVED = { '/lead/': '/lead-generation/', '/seo/': '/seo-services/' };
+  if (MOVED[here]) { location.replace(MOVED[here] + tail); return; }
+
+  var REAL = ['/', '/services/', '/work/', '/careers/', '/internship/',
+              '/seo-services/', '/blog/', '/lead-generation/',
+              '/cac-calculator/', '/privacy-policy/'];
   for (var i = 0; i < REAL.length; i++) {
-    if (REAL[i].toLowerCase() === here && REAL[i] !== location.pathname) {
-      location.replace(REAL[i] + location.search + location.hash);
+    if (REAL[i] === here && REAL[i] !== location.pathname) {
+      location.replace(REAL[i] + tail);
       return;
     }
   }
@@ -56,7 +65,7 @@ a:hover{color:#3038D8}
 
     <div style="margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px;text-align:left">
       <a href="/services/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">Services</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Everything we do</span></a>
-      <a href="/SEO/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">SEO</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Free audit</span></a>
+      <a href="/seo-services/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">SEO</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Free audit</span></a>
       <a href="/work/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">Work</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Case studies</span></a>
       <a href="/internship/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">Internship</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Remote, paid</span></a>
       <a href="/careers/" style="background:#FFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px rgba(24,28,79,.06)"><strong style="display:block;font-family:'Clash Display',sans-serif;font-weight:600">Careers</strong><span style="font-size:.9rem;color:rgba(24,28,79,.6)">Open roles</span></a>
@@ -64,7 +73,7 @@ a:hover{color:#3038D8}
     </div>
 
     <div style="margin-top:34px;display:flex;justify-content:center">
-      <a href="/Lead/" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);padding:16px 30px;border-radius:999px;box-shadow:0 12px 30px rgba(48,56,216,.32)">Start a project
+      <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);padding:16px 30px;border-radius:999px;box-shadow:0 12px 30px rgba(48,56,216,.32)">Start a project
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>

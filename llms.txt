@@ -9,7 +9,7 @@
 ## What we do
 
 - [Services](https://mediapuppies.com/services/): performance marketing, SEO, influencer marketing, AI automation, conversion systems, creative, tracking and attribution
-- [SEO](https://mediapuppies.com/SEO/): technical SEO, buying-intent content, local SEO and earned authority, reported in organic leads
+- [SEO](https://mediapuppies.com/seo-services/): technical SEO, buying-intent content, local SEO and earned authority, reported in organic leads
 - [Work](https://mediapuppies.com/work/): case studies — 4.2x ROAS for D2C skincare, ₹184 per lead for interior design, ₹312 per booked consult for an aesthetics clinic
 
 ## Who we work with
@@ -36,7 +36,7 @@ before we pitch, and we say no when paid media is not the right spend yet.
 
 ## Contact
 
-- Enquiries: https://mediapuppies.com/Lead/
-- Free SEO audit: https://mediapuppies.com/SEO/
+- Enquiries: https://mediapuppies.com/lead-generation/
+- Free SEO audit: https://mediapuppies.com/seo-services/
 - Phone: +91 81100 00123
 - LinkedIn: https://www.linkedin.com/company/mediapuppies/

@@ -1,4 +1,4 @@
-/* Media Puppies — /SEO/ free-audit form.
+/* Media Puppies — /seo-services/ free-audit form.
    Saves to Supabase + Web3Forms via mpSubmitLead. Recorded as a client lead. */
 (function () {
   'use strict';

@@ -15,7 +15,7 @@ create table if not exists public.leads (
   email         text,
   phone         text,
 
-  -- client-enquiry fields (/Lead/)
+  -- client-enquiry fields (/lead-generation/)
   business_type text,
   budget        text,
   city          text,

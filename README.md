@@ -13,7 +13,7 @@ repo (`main` branch, root). Push to `main` and it is live in about a minute.
 /careers/              Open roles + application form
 /internship/           Paid-traffic landing page — the one open internship
 /blog/                 Blog index + 5 articles (footer link only, not in nav)
-/Lead/                 Client enquiry landing page (capital L — live ad URLs use it)
+/lead-generation/      Client enquiry landing page (Meta/Google ad destination)
 /privacy-policy/       Privacy + Terms
 /admin/                Leads dashboard (noindex, disallowed in robots.txt)
 /assets/img/           WebP images, logos, og-image
@@ -34,7 +34,7 @@ than a project repo.
 | `pixel.js` | Meta Pixel for the whole site. **The Pixel ID lives here, once.** Also provides `mpTrack`, `mpTrackCustom` and `data-track` |
 | `lead-capture.js` | Captures UTM / fbclid / gclid / referrer on the first page of a session, then `mpSubmitLead()` writes to Supabase + Web3Forms |
 | `supabase-config.js` | Supabase URL + anon key |
-| `lead-form.js` | `/Lead/` two-step client form |
+| `lead-form.js` | `/lead-generation/` two-step client form |
 | `careers-form.js` | `/careers/` application form |
 | `internship-form.js` | `/internship/` application form |
 
@@ -77,7 +77,7 @@ row with a 400.
 
 - [ ] Case study numbers and testimonial names are the original export's placeholders
 - [ ] Internship stipend on `/internship/` is a placeholder (`data-stipend`) — confirm before running ads
-- [ ] About and Contact pages do not exist; nav Contact points to `/Lead/#leadForm`
+- [ ] About and Contact pages do not exist; nav Contact points to `/lead-generation/#leadForm`
 - [ ] Meta Ads spend/ROAS inside `/admin/` (needs Marketing API — phase 2)
 
 ## Design decisions (don't undo)
@@ -86,4 +86,4 @@ row with a 400.
 - Nav + sticky CTA use `position:fixed` + `translateZ(0)`, no `backdrop-filter` (mobile Safari)
 - `overflow-x` clipped on html+body (mobile side-scroll fix)
 - Blog is linked from the footer only, never the header
-- `/Lead/` keeps its capital L so live ad URLs don't break on case-sensitive hosts
+- `/Lead/` and `/SEO/` were renamed to `/lead-generation/` and `/seo-services/` on 2026-09-21; the old paths 301 at the Cloudflare edge and keep meta-refresh stubs in the repo as a fallback
