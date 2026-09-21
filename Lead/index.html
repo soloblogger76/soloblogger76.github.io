@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>We Fetch Customers | Media Puppies</title>
+<title>Get Qualified Leads, Not Clicks | Media Puppies</title>
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
 <meta property="og:site_name" content="Media Puppies">
-<meta property="og:title" content="Media Puppies — We Fetch Customers">
+<meta property="og:title" content="Media Puppies — Get Qualified Leads, Not Clicks">
 <meta property="og:description" content="Performance marketing & lead generation. We run your ads, filter the junk, and deliver ready-to-talk enquiries on WhatsApp.">
 <meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
 <meta name="description" content="Media Puppies runs your Meta & Google ads, filters out junk, and delivers verified enquiries to your WhatsApp. Performance marketing for businesses in Delhi NCR.">
@@ -34,14 +34,24 @@ details[open] span[data-plus]{transform:rotate(45deg)}
 details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 [data-sticky-cta]{display:none}
+#leadForm input:focus,#leadForm select:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+[data-optgrid]{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){[data-optgrid]{grid-template-columns:1fr}}
+[data-opt]{display:block;position:relative;margin:0}
+[data-opt] input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+[data-opt] span{display:flex;align-items:center;gap:9px;cursor:pointer;box-sizing:border-box;height:100%;border:1.5px solid rgba(24,28,79,.14);background:#F6F5EF;border-radius:12px;padding:13px 14px;font-weight:700;font-size:.92rem;line-height:1.25;transition:border-color .15s ease,background .15s ease,box-shadow .15s ease}
+[data-opt] span svg{flex:none}
+[data-opt] span:hover{border-color:rgba(48,56,216,.55)}
+[data-opt] input:checked+span{border-color:#3038D8;background:#EDEFFF;box-shadow:0 0 0 3px rgba(48,56,216,.13)}
+[data-opt] input:focus-visible+span{outline:2px solid #3038D8;outline-offset:2px}
 @media (max-width:720px){[data-sticky-cta]{display:flex}}
 </style>
 <meta property="og:url" content="https://mediapuppies.com/Lead/">
 <link rel="canonical" href="https://mediapuppies.com/Lead/">
-<script src="/assets/js/pixel.js?v=20260918c"></script>
-<script src="/assets/js/supabase-config.js?v=20260918c"></script>
-<script src="/assets/js/analytics.js?v=20260918c"></script>
-<script src="/assets/js/lead-capture.js?v=20260918c"></script>
+<script src="/assets/js/pixel.js?v=20260921a"></script>
+<script src="/assets/js/supabase-config.js?v=20260921a"></script>
+<script src="/assets/js/analytics.js?v=20260921a"></script>
+<script src="/assets/js/lead-capture.js?v=20260921a"></script>
 </head>
 <body>
 <!-- SCROLL PROGRESS -->
@@ -70,8 +80,8 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
         Performance Marketing · Lead Generation
       </span>
       <h1 data-reveal="90" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.6rem,5.2vw,4.5rem);line-height:1.02;letter-spacing:-.025em;margin:0;max-width:14ch">You run the business.<br>We <span style="position:relative;display:inline-block;color:#3038D8">fetch<svg viewBox="0 0 200 30" aria-hidden="true" style="position:absolute;left:0;bottom:-.14em;width:100%;height:.34em;overflow:visible;display:block"><path d="M4 22 Q 100 4 196 18" style="fill:none;stroke:#FFAC1C;stroke-width:7;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:320;animation:drawline 1s .7s ease forwards"></path></svg></span> the customers.</h1>
-      <p data-reveal="200" style="margin:20px 0 0;font-size:1.08rem;font-weight:700;color:#232A9E">Aap kaam sambhaliye. Customer hum le aayenge.</p>
-      <p data-reveal="280" style="margin:12px 0 0;font-size:1.14rem;color:rgba(24,28,79,.66);max-width:52ch">Media Puppies runs your ads, filters out the timepass, and delivers ready-to-talk enquiries straight to your WhatsApp. Buyers — not likes, not followers, not "branding".</p>
+      <p data-reveal="200" style="margin:20px 0 0;font-size:1.08rem;font-weight:700;color:#232A9E">Paid leads your sales team can actually close.</p>
+      <p data-reveal="280" style="margin:12px 0 0;font-size:1.14rem;color:rgba(24,28,79,.66);max-width:52ch">Media Puppies runs your ads, filters out the time-wasters, and delivers ready-to-talk enquiries straight to your WhatsApp. Buyers — not likes, not followers, not "branding".</p>
       <div data-reveal="360" style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
         <a data-magnet href="#get-leads" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;white-space:nowrap;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);padding:16px 30px;border-radius:999px;box-shadow:0 12px 30px rgba(48,56,216,.32), inset 0 1px 0 rgba(255,255,255,.25);position:relative;overflow:hidden" style-hover="box-shadow:0 18px 40px rgba(48,56,216,.42), inset 0 1px 0 rgba(255,255,255,.25);color:#FFFFFF">
           <span style="position:absolute;top:0;bottom:0;left:0;width:50px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:sheen 3.5s 1.5s ease infinite"></span>
@@ -80,10 +90,15 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
         </a>
         <a data-magnet href="https://wa.me/918110000123?text=Hi%20Media%20Puppies%2C%20I%20want%20leads%20for%20my%20business" target="_blank" rel="noopener" data-track="Contact" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;white-space:nowrap;color:#181C4F;background:#FFFFFF;border:1.5px solid rgba(24,28,79,.16);padding:16px 30px;border-radius:999px;box-shadow:0 6px 18px rgba(24,28,79,.07);transition:border-color .15s ease" style-hover="border-color:#25D366;color:#181C4F">
           <svg viewBox="0 0 32 32" width="20" height="20" style="fill:#25D366;display:block;flex:none"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.3 1.6h.5c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.6-1.5-5.9-5.1-6.1-5.4-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.7 1.1 2.9.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.9-.1.2-.3 1-1.2 1.3-1.6.3-.4.6-.3.9-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.2.1 1-.2 1.7z"/></svg>
-          WhatsApp pe baat karo
+          Chat on WhatsApp
         </a>
       </div>
-      <div data-reveal="440" style="margin-top:46px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+      <div data-reveal="400" style="margin-top:22px;display:flex;gap:10px 22px;flex-wrap:wrap;font-size:.88rem;font-weight:700;color:rgba(24,28,79,.62)">
+        <span style="display:flex;align-items:center;gap:7px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No lock-in contract</span>
+        <span style="display:flex;align-items:center;gap:7px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You own the ad account</span>
+        <span style="display:flex;align-items:center;gap:7px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Reply the same day</span>
+      </div>
+      <div data-reveal="440" style="margin-top:34px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
         <div style="display:flex;gap:36px;width:max-content;animation:marquee 20s linear infinite;font-size:.84rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.6)">
           <span style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FFAC1C"></span>Meta Ads</span>
           <span style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#3038D8;opacity:.5"></span>Google Ads</span>
@@ -171,19 +186,19 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
         <div style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:.95rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 6px 14px rgba(48,56,216,.3)">1</div>
         <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.25rem;margin:0 0 8px">We run the ads</h3>
         <p style="margin:0;color:rgba(24,28,79,.66);font-size:.98rem">Campaigns built on Meta &amp; Google with landing pages designed for one job: making the right people enquire.</p>
-        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">Hum ads chalate hain.</span>
+        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">You own the ad account. Always.</span>
       </div>
       <div data-tilt data-rev="up" data-reveal="140" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:32px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform">
         <div style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:.95rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 6px 14px rgba(48,56,216,.3)">2</div>
         <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.25rem;margin:0 0 8px">We filter the leads</h3>
         <p style="margin:0;color:rgba(24,28,79,.66);font-size:.98rem">Qualifying questions and follow-up flows weed out window-shoppers, so junk enquiries never reach you.</p>
-        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">Timepass bahar, serious log andar.</span>
+        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">Time-wasters out. Serious buyers in.</span>
       </div>
       <div data-tilt data-rev="right" data-reveal="280" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:32px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform">
         <div style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:.95rem;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 6px 14px rgba(232,145,0,.35)">3</div>
         <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.25rem;margin:0 0 8px">You close customers</h3>
         <p style="margin:0;color:rgba(24,28,79,.66);font-size:.98rem">Verified enquiries land on your WhatsApp in real time. You do what you do best — close the deal.</p>
-        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">Aap sirf deal close kijiye.</span>
+        <span style="display:block;margin-top:12px;font-weight:700;font-size:.9rem;color:#232A9E">You only do the closing.</span>
       </div>
     </div>
   </div>
@@ -324,25 +339,25 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px;perspective:1400px">
       <div data-tilt data-rev="left" data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:30px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;display:flex;flex-direction:column;gap:18px">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFAC1C" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2zM21 7h-4a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2z" opacity=".9"/></svg>
-        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">Pehle Justdial se leads lete the — same lead 5 logon ke paas jaati thi. Ab apni ads se exclusive enquiries aati hain. Cost same, closing double.</p>
+        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">We used to buy leads from Justdial — the same lead went to five of us. Now the enquiries come from our own ads and they are exclusive. Same cost, double the closing rate.</p>
         <div style="display:flex;align-items:center;gap:12px;margin-top:auto">
-          <div style="width:48px;height:48px;flex:none"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="testimonial-1" shape="circle" placeholder="Photo" src="/assets/img/testimonial-rajesh.webp" hint-size="48px,48px"></x-import></div>
+          <div style="width:48px;height:48px;flex:none"><img src="/assets/img/testimonial-rajesh.webp" alt="Rajesh V." loading="lazy" width="48" height="48" style="width:48px;height:48px;border-radius:50%;object-fit:cover;display:block"></div>
           <div><strong style="display:block;font-size:.95rem">Rajesh V.</strong><span style="font-size:.85rem;color:rgba(24,28,79,.6)">Interior Designer, Gurgaon</span></div>
         </div>
       </div>
       <div data-tilt data-rev="up" data-reveal="140" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:30px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;display:flex;flex-direction:column;gap:18px">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFAC1C" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2zM21 7h-4a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2z" opacity=".9"/></svg>
-        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">Weekly report seedha WhatsApp par aata hai — spend, leads, cost. Koi agency jargon nahi. 3 mahine mein humne apna sales process hi inke leads ke around bana liya.</p>
+        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">The weekly report lands straight on WhatsApp — spend, leads, cost per lead. No agency jargon. Within three months we rebuilt our whole sales process around these enquiries.</p>
         <div style="display:flex;align-items:center;gap:12px;margin-top:auto">
-          <div style="width:48px;height:48px;flex:none"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="testimonial-2" shape="circle" placeholder="Photo" src="/assets/img/testimonial-meera.webp" hint-size="48px,48px"></x-import></div>
+          <div style="width:48px;height:48px;flex:none"><img src="/assets/img/testimonial-meera.webp" alt="Dr. Meera S." loading="lazy" width="48" height="48" style="width:48px;height:48px;border-radius:50%;object-fit:cover;display:block"></div>
           <div><strong style="display:block;font-size:.95rem">Dr. Meera S.</strong><span style="font-size:.85rem;color:rgba(24,28,79,.6)">Aesthetics Clinic, Delhi</span></div>
         </div>
       </div>
       <div data-tilt data-rev="right" data-reveal="280" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:30px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;display:flex;flex-direction:column;gap:18px">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFAC1C" aria-hidden="true"><path d="M10 7H6a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2zM21 7h-4a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-7a3 3 0 0 0-1-2z" opacity=".9"/></svg>
-        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">Inhone pehli call par hi bol diya ki mere budget mein kya realistic hai aur kya nahi. Us honesty ki wajah se hi kaam diya — aur numbers unke promise se better nikle.</p>
+        <p style="margin:0;font-size:1rem;color:rgba(24,28,79,.8)">On the very first call they told me what was realistic on my budget and what was not. That honesty is why I hired them — and the numbers came in better than promised.</p>
         <div style="display:flex;align-items:center;gap:12px;margin-top:auto">
-          <div style="width:48px;height:48px;flex:none"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="testimonial-3" shape="circle" placeholder="Photo" src="/assets/img/testimonial-ankit.webp" hint-size="48px,48px"></x-import></div>
+          <div style="width:48px;height:48px;flex:none"><img src="/assets/img/testimonial-ankit.webp" alt="Ankit T." loading="lazy" width="48" height="48" style="width:48px;height:48px;border-radius:50%;object-fit:cover;display:block"></div>
           <div><strong style="display:block;font-size:.95rem">Ankit T.</strong><span style="font-size:.85rem;color:rgba(24,28,79,.6)">Solar Installer, Noida</span></div>
         </div>
       </div>
@@ -350,9 +365,9 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
 
     <!-- Founder note -->
     <div data-rev="zoom" data-reveal="120" style="margin-top:20px;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:30px 28px;box-shadow:0 12px 32px rgba(24,28,79,.07);display:flex;gap:24px;align-items:center;flex-wrap:wrap">
-      <div style="width:96px;height:96px;flex:none"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="founder-photo" shape="circle" placeholder="Your photo" src="/assets/img/founder.webp" hint-size="96px,96px"></x-import></div>
+      <div style="width:96px;height:96px;flex:none"><img src="/assets/img/founder.webp" alt="Founder, Media Puppies" loading="lazy" width="96" height="96" style="width:96px;height:96px;border-radius:50%;object-fit:cover;display:block"></div>
       <div style="flex:1;min-width:260px">
-        <p style="margin:0;font-size:1.02rem;color:rgba(24,28,79,.8)">"Hum leads ka promise nahi bechte — hum system bechte hain jo leads laata hai. Agar aapke business ke liye paid ads galat hai, main pehli call par hi bata dunga."</p>
+        <p style="margin:0;font-size:1.02rem;color:rgba(24,28,79,.8)">"We don’t sell a promise of leads — we sell the system that produces them. If paid ads are wrong for your business, I’ll tell you that on the first call."</p>
         <div style="margin-top:10px"><strong style="font-size:.95rem">Founder, Media Puppies</strong><span style="font-size:.85rem;color:rgba(24,28,79,.6)"> · 8 years in performance marketing · $10M+ ad spend managed</span></div>
       </div>
     </div>
@@ -384,8 +399,8 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
         <p style="margin:0;padding:0 0 20px;color:rgba(24,28,79,.66);font-size:.97rem">Some junk is unavoidable in any paid channel — our job is to keep it low with qualifying questions and continuous filtering. We review lead quality with you weekly and adjust targeting until the ratio works for your sales process.</p>
       </details>
       <details data-rev="up" data-reveal="320" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:0 24px;transition:box-shadow .25s ease">
-        <summary style="cursor:pointer;font-weight:700;font-size:1.02rem;padding:19px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px">Kitna budget kis industry ke liye sahi hai?<span data-plus style="font-family:'Clash Display',sans-serif;font-size:1.4rem;color:#3038D8;transition:transform .2s ease;flex:none">+</span></summary>
-        <p style="margin:0;padding:0 0 20px;color:rgba(24,28,79,.66);font-size:.97rem">Rough guide: interior design aur clinics ke liye ₹30,000–50,000/month se acha data milta hai; real estate aur solar mein competition zyada hai, toh ₹50,000–1,00,000 realistic hai. Exact number aapki city aur average customer value par depend karta hai — pehli call par hum yeh calculation saath mein karte hain.</p>
+        <summary style="cursor:pointer;font-weight:700;font-size:1.02rem;padding:19px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px">How much budget does my industry actually need?<span data-plus style="font-family:'Clash Display',sans-serif;font-size:1.4rem;color:#3038D8;transition:transform .2s ease;flex:none">+</span></summary>
+        <p style="margin:0;padding:0 0 20px;color:rgba(24,28,79,.66);font-size:.97rem">Rough guide: interior design and clinics get usable data from ₹30,000–50,000 a month. Real estate and solar are far more competitive, so ₹50,000–1,00,000 is realistic. The exact number depends on your city and your average customer value — we run that calculation with you on the first call.</p>
       </details>
       <details data-rev="up" data-reveal="400" style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:16px;padding:0 24px;transition:box-shadow .25s ease">
         <summary style="cursor:pointer;font-weight:700;font-size:1.02rem;padding:19px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px">Do you guarantee results?<span data-plus style="font-family:'Clash Display',sans-serif;font-size:1.4rem;color:#3038D8;transition:transform .2s ease;flex:none">+</span></summary>
@@ -426,10 +441,36 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
               </div>
               </div>
               <div data-step-panel="1" style="display:block">
+              <div style="margin-bottom:18px">
+                <span style="display:block;font-weight:700;font-size:.86rem;margin-bottom:9px">What do you need help with?</span>
+                <div data-optgrid>
+                  <label data-opt>
+                    <input type="radio" name="service_interest" value="Meta Ads · Facebook &amp; Instagram">
+                    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2" aria-hidden="true"><path d="M3 12c0-4 2-7 4.5-7S12 8 12 12s2 7 4.5 7S21 16 21 12s-2-7-4.5-7S12 8 12 12s-2 7-4.5 7S3 16 3 12z"/></svg>Meta Ads</span>
+                  </label>
+                  <label data-opt>
+                    <input type="radio" name="service_interest" value="Google Ads · Search &amp; YouTube">
+                    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Google Ads</span>
+                  </label>
+                  <label data-opt>
+                    <input type="radio" name="service_interest" value="SEO · rank without paying per click">
+                    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2" aria-hidden="true"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg>SEO</span>
+                  </label>
+                  <label data-opt>
+                    <input type="radio" name="service_interest" value="AI Automation · follow-ups on autopilot">
+                    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2" aria-hidden="true"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 16h5"/></svg>AI Automation</span>
+                  </label>
+                  <label data-opt style="grid-column:1 / -1">
+                    <input type="radio" name="service_interest" value="Not sure — recommend what fits">
+                    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3038D8" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.2a2.8 2.8 0 1 1 3.6 3.1c-.6.3-.8.8-.8 1.4v.3"/><path d="M12 17.2h.01"/></svg>Not sure yet</span>
+                  </label>
+                </div>
+                <p data-opt-error style="display:none;margin:9px 0 0;font-size:.84rem;font-weight:700;color:#C0392B">Pick one to continue.</p>
+              </div>
               <div style="margin-bottom:16px">
                 <label for="f-biz" style="display:block;font-weight:700;font-size:.86rem;margin-bottom:6px">Business type</label>
-                <select id="f-biz" name="business_type" required defaultValue="" style="width:100%;box-sizing:border-box;padding:13px 14px;border:1.5px solid rgba(24,28,79,.14);border-radius:10px;font-family:'Satoshi',system-ui,sans-serif;font-size:1rem;background:#F6F5EF;color:#181C4F" style-focus="outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8">
-                  <option value="" disabled>Select your industry</option>
+                <select id="f-biz" name="business_type" required style="width:100%;box-sizing:border-box;padding:13px 14px;border:1.5px solid rgba(24,28,79,.14);border-radius:10px;font-family:'Satoshi',system-ui,sans-serif;font-size:1rem;background:#F6F5EF;color:#181C4F" style-focus="outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8">
+                  <option value="" disabled selected>Select your industry</option>
                   <option>Interior Design / Modular Kitchen</option>
                   <option>Clinic / Aesthetics / Healthcare</option>
                   <option>Real Estate</option>
@@ -454,8 +495,8 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
               <div data-step-panel="1" style="display:block">
               <div style="margin-bottom:16px">
                 <label for="f-budget" style="display:block;font-weight:700;font-size:.86rem;margin-bottom:6px">Monthly marketing budget</label>
-                <select id="f-budget" name="monthly_budget" required defaultValue="" style="width:100%;box-sizing:border-box;padding:13px 14px;border:1.5px solid rgba(24,28,79,.14);border-radius:10px;font-family:'Satoshi',system-ui,sans-serif;font-size:1rem;background:#F6F5EF;color:#181C4F" style-focus="outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8">
-                  <option value="" disabled>Select a range</option>
+                <select id="f-budget" name="monthly_budget" required style="width:100%;box-sizing:border-box;padding:13px 14px;border:1.5px solid rgba(24,28,79,.14);border-radius:10px;font-family:'Satoshi',system-ui,sans-serif;font-size:1rem;background:#F6F5EF;color:#181C4F" style-focus="outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8">
+                  <option value="" disabled selected>Select a range</option>
                   <option value="UNDER-30K (not qualified yet)">Under ₹30,000</option>
                   <option>₹30,000 – ₹75,000</option>
                   <option>₹75,000 – ₹1,50,000</option>
@@ -499,7 +540,7 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
       <a href="/services/" style="font-weight:700">Services</a>
       <a href="/work/" style="font-weight:700">Work</a>
       <a href="/careers/" style="font-weight:700">Careers</a>
-      <a href="/Lead/#leadForm" style="font-weight:700">Contact</a>
+      <a href="/Lead/#get-leads" style="font-weight:700">Contact</a>
     </div>
     <a href="tel:+918110000123" style="font-weight:700;color:#181C4F">+91 81100 00123</a>
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.82rem">
@@ -517,7 +558,7 @@ details[open]{box-shadow:0 18px 44px rgba(24,28,79,.10)}
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
-<script src="/assets/js/main.js?v=20260918c" defer></script>
-<script src="/assets/js/lead-form.js?v=20260918c" defer></script>
+<script src="/assets/js/main.js?v=20260921a" defer></script>
+<script src="/assets/js/lead-form.js?v=20260921a" defer></script>
 </body>
 </html>

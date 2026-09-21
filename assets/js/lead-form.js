@@ -22,14 +22,39 @@
     if (stepNum) stepNum.textContent = n;
   }
 
+  /* The service chips are visually-hidden radios, so the native required
+     bubble can't anchor to them. Validate and message them by hand. */
+  var optError = document.querySelector('[data-opt-error]');
+  function chosenService() {
+    var picked = form.querySelector('input[name="service_interest"]:checked');
+    return picked ? picked.value : '';
+  }
+  form.querySelectorAll('input[name="service_interest"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      if (optError) optError.style.display = 'none';
+    });
+  });
+
   document.querySelectorAll('[data-action="go-step2"]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var biz = document.getElementById('f-biz');
       var budget = document.getElementById('f-budget');
+      if (!chosenService()) {
+        if (optError) {
+          optError.style.display = 'block';
+          optError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
       if (biz && !biz.checkValidity()) { biz.reportValidity(); return; }
       if (budget && !budget.checkValidity()) { budget.reportValidity(); return; }
       showStep(2);
-      if (window.mpTrack) window.mpTrack('InitiateCheckout');
+      if (window.mpTrack) {
+        window.mpTrack('InitiateCheckout');
+        if (window.mpTrackCustom) {
+          window.mpTrackCustom('ServiceSelected', { service: chosenService() });
+        }
+      }
     });
   });
 
@@ -48,7 +73,11 @@
 
     window.mpSubmitLead('client', fields, WEB3FORMS_KEY, 'New Lead \u2014 Media Puppies Website')
       .then(function () {
-        if (window.mpTrack) window.mpTrack('Lead', { content_category: 'client_enquiry' });
+        if (window.mpTrack) window.mpTrack('Lead', {
+          content_category: 'client_enquiry',
+          content_name: fields.service_interest || '',
+          predicted_ltv: fields.monthly_budget || ''
+        });
         if (blockNotSubmitted) blockNotSubmitted.style.display = 'none';
         if (blockSubmitted) {
           blockSubmitted.style.display = 'block';
