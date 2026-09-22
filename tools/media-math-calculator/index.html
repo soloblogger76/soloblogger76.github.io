@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media Math Calculator — CPM, CPC, CTR, CPA | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="Enter spend, impressions, clicks and conversions and get CPM, CPC, CTR, CPA and conversion rate at once. Free, no signup.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Media math calculator">
+<meta property="og:description" content="Enter spend, impressions, clicks and conversions and get CPM, CPC, CTR, CPA and conversion rate at once. Free, no signup.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/media-math-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Media math calculator">
+<meta name="twitter:description" content="Enter spend, impressions, clicks and conversions and get CPM, CPC, CTR, CPA and conversion rate at once. Free, no signup.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/media-math-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/media-math-calculator/#app",
+   "name": "Media math calculator",
+   "url": "https://mediapuppies.com/tools/media-math-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Enter spend, impressions, clicks and conversions and get CPM, CPC, CTR, CPA and conversion rate at once. Free, no signup.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Media math calculator",
+     "item": "https://mediapuppies.com/tools/media-math-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Why is my CPM suddenly higher?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Usually competition. Auction prices in India climb sharply around festive periods and end-of-quarter pushes. A narrow audience or rising frequency will do it too."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I optimise for CPC?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Cheap clicks from the wrong people are the most expensive thing in a paid account. Optimise for cost per conversion."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Link clicks or all clicks?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Use link clicks. All clicks includes likes, comments and profile taps, which flatters CTR and tells you nothing about traffic."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do platform conversions match my actual sales?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Rarely exactly. Platforms count conversions they believe they influenced within an attribution window. Reconcile monthly against your own records."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">Reporting</span>
+  <h1 style="margin:16px 0 0">Media math calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Every paid metric derives from four raw numbers. Put those in and get the rest — plus a read on which stage of the funnel is actually the problem.</p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="spend">Amount spent (₹)</label><input id="spend" type="number" inputmode="decimal" step="any" min="0" value="50000"></div><div class="field"><label for="impr">Impressions</label><input id="impr" type="number" inputmode="decimal" step="1" min="0" value="420000"></div><div class="field"><label for="clicks">Link clicks</label><input id="clicks" type="number" inputmode="decimal" step="1" min="0" value="6300"></div><div class="field"><label for="convs">Conversions</label><input id="convs" type="number" inputmode="decimal" step="1" min="0" value="95"></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">CPM</div><div class="v" id="o_cpm">—</div><div class="s" id="o_cpm-s"></div></div><div class="metric"><div class="k">CPC</div><div class="v" id="o_cpc">—</div><div class="s" id="o_cpc-s"></div></div><div class="metric"><div class="k">CTR</div><div class="v" id="o_ctr">—</div><div class="s" id="o_ctr-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Conversion rate</div><div class="v" id="o_cvr">—</div><div class="s" id="o_cvr-s"></div></div><div class="metric"><div class="k">Cost per conversion</div><div class="v" id="o_cpa">—</div><div class="s" id="o_cpa-s"></div></div><div class="metric"><div class="k">Clicks per 1,000 impressions</div><div class="v" id="o_reach">—</div><div class="s" id="o_reach-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>The formulas</h2>
+<table><tr><th>Metric</th><th>Formula</th><th>What it tells you</th></tr>
+<tr><td>CPM</td><td>spend ÷ impressions × 1,000</td><td>What the auction costs you. Rises with competition and with narrow audiences.</td></tr>
+<tr><td>CPC</td><td>spend ÷ clicks</td><td>A blend of CPM and CTR. Falls when the creative improves.</td></tr>
+<tr><td>CTR</td><td>clicks ÷ impressions</td><td>Whether the creative and audience match. The fastest signal you have.</td></tr>
+<tr><td>CVR</td><td>conversions ÷ clicks</td><td>Whether the landing page delivers what the ad promised.</td></tr>
+<tr><td>CPA</td><td>spend ÷ conversions</td><td>The only number that pays your bills.</td></tr></table>
+<h2>Reading them together</h2>
+<p>A single metric never tells you what to fix. The pair does.</p>
+<ul><li><strong>Low CTR, any CVR</strong> — creative or audience problem. Nothing downstream matters until this moves.</li>
+<li><strong>Good CTR, low CVR</strong> — the ad over-promised or the landing page is slow, unclear or asks too much. This is the most common and most fixable case.</li>
+<li><strong>Good CTR, good CVR, high CPA</strong> — your funnel is fine and the auction is simply expensive. Widen the audience, lower frequency, or accept the cost if the customer value supports it.</li>
+<li><strong>High CPM, everything else fine</strong> — usually too narrow a target, high frequency, or a seasonal auction spike.</li></ul>
+<p class="note">These are relationships, not benchmarks. What counts as a “good” CTR varies enormously between industries, placements and offers — compare against your own previous months, not against a number from a blog post.</p>
+
+
+  <h2>Questions</h2>
+  <div><details><summary>Why is my CPM suddenly higher?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Usually competition. Auction prices in India climb sharply around festive periods and end-of-quarter pushes. A narrow audience or rising frequency will do it too.</p></details><details><summary>Should I optimise for CPC?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">No. Cheap clicks from the wrong people are the most expensive thing in a paid account. Optimise for cost per conversion.</p></details><details><summary>Link clicks or all clicks?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Use link clicks. All clicks includes likes, comments and profile taps, which flatters CTR and tells you nothing about traffic.</p></details><details><summary>Do platform conversions match my actual sales?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Rarely exactly. Platforms count conversions they believe they influenced within an attribution window. Reconcile monthly against your own records.</p></details></div>
+
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/ab-test-significance-calculator/">A/B test significance calculator</a></li><li><a href="/tools/meta-ads-budget-calculator/">Meta ads budget calculator</a></li><li><a href="/tools/lead-funnel-calculator/">Lead funnel calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+
+function inr(n){return '\u20b9'+(n>=100?Math.round(n).toLocaleString('en-IN'):n.toFixed(2));}
+function calc(){
+  var s=+v('spend')||0, i=+v('impr')||0, c=+v('clicks')||0, k=+v('convs')||0;
+  set('o_cpm', i? inr(s/i*1000):'\u2014');
+  set('o_cpc', c? inr(s/c):'\u2014');
+  set('o_ctr', i? (c/i*100).toFixed(2)+'%':'\u2014');
+  set('o_cvr', c? (k/c*100).toFixed(2)+'%':'\u2014');
+  set('o_cpa', k? inr(s/k):'\u2014');
+  set('o_reach', i? (c/i*1000).toFixed(1):'\u2014');
+  var el=document.getElementById('o_verdict');
+  if(!s||!i){el.className='verdict warn';el.textContent='Enter at least spend and impressions.';return;}
+  var ctr=c/i*100, cvr=c?k/c*100:0, msg=[];
+  if(ctr<0.6) msg.push('A CTR of '+ctr.toFixed(2)+'% means the creative or the audience is wrong \u2014 people are seeing it and scrolling past. Fix that before touching the landing page.');
+  else if(cvr>0 && cvr<1.5) msg.push('CTR of '+ctr.toFixed(2)+'% is healthy but only '+cvr.toFixed(2)+'% of clicks convert. The ad is writing a cheque the landing page is not cashing \u2014 check message match, load speed and form length.');
+  else if(ctr>=0.6 && cvr>=1.5) msg.push('Both CTR and conversion rate are in reasonable shape. If cost per conversion is still too high, the constraint is the auction, not your funnel \u2014 look at audience size, frequency and bidding.');
+  else msg.push('Add a conversion count to see where the funnel is leaking.');
+  el.className='verdict '+(ctr<0.6?'bad':'warn');
+  el.textContent=msg.join(' ');
+}
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERP Snippet Preview — Title &amp; Meta Description Checker | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="See how your title tag and meta description will look in Google, measured in pixels rather than characters, with a live truncation preview.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="SERP snippet preview">
+<meta property="og:description" content="See how your title tag and meta description will look in Google, measured in pixels rather than characters, with a live truncation preview.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/serp-snippet-preview/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SERP snippet preview">
+<meta name="twitter:description" content="See how your title tag and meta description will look in Google, measured in pixels rather than characters, with a live truncation preview.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/serp-snippet-preview/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/serp-snippet-preview/#app",
+   "name": "SERP snippet preview",
+   "url": "https://mediapuppies.com/tools/serp-snippet-preview/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "See how your title tag and meta description will look in Google, measured in pixels rather than characters, with a live truncation preview.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "SERP snippet preview",
+     "item": "https://mediapuppies.com/tools/serp-snippet-preview/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is the ideal title length?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Roughly 50–60 characters usually fits, but measure the width instead — that is what determines truncation."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does the meta description affect rankings?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not directly. It affects click-through rate, which affects how much traffic a given ranking produces."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does Google show a different description?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It frequently pulls a passage from the page that better matches the specific query. That is normal and often beneficial."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should every page have a unique description?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Duplicate descriptions across pages are a wasted opportunity and a signal of thin templating."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">SEO</span>
+  <h1 style="margin:16px 0 0">SERP snippet preview</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Google truncates by pixel width, not character count — which is why a 58-character title can still get cut. This measures the actual rendered width.</p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="field"><label for="s_url">Page URL</label><input id="s_url" type="text" value="https://mediapuppies.com/seo-services/" placeholder="https://example.com/page"></div><div class="field"><label for="s_title">Title tag</label><input id="s_title" type="text" value="SEO Services for Indian Businesses | Media Puppies" placeholder=""></div><div class="field"><label for="s_desc">Meta description</label><textarea id="s_desc" placeholder="">Technical fixes, content built around buying-intent searches, and local visibility — reported in organic leads, not rankings.</textarea></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Title width</div><div class="v" id="o_tw">—</div><div class="s" id="o_tw-s">pixels</div></div><div class="metric"><div class="k">Title characters</div><div class="v" id="o_tc">—</div><div class="s" id="o_tc-s"></div></div><div class="metric"><div class="k">Description width</div><div class="v" id="o_dw">—</div><div class="s" id="o_dw-s">pixels</div></div><div class="metric"><div class="k">Description characters</div><div class="v" id="o_dc">—</div><div class="s" id="o_dc-s"></div></div></div><div style="margin-top:20px"><div class="k" style="font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:8px">Desktop preview</div><div class="serp"><div class="u" id="p_url"></div><div class="t" id="p_title"></div><div class="d" id="p_desc"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>Why pixels and not characters</h2>
+<p>“Keep your title under 60 characters” is a rule of thumb that fails in both directions. A title full of capitals and wide letters — <em>WHOLESALE MODULAR KITCHENS</em> — is cut well before 60. A title of narrow characters fits comfortably past it. Google measures the rendered width, so that is what this tool measures too, using the same font and size the desktop result uses.</p>
+<p>The working limits are approximately <strong>580px for the title</strong> and <strong>920px for the description</strong> on desktop. Mobile differs and Google changes these periodically, so treat them as a guide rather than a specification.</p>
+<h2>Writing for the space you have</h2>
+<ul><li><strong>Front-load the keyword.</strong> If the title is truncated, what survives is the beginning.</li>
+<li><strong>Keep the brand at the end</strong>, and drop it entirely on long titles. The searcher can see your domain in the result.</li>
+<li><strong>Do not repeat the title in the description.</strong> It is a second chance to say something new.</li>
+<li><strong>Put the reason to click in the first sentence</strong> of the description, because the rest may be cut.</li>
+<li><strong>Numbers and specifics earn clicks.</strong> “From ₹2.8L, six weeks” beats “affordable and fast”.</li></ul>
+<h2>Google rewrites titles anyway — so why bother?</h2>
+<p>Google replaces the title tag on a substantial share of queries, usually when it judges yours to be keyword-stuffed, too long, or a poor match for the query. A concise, accurate, well-matched title is less likely to be replaced. You are improving the odds, not issuing an instruction.</p>
+
+
+  <h2>Questions</h2>
+  <div><details><summary>What is the ideal title length?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Roughly 50–60 characters usually fits, but measure the width instead — that is what determines truncation.</p></details><details><summary>Does the meta description affect rankings?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Not directly. It affects click-through rate, which affects how much traffic a given ranking produces.</p></details><details><summary>Why does Google show a different description?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">It frequently pulls a passage from the page that better matches the specific query. That is normal and often beneficial.</p></details><details><summary>Should every page have a unique description?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Yes. Duplicate descriptions across pages are a wasted opportunity and a signal of thin templating.</p></details></div>
+
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/ad-copy-length-checker/">Ad copy length checker</a></li><li><a href="/tools/utm-builder/">UTM campaign URL builder</a></li><li><a href="/tools/ab-test-significance-calculator/">A/B test significance calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+
+/* Google renders desktop titles at roughly 20px Arial and descriptions at 14px.
+   Canvas measurement is far closer to reality than counting characters. */
+var TITLE_MAX=580, DESC_MAX=920;
+var cv=document.createElement('canvas'), cx=cv.getContext('2d');
+function width(text,font){cx.font=font;return cx.measureText(text||'').width;}
+function truncate(text,font,max){
+  if(width(text,font)<=max) return {t:text,cut:false};
+  var s=text;
+  while(s.length>0 && width(s+'\u2026',font)>max) s=s.slice(0,-1);
+  s=s.replace(/\s+\S*$/,'');           /* never cut mid-word */
+  return {t:s+'\u2026',cut:true};
+}
+function calc(){
+  var t=v('s_title')||'', d=v('s_desc')||'', u=(v('s_url')||'').trim();
+  var tf='700 20px Arial, sans-serif', df='400 14px Arial, sans-serif';
+  var tw=width(t,tf), dw=width(d,df);
+  set('o_tw',Math.round(tw)); set('o_tc',t.length);
+  set('o_dw',Math.round(dw)); set('o_dc',d.length);
+  document.getElementById('o_tw-s').textContent='of '+TITLE_MAX+'px';
+  document.getElementById('o_dw-s').textContent='of '+DESC_MAX+'px';
+  var tt=truncate(t,tf,TITLE_MAX), dd=truncate(d,df,DESC_MAX);
+  document.getElementById('p_title').textContent=tt.t||'Your title will appear here';
+  document.getElementById('p_desc').textContent=dd.t||'Your meta description will appear here.';
+  var pretty=u;
+  try{var o=new URL(u.indexOf('://')<0?'https://'+u:u);
+      pretty=o.hostname.replace(/^www\./,'')+o.pathname.replace(/\/$/,'').split('/').join(' \u203a ');}
+  catch(e){}
+  document.getElementById('p_url').textContent=pretty||'example.com';
+  var el=document.getElementById('o_verdict'), msgs=[];
+  if(tt.cut) msgs.push('Your title is cut off. Move the important words to the front \u2014 Google reads the whole tag, but a searcher only sees what fits.');
+  else if(tw<200 && t) msgs.push('The title is short. You have room for another qualifier or the brand name.');
+  if(dd.cut) msgs.push('The description is cut off. Put the reason to click in the first sentence.');
+  else if(!d) msgs.push('No description. Google will write one from the page, and it is usually worse than yours would be.');
+  else if(dw<500) msgs.push('The description is short. Unused space in a result is unused persuasion.');
+  if(!msgs.length) msgs.push('Both fit. Remember Google rewrites titles on a large share of queries anyway \u2014 fitting simply improves the odds yours is used.');
+  el.className='verdict '+((tt.cut||dd.cut)?'warn':'good');
+  el.textContent=msgs.join(' ');
+}
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+</script>
+</body>
+</html>

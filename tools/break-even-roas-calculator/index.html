@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Break-even ROAS Calculator | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="Work out the return on ad spend you need just to break even, and the ROAS you need to hit a target profit margin. Accounts for margin, shipping, returns and payment fees.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Break-even ROAS calculator">
+<meta property="og:description" content="Work out the return on ad spend you need just to break even, and the ROAS you need to hit a target profit margin. Accounts for margin, shipping, returns and payment fees.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/break-even-roas-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Break-even ROAS calculator">
+<meta name="twitter:description" content="Work out the return on ad spend you need just to break even, and the ROAS you need to hit a target profit margin. Accounts for margin, shipping, returns and payment fees.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/break-even-roas-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/break-even-roas-calculator/#app",
+   "name": "Break-even ROAS calculator",
+   "url": "https://mediapuppies.com/tools/break-even-roas-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Work out the return on ad spend you need just to break even, and the ROAS you need to hit a target profit margin. Accounts for margin, shipping, returns and payment fees.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Break-even ROAS calculator",
+     "item": "https://mediapuppies.com/tools/break-even-roas-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is contribution margin?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "What is left from an order after every variable cost of fulfilling it, but before fixed costs and advertising. It is the money available to pay for ads and overheads."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I include GST?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Work in the figures you actually keep. If your price includes GST that you remit, use the ex-GST amount as order value."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is my target margin unreachable?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because the margin you want is larger than the margin the product leaves you. The fix is pricing, product cost or RTO — not the ad account."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does this work for services?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Roughly. Set cost of goods to your delivery cost, shipping and RTO to zero, and the break-even figure is still correct."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">Ecommerce</span>
+  <h1 style="margin:16px 0 0">Break-even ROAS calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">A 3x ROAS is meaningless without knowing your margin. This works out the ROAS that actually breaks you even — and the one you need to make money.</p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="price">Average order value (₹)</label><input id="price" type="number" inputmode="decimal" step="any" min="0" value="2500"></div><div class="field"><label for="cogs">Cost of goods per order (₹)</label><input id="cogs" type="number" inputmode="decimal" step="any" min="0" value="900"><p class="hint">What the product actually costs you.</p></div><div class="field"><label for="ship">Shipping and packing per order (₹)</label><input id="ship" type="number" inputmode="decimal" step="any" min="0" value="120"></div><div class="field"><label for="fees">Payment gateway and platform fees (%)</label><input id="fees" type="number" inputmode="decimal" step="any" min="0" value="2.5"><p class="hint">Typically 2–3% in India.</p></div><div class="field"><label for="rto">Returns / RTO rate (%)</label><input id="rto" type="number" inputmode="decimal" step="any" min="0" value="12"><p class="hint">Prepaid orders are far lower than COD.</p></div><div class="field"><label for="target">Target net margin (%)</label><input id="target" type="number" inputmode="decimal" step="any" min="0" value="15"><p class="hint">What you want left after ads.</p></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Contribution margin</div><div class="v" id="o_cm">—</div><div class="s" id="o_cm-s"></div></div><div class="metric"><div class="k">Break-even ROAS</div><div class="v" id="o_be">—</div><div class="s" id="o_be-s"></div></div><div class="metric"><div class="k">ROAS for target margin</div><div class="v" id="o_tg">—</div><div class="s" id="o_tg-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>Why the headline ROAS lies</h2>
+<p>“We're doing 3x” means nothing on its own. A brand with a 60% contribution margin is profitable at 1.7x. A brand at 22% is still losing money at 4x. The same number is a triumph for one and a slow death for the other.</p>
+<h3>What this calculator accounts for</h3>
+<ul><li><strong>Cost of goods</strong> — what the product actually costs you landed.</li>
+<li><strong>Shipping and packing</strong> on every delivered order.</li>
+<li><strong>Payment and platform fees</strong>, typically 2–3% in India.</li>
+<li><strong>Returns and RTO</strong> — the big one. A returned order earns nothing <em>and</em> costs shipping in both directions, so it is charged at twice the shipping cost here.</li></ul>
+<h3>The RTO problem</h3>
+<p>Cash on delivery makes RTO the single largest hidden cost for Indian D2C. A brand running 30% RTO on COD and 4% on prepaid has two completely different businesses inside one dashboard. Work out this calculation separately for each payment method before you decide the ads are failing.</p>
+<h3>Blended, not platform-reported</h3>
+<p>Ad platforms count conversions they believe they influenced, so the numbers in Meta and Google together usually exceed your actual revenue. Judge the business on blended ROAS — total revenue divided by total ad spend — and use platform ROAS only to compare campaigns against each other.</p>
+
+
+  <h2>Questions</h2>
+  <div><details><summary>What is contribution margin?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">What is left from an order after every variable cost of fulfilling it, but before fixed costs and advertising. It is the money available to pay for ads and overheads.</p></details><details><summary>Should I include GST?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Work in the figures you actually keep. If your price includes GST that you remit, use the ex-GST amount as order value.</p></details><details><summary>Why is my target margin unreachable?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Because the margin you want is larger than the margin the product leaves you. The fix is pricing, product cost or RTO — not the ad account.</p></details><details><summary>Does this work for services?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Roughly. Set cost of goods to your delivery cost, shipping and RTO to zero, and the break-even figure is still correct.</p></details></div>
+
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/meta-ads-budget-calculator/">Meta ads budget calculator</a></li><li><a href="/tools/ltv-calculator/">Customer lifetime value calculator</a></li><li><a href="/tools/media-math-calculator/">Media math calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+
+function calc(){
+  var p=+v('price')||0, c=+v('cogs')||0, s=+v('ship')||0,
+      f=(+v('fees')||0)/100, r=(+v('rto')||0)/100, t=(+v('target')||0)/100;
+  if(p<=0){set('o_cm','\u2014');set('o_be','\u2014');set('o_tg','\u2014');
+    document.getElementById('o_verdict').className='verdict warn';
+    document.getElementById('o_verdict').textContent='Enter an average order value.';return;}
+  /* An RTO order still costs you shipping both ways and earns nothing. */
+  var perDeliv = p - c - s - (p*f);
+  var rtoCost  = s*2;
+  var cm = (1-r)*perDeliv - r*rtoCost;
+  var pct = cm/p;
+  set('o_cm','\u20b9'+Math.round(cm).toLocaleString('en-IN'));
+  document.getElementById('o_cm-s').textContent=(pct*100).toFixed(1)+'% of order value';
+  var el=document.getElementById('o_verdict');
+  if(cm<=0){set('o_be','\u2014');set('o_tg','\u2014');
+    el.className='verdict bad';
+    el.textContent='You lose money on every order before a rupee of ad spend. No ROAS fixes this \u2014 the price, the product cost or the RTO rate has to change first.';return;}
+  var be=1/pct;
+  set('o_be',be.toFixed(2)+'x');
+  if(t>=pct){set('o_tg','\u2014');
+    document.getElementById('o_tg-s').textContent='not reachable';
+    el.className='verdict bad';
+    el.textContent='A '+(t*100).toFixed(0)+'% net margin is impossible when your contribution margin is only '+(pct*100).toFixed(1)+'%. Even with free traffic you would not get there.';return;}
+  var tg=1/(pct-t);
+  set('o_tg',tg.toFixed(2)+'x');
+  document.getElementById('o_tg-s').textContent='to keep '+(t*100).toFixed(0)+'% net';
+  el.className='verdict '+(be<=2?'good':be<=3.5?'warn':'bad');
+  el.textContent='Below '+be.toFixed(2)+'x you are paying to lose money. Every 1x of ROAS above that is worth \u20b9'+Math.round(pct*p).toLocaleString('en-IN')+' per order in contribution. Blended ROAS across the account is the number to judge, not the best campaign.';
+}
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+</script>
+</body>
+</html>
