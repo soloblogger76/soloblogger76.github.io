@@ -33,7 +33,15 @@ a:hover{color:#3038D8}
   var here = location.pathname.replace(/\/+$/, '').toLowerCase() + '/';
   var tail = location.search + location.hash;
 
-  var MOVED = { '/lead/': '/lead-generation/', '/seo/': '/seo-services/' };
+  var MOVED = {
+    '/lead/': '/lead-generation/',
+    '/seo/': '/seo-services/',
+    /* /contact was indexed on the old host and still gets crawled and typed.
+       There has never been a contact page here — the enquiry form is the
+       contact page, so send people there rather than to a 404. */
+    '/contact/': '/lead-generation/',
+    '/contact-us/': '/lead-generation/'
+  };
   if (MOVED[here]) { location.replace(MOVED[here] + tail); return; }
 
   var REAL = ['/', '/services/', '/work/', '/careers/', '/internship/',
