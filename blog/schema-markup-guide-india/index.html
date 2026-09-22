@@ -125,7 +125,26 @@ article tr:last-child td{border-bottom:none}
 <h2>How to check</h2>
 <p>Use the Rich Results Test on a few pages, then watch the Enhancements reports in Search Console. Errors there are usually one wrong field repeated across a template — fix once, fixes everywhere.</p>
 <p><a href="/seo-services/">Want your markup audited?</a></p>
-    </article>
+    <h2>The mistake that makes schema useless</h2>
+<p>Structured data has to describe what is actually on the page. Markup claiming a four-point-eight star rating on a page with no visible reviews, or an offer price the page never states, is not an optimisation — it is a mismatch, and Google's systems treat repeated mismatches as a reason to stop trusting your markup entirely.</p>
+<p>This sounds obvious and is violated constantly, usually by plugins that auto-generate ratings. Before adding any type, ask: could a person reading this page verify every claim in the JSON-LD? If not, remove the claim rather than the page content.</p>
+<h2>How to wire the types together</h2>
+<p>Most sites bolt each type onto its page in isolation, which produces a set of disconnected facts. The better pattern is a graph: declare your organisation once, give it a stable identifier, and have everything else point at it.</p>
+<ul><li>Homepage carries the <code>Organization</code> (or <code>LocalBusiness</code>) with an <code>@id</code> such as <code>https://example.com/#organization</code>.</li>
+<li>Every service page declares a <code>Service</code> whose <code>provider</code> is <em>a reference to that @id</em>, not a second copy of the organisation.</li>
+<li>Every article's <code>publisher</code> points at the same <code>@id</code>.</li>
+<li><code>BreadcrumbList</code> on each page shows where it sits.</li></ul>
+<p>The result is one entity with many pages attached, rather than forty pages each asserting a slightly different version of who you are. That consistency is what answer engines need in order to describe you without guessing.</p>
+<h2>What it does and does not do</h2>
+<p>Schema is not a ranking factor in the way a link is. It will not move a page from position nine to position three. What it does is change how your result <em>appears</em> once you are already ranking, and increasingly, whether a machine can summarise you correctly.</p>
+<p>Expect it to help with: breadcrumb paths in results, product prices and availability in shopping surfaces, job postings appearing in Google's jobs widget, and AI assistants stating your service area and contact details accurately. Do not expect it to rescue a page nobody links to.</p>
+<h2>Validating properly</h2>
+<p>Use Google's Rich Results Test for the types that produce rich results, and the Schema.org validator for everything else — they check different things and the second is stricter. Then check Search Console's Enhancements reports a fortnight later, because that is the only place you see errors at scale across the site rather than one URL at a time.</p>
+<h2>Common questions</h2>
+<p><strong>JSON-LD or microdata?</strong> JSON-LD. Google prefers it, it sits in one block in the head, and it does not entangle your markup with your content.</p>
+<p><strong>Do I need schema on every page?</strong> Every page benefits from breadcrumbs. Beyond that, add a type only where the page genuinely is that thing.</p>
+<p><strong>Can I add FAQ schema to get more space in results?</strong> Google restricted FAQ rich results to a narrow set of authoritative sites, so most businesses will not see the expanded listing any more. The markup still helps machines parse your answers, which is now the better reason to add it.</p>
+</article>
 
 <aside data-reveal="0" style="max-width:720px;margin:44px auto 0;padding:0 24px">
   <div style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #3038D8;border-radius:16px;padding:22px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07)">

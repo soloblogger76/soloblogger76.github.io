@@ -123,7 +123,22 @@ article tr:last-child td{border-bottom:none}
 <h2>How to find it</h2>
 <p>Search <code>site:yourdomain.com</code> and look for the same page appearing several times. Then check Search Console's indexing report for <em>Duplicate</em> exclusion reasons, which names the URL Google chose instead.</p>
 <p><a href="/seo-services/">Want a free audit?</a></p>
-    </article>
+    <h2>How to find it on your own site in ten minutes</h2>
+<ol><li><strong>Search <code>site:yourdomain.com</code> in Google.</strong> Skim the result count. If a twenty-page site shows four hundred results, parameters or filters are generating URLs you never intended.</li>
+<li><strong>Open Search Console, Pages report.</strong> Look for "Duplicate without user-selected canonical" and "Alternate page with proper canonical tag". The first is a problem, the second is the system working.</li>
+<li><strong>Request every variant by hand.</strong> Try the http version, the www version, the trailing-slash version and an uppercase version of one URL. Each should end in a single 301 to the one true address, not a 200.</li>
+<li><strong>Take one distinctive sentence from a product page and search it in quotes.</strong> If a dozen other sites return the same sentence, that page has no original content on it.</li></ol>
+<h2>The variant that catches everyone</h2>
+<p>Almost every site we audit serves its homepage on at least two URLs: <code>/</code> and <code>/index.html</code>. Both return 200, both render identically, and most owners have no idea the second one exists. On its own it is harmless — a self-referencing canonical resolves it. It stops being harmless when something links to the second version, because then you have two addresses accumulating separate authority for the same page.</p>
+<p>The same thing happens with tracking parameters. A campaign URL ending in <code>?utm_source=facebook</code> is technically a different page. Canonical tags handle this correctly, which is exactly why a missing canonical on a landing page you advertise is more expensive than a missing canonical anywhere else.</p>
+<h2>When duplication is the right answer</h2>
+<p>Not every repeat is a mistake. Shipping policy, return terms, warranty text and contact details are supposed to be identical across pages, and no amount of rewriting improves them. Manufacturer specification tables are the same — nobody wants a creatively reworded dimension.</p>
+<p>The test is whether the duplicated block is the <em>reason</em> the page exists. A product page whose only content is the manufacturer's description has nothing of its own. The same description sitting beneath four paragraphs of your own sizing advice and photographs is fine.</p>
+<h2>Common questions</h2>
+<p><strong>Will duplicate content get my site penalised?</strong> No. Manual penalties for duplication are reserved for deliberate scraping and doorway networks. What ordinary duplication costs you is consolidation: your links and relevance split across versions instead of stacking on one.</p>
+<p><strong>Should I noindex duplicate pages?</strong> Usually not. A canonical passes signals to the chosen version; noindex throws them away. Reserve noindex for pages that genuinely should never appear, like internal search results.</p>
+<p><strong>What about the same article on my site and on LinkedIn or Medium?</strong> Publish on your own domain first, let it get indexed, then republish elsewhere with a canonical pointing home if the platform supports one. If it does not, republish an edited excerpt rather than the whole piece.</p>
+</article>
 
 <aside data-reveal="0" style="max-width:720px;margin:44px auto 0;padding:0 24px">
   <div style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #3038D8;border-radius:16px;padding:22px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07)">
