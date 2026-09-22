@@ -46,6 +46,13 @@
   };
   var els = document.querySelectorAll('[data-reveal]');
   if (!reduce) {
+    /* Anything already on screen at load must NOT start at opacity 0 — it is
+       usually the LCP element, and hiding it until this script runs pushes
+       Largest Contentful Paint out by seconds. Animate the rest. */
+    var vh = window.innerHeight || 0;
+    els = Array.prototype.filter.call(els, function (el) {
+      return el.getBoundingClientRect().top >= vh * 0.9;
+    });
     els.forEach(function (el) {
       var dir = el.dataset.rev || 'up';
       el.style.opacity = '0';
@@ -53,6 +60,10 @@
       el.style.filter = 'blur(10px)';
       el.style.transition = 'opacity .8s ease, transform .9s cubic-bezier(.2,.7,.2,1), filter .8s ease';
       el.style.transitionDelay = (parseInt(el.dataset.reveal, 10) || 0) + 'ms';
+    });
+    /* Counters in the skipped (above-the-fold) set still need to run. */
+    document.querySelectorAll('[data-count]').forEach(function (c) {
+      if (c.getBoundingClientRect().top < vh * 0.9) runCounter(c);
     });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
