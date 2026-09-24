@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ad Budget Pacing Calculator | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="Are you on track to spend the month’s budget? Work out your required daily spend from here, and what over- or under-pacing is costing you.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Budget pacing calculator">
+<meta property="og:description" content="Are you on track to spend the month’s budget? Work out your required daily spend from here, and what over- or under-pacing is costing you.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/budget-pacing-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Budget pacing calculator">
+<meta name="twitter:description" content="Are you on track to spend the month’s budget? Work out your required daily spend from here, and what over- or under-pacing is costing you.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/budget-pacing-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/budget-pacing-calculator/#app",
+   "name": "Budget pacing calculator",
+   "url": "https://mediapuppies.com/tools/budget-pacing-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Are you on track to spend the month’s budget? Work out your required daily spend from here, and what over- or under-pacing is costing you.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Budget pacing calculator",
+     "item": "https://mediapuppies.com/tools/budget-pacing-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Should the budget period be a calendar month?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Whatever you are actually accountable for. Many teams pace to a calendar month because that is how finance reports it; campaigns do not care."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much can I raise a daily budget at once?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "As a rule of thumb, around 20%. Larger increases commonly restart the learning phase, which costs stability for several days."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if I am under-pacing every month?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The budget is larger than the audience or the bidding can absorb. Widen targeting, add placements, or accept a lower budget rather than forcing spend."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does pacing matter for lifetime budgets?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Less — the platform paces those itself. This is most useful for daily-budget campaigns with a monthly commitment."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">Campaign management</span>
+  <h1 style="margin:16px 0 0">Budget pacing calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Halfway through the month with a third of the budget gone is a problem you can still fix. Finding out on the last day is not.</p>
+  <p style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0 0;font-size:.86rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.86rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency used in this calculator" style="width:auto;padding:7px 10px;background:#fff;font-size:.86rem"></select><span style="color:rgba(24,28,79,.55)">Set from your location. The maths is the same in any currency — only the labels change.</span></p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="budget">Budget for the period (₹)</label><input id="budget" type="number" inputmode="decimal" step="any" min="0" value="300000"></div><div class="field"><label for="spent">Spent so far (₹)</label><input id="spent" type="number" inputmode="decimal" step="any" min="0" value="96000"></div><div class="field"><label for="days">Days in the period</label><input id="days" type="number" inputmode="decimal" step="1" min="1" value="30"></div><div class="field"><label for="elapsed">Days elapsed</label><input id="elapsed" type="number" inputmode="decimal" step="1" min="0" value="14"></div><div class="field"><label for="cpa">Current cost per result (₹)</label><input id="cpa" type="number" inputmode="decimal" step="any" min="0" value="480"><p class="hint">Leave at zero if you only want the pacing figures.</p></div><div class="field"><label for="target">Target cost per result (₹)</label><input id="target" type="number" inputmode="decimal" step="any" min="0" value="450"></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Pacing</div><div class="v" id="o_pace">—</div><div class="s" id="o_pace-s"></div></div><div class="metric"><div class="k">Should have spent by now</div><div class="v" id="o_should">—</div><div class="s" id="o_should-s"></div></div><div class="metric"><div class="k">Ahead / behind</div><div class="v" id="o_gap">—</div><div class="s" id="o_gap-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Daily spend needed</div><div class="v" id="o_daily">—</div><div class="s" id="o_daily-s">for the rest</div></div><div class="metric"><div class="k">Projected spend</div><div class="v" id="o_proj">—</div><div class="s" id="o_proj-s">at current rate</div></div><div class="metric"><div class="k">Projected results</div><div class="v" id="o_results">—</div><div class="s" id="o_results-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>Pacing is not the goal</h2>
+<p>It is easy to treat a fully spent budget as success. It is not — it is a constraint. If cost per result is above target, spending the whole budget buys you fewer customers than planned and the right response is to fix efficiency, not to push spend.</p>
+<p>That is why this asks for cost per result alongside the pacing figures. The two together tell you what to do; either on its own does not.</p>
+<h2>The two failure modes</h2>
+<ul><li><strong>Under-pacing</strong> usually means budgets are capped below what delivery wants, audiences are too narrow, or approvals are stuck. The fix is rarely one big budget increase — a jump above roughly 20% typically re-enters the learning phase and costs you several days of stable delivery.</li>
+<li><strong>Over-pacing</strong> means you go dark before the period ends. Intermittent delivery is worse than steady delivery at a lower level, because every restart is another learning period.</li></ul>
+<h2>A weekly habit</h2>
+<p>Check pacing once a week, not daily. Daily checking produces noise and tempting over-correction; weekly is frequent enough to fix a real drift with a modest adjustment. Write the required daily figure down and compare it to what is actually being spent.</p>
+<p class="note">If the required daily spend implies more conversions per week than your ad sets can produce, check it against the <a href="/tools/meta-ads-budget-calculator/">Meta ads budget calculator</a> — the learning phase sets a floor on how thinly budget can be spread.</p>
+
+  <h2>Questions</h2>
+  <div><details><summary>Should the budget period be a calendar month?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Whatever you are actually accountable for. Many teams pace to a calendar month because that is how finance reports it; campaigns do not care.</p></details><details><summary>How much can I raise a daily budget at once?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">As a rule of thumb, around 20%. Larger increases commonly restart the learning phase, which costs stability for several days.</p></details><details><summary>What if I am under-pacing every month?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">The budget is larger than the audience or the bidding can absorb. Widen targeting, add placements, or accept a lower budget rather than forcing spend.</p></details><details><summary>Does pacing matter for lifetime budgets?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Less — the platform paces those itself. This is most useful for daily-budget campaigns with a monthly commitment.</p></details></div>
+
+  <h2>Embed this calculator</h2>
+  <p>Free to use on your own site. Copy this into your page — the attribution line is the only condition.</p>
+  <textarea readonly rows="7" onclick="this.select()" style="width:100%;box-sizing:border-box;padding:14px;border:1.5px solid rgba(24,28,79,.16);border-radius:12px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;line-height:1.55;color:#181C4F">&lt;iframe id="mp-budget-pacing-calculator" src="https://mediapuppies.com/embed/budget-pacing-calculator/" width="100%" height="700" style="border:1px solid #e5e5e5;border-radius:16px" loading="lazy" title="Budget pacing calculator"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://mediapuppies.com/tools/budget-pacing-calculator/"&gt;Budget pacing calculator&lt;/a&gt; by &lt;a href="https://mediapuppies.com/"&gt;Media Puppies&lt;/a&gt;&lt;/p&gt;
+&lt;script&gt;addEventListener('message',function(e){if(e.origin==='https://mediapuppies.com'&&e.data&&e.data.mpSlug==='budget-pacing-calculator')document.getElementById('mp-budget-pacing-calculator').style.height=e.data.mpHeight+'px'})&lt;/script&gt;</textarea>
+  <p class="note">The paragraph below the iframe is the part that matters: an iframe's contents are served from our domain, so a link inside it is not a link from your page. The paragraph is. The small script just resizes the frame to fit your column — drop it if you prefer, the fixed height still works.</p>
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/meta-ads-budget-calculator/">Meta ads budget calculator</a></li><li><a href="/tools/media-math-calculator/">Media math calculator</a></li><li><a href="/tools/lead-funnel-calculator/">Lead funnel calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+function calc(){
+  var b=+v('budget')||0, sp=+v('spent')||0, d=Math.max(1,+v('days')||1),
+      e=+v('elapsed')||0, cpa=+v('cpa')||0, tg=+v('target')||0;
+  var ids=['o_pace','o_should','o_gap','o_daily','o_proj','o_results'];
+  var el=document.getElementById('o_verdict');
+  if(b<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Enter a budget.'; return;}
+  e=Math.min(e,d);
+  var should=b*(e/d), left=b-sp, daysLeft=d-e;
+  var pace = should>0 ? sp/should : 0;
+  var perDay = daysLeft>0 ? left/daysLeft : 0;
+  var run = e>0 ? sp/e : 0;
+  var proj = run*d;
+  set('o_pace', should>0 ? (pace*100).toFixed(0)+'%' : '\u2014');
+  document.getElementById('o_pace-s').textContent='100% is exactly on plan';
+  set('o_should',MP.fmt(should));
+  set('o_gap',MP.fmt(sp-should));
+  document.getElementById('o_gap-s').textContent = sp>=should ? 'ahead of plan' : 'behind plan';
+  set('o_daily', daysLeft>0 ? MP.fmt(perDay) : '\u2014');
+  document.getElementById('o_daily-s').textContent = daysLeft>0 ? 'over '+daysLeft+' days' : 'period finished';
+  set('o_proj',MP.fmt(proj));
+  set('o_results', cpa>0 ? Math.floor(b/cpa).toLocaleString() : '\u2014');
+  document.getElementById('o_results-s').textContent = cpa>0 ? 'if the full budget is spent' : 'add a cost per result';
+  var msgs=[];
+  if(daysLeft<=0) msgs.push('The period is over. You spent '+MP.fmt(sp)+' of '+MP.fmt(b)+'.');
+  else if(pace<0.85){
+    var jump = run>0 ? perDay/run : 0;
+    msgs.push('Under-pacing at '+(pace*100).toFixed(0)+'%. To use the budget you need '+MP.fmt(perDay)+' a day for the remaining '+daysLeft+' \u2014 that is '+jump.toFixed(1)+'x your current rate. Raise budgets in steps of about 20%, not in one jump, or you will reset the learning phase and lose days.');
+  }
+  else if(pace>1.15) msgs.push('Over-pacing at '+(pace*100).toFixed(0)+'%. At this rate you finish the budget on day '+Math.floor(b/run)+' of '+d+', then go dark for '+(d-Math.floor(b/run))+' days. Cutting daily budget now is better than stopping later.');
+  else msgs.push('On track at '+(pace*100).toFixed(0)+'% of plan. Keep daily spend near '+MP.fmt(perDay)+'.');
+  if(cpa>0&&tg>0){
+    if(cpa>tg*1.15) msgs.push('Cost per result is '+MP.fmt(cpa)+' against a '+MP.fmt(tg)+' target, so spending the full budget buys fewer results than planned. Fix efficiency before chasing the spend number.');
+    else if(cpa<tg*0.85) msgs.push('Cost per result is under target at '+MP.fmt(cpa)+' \u2014 this is the case for spending more, not less.');
+  }
+  el.className='verdict '+((pace<0.85||pace>1.15)?'warn':'good');
+  el.textContent=msgs.join(' ');
+}
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+window.calc=calc;
+
+</script>
+</body>
+</html>

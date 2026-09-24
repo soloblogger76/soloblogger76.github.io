@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
-<main class="wrap">
+<main class="wrap" data-inr-only>
+  
   <div class="card">
 
     <div class="field"><label for="n_val">Enter a number, or a phrase like “2.5 crore”</label><input id="n_val" type="text" value="14750000" placeholder="e.g. 4500000 or 45 lakh"></div><p class="hint">Accepts digits, commas, ₹, and the words lakh, lac, crore, cr, k, million or billion.</p>
@@ -175,7 +177,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

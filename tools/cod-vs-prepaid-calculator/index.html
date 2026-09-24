@@ -162,6 +162,7 @@ details[open] .plus{transform:rotate(45deg)}
 <script src="/assets/js/pixel.js?v=20260924b" defer></script>
 <script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
 <script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 
@@ -179,6 +180,7 @@ details[open] .plus{transform:rotate(45deg)}
   <span class="pill">Indian D2C</span>
   <h1 style="margin:16px 0 0">COD vs prepaid profit calculator</h1>
   <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">COD looks like more orders. Once return-to-origin is priced in it is often the least profitable thing you run. This puts a number on it.</p>
+  <p style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0 0;font-size:.86rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.86rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency used in this calculator" style="width:auto;padding:7px 10px;background:#fff;font-size:.86rem"></select><span style="color:rgba(24,28,79,.55)">Set from your location. The maths is the same in any currency — only the labels change.</span></p>
 
   <div class="card" style="margin-top:26px">
     <div class="row"><div class="field"><label for="price">Average order value (₹)</label><input id="price" type="number" inputmode="decimal" step="any" min="0" value="1500"></div><div class="field"><label for="cogs">Cost of goods per order (₹)</label><input id="cogs" type="number" inputmode="decimal" step="any" min="0" value="600"></div><div class="field"><label for="ship">Forward shipping per order (₹)</label><input id="ship" type="number" inputmode="decimal" step="any" min="0" value="80"></div><div class="field"><label for="codfee">COD collection fee (₹)</label><input id="codfee" type="number" inputmode="decimal" step="any" min="0" value="25"><p class="hint">A flat courier charge, typically ₹20–40.</p></div><div class="field"><label for="rtocod">RTO rate on COD (%)</label><input id="rtocod" type="number" inputmode="decimal" step="any" min="0" value="28"><p class="hint">Ask your courier for your own figure.</p></div><div class="field"><label for="rtopre">RTO rate on prepaid (%)</label><input id="rtopre" type="number" inputmode="decimal" step="any" min="0" value="4"></div><div class="field"><label for="splitcod">Share of orders that are COD (%)</label><input id="splitcod" type="number" inputmode="decimal" step="any" min="0" value="65"></div><div class="field"><label for="disc">Prepaid discount you would offer (%)</label><input id="disc" type="number" inputmode="decimal" step="any" min="0" value="5"></div><div class="field"><label for="shift">COD buyers who would switch (%)</label><input id="shift" type="number" inputmode="decimal" step="any" min="0" value="30"></div></div>
@@ -232,7 +234,6 @@ details[open] .plus{transform:rotate(45deg)}
 </footer>
 
 <script>
-function inr(n){var s=n<0?'-':'';return s+'\u20b9'+Math.abs(Math.round(n)).toLocaleString('en-IN');}
 function calc(){
   var p=+v('price')||0,c=+v('cogs')||0,sh=+v('ship')||0,cf=+v('codfee')||0,
       rc=(+v('rtocod')||0)/100,rp=(+v('rtopre')||0)/100,
@@ -246,17 +247,17 @@ function calc(){
   var cod=(1-rc)*codDeliv+rc*rto;
   var pp=p*(1-di), preDeliv=pp-c-sh;
   var pre=(1-rp)*preDeliv+rp*rto;
-  set('o_cod',inr(cod)); set('o_pre',inr(pre)); set('o_gap',inr(pre-cod));
+  set('o_cod',MP.fmt(cod)); set('o_pre',MP.fmt(pre)); set('o_gap',MP.fmt(pre-cod));
   document.getElementById('o_cod-s').textContent=(cod/p*100).toFixed(1)+'% of order value';
   document.getElementById('o_pre-s').textContent=(pre/(pp||1)*100).toFixed(1)+'% of discounted value';
   var now=100*(sc*cod+(1-sc)*pre), sc2=sc*(1-mv), after=100*(sc2*cod+(1-sc2)*pre);
-  set('o_now',inr(now)); set('o_after',inr(after)); set('o_delta',inr(after-now));
+  set('o_now',MP.fmt(now)); set('o_after',MP.fmt(after)); set('o_delta',MP.fmt(after-now));
   if(cod<0){el.className='verdict bad';
-    el.textContent='Every COD order loses '+inr(-cod)+'. At '+(rc*100).toFixed(0)+'% RTO the returns eat the margin on the ones that do deliver. Pushing prepaid is not an optimisation, it is the fix.';}
+    el.textContent='Every COD order loses '+MP.fmt(-cod)+'. At '+(rc*100).toFixed(0)+'% RTO the returns eat the margin on the ones that do deliver. Pushing prepaid is not an optimisation, it is the fix.';}
   else if(pre-cod>p*0.08){el.className='verdict good';
-    el.textContent='A prepaid order is worth '+inr(pre-cod)+' more than a COD one even after a '+(di*100).toFixed(0)+'% discount. Moving '+(mv*100).toFixed(0)+'% of COD buyers across adds '+inr(after-now)+' per 100 orders.';}
+    el.textContent='A prepaid order is worth '+MP.fmt(pre-cod)+' more than a COD one even after a '+(di*100).toFixed(0)+'% discount. Moving '+(mv*100).toFixed(0)+'% of COD buyers across adds '+MP.fmt(after-now)+' per 100 orders.';}
   else {el.className='verdict warn';
-    el.textContent='The gap is only '+inr(pre-cod)+' per order, so a '+(di*100).toFixed(0)+'% discount gives away most of the benefit. Try a smaller discount, or cut RTO with address verification instead.';}
+    el.textContent='The gap is only '+MP.fmt(pre-cod)+' per order, so a '+(di*100).toFixed(0)+'% discount gives away most of the benefit. Try a smaller discount, or cut RTO with address verification instead.';}
 }
 
 function v(id){var e=document.getElementById(id);return e?e.value:'';}
@@ -268,6 +269,8 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
+
+window.calc=calc;
 
 </script>
 </body>

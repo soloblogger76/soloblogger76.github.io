@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="row"><div class="field"><label for="sales">Customers you want per month</label><input id="sales" type="number" inputmode="decimal" step="1" min="0" value="12"></div><div class="field"><label for="close">Close rate on qualified leads (%)</label><input id="close" type="number" inputmode="decimal" step="any" min="0" value="25"></div><div class="field"><label for="qual">Leads that turn out qualified (%)</label><input id="qual" type="number" inputmode="decimal" step="any" min="0" value="40"><p class="hint">Be honest. This is usually far lower than people think.</p></div></div><div class="row"><div class="field"><label for="lpcr">Landing page conversion rate (%)</label><input id="lpcr" type="number" inputmode="decimal" step="any" min="0" value="8"><p class="hint">Visitors who become a lead.</p></div><div class="field"><label for="cpc">Cost per click (₹)</label><input id="cpc" type="number" inputmode="decimal" step="any" min="0" value="18"></div><div class="field"><label for="value">Average customer value (₹)</label><input id="value" type="number" inputmode="decimal" step="any" min="0" value="40000"><p class="hint">Gross profit per customer, not revenue.</p></div></div>
@@ -88,7 +90,6 @@ body{background:transparent;padding:0}
 <script>
 var MP_SLUG='lead-funnel-calculator';
 
-function inr(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN');}
 function calc(){
   var s=+v('sales')||0, cl=(+v('close')||0)/100, q=(+v('qual')||0)/100,
       lp=(+v('lpcr')||0)/100, cpc=+v('cpc')||0, val=+v('value')||0;
@@ -101,19 +102,19 @@ function calc(){
   set('o_qual',Math.ceil(qual).toLocaleString('en-IN'));
   set('o_leads',Math.ceil(leads).toLocaleString('en-IN'));
   set('o_clicks',Math.ceil(clicks).toLocaleString('en-IN'));
-  set('o_budget',inr(budget));
-  set('o_cpl',inr(budget/leads));
-  set('o_cac',inr(budget/s));
+  set('o_budget',MP.fmt(budget));
+  set('o_cpl',MP.fmt(budget/leads));
+  set('o_cac',MP.fmt(budget/s));
   var cac=budget/s;
   if(!val){el.className='verdict warn';
     el.textContent='Add an average customer value to see whether this budget makes sense.';return;}
   var ratio=val/cac;
   if(ratio<1){el.className='verdict bad';
-    el.textContent='At '+inr(cac)+' to acquire a customer worth '+inr(val)+', you lose money on every sale. Something upstream has to change \u2014 most often the qualified rate or the landing page, not the cost per click.';}
+    el.textContent='At '+MP.fmt(cac)+' to acquire a customer worth '+MP.fmt(val)+', you lose money on every sale. Something upstream has to change \u2014 most often the qualified rate or the landing page, not the cost per click.';}
   else if(ratio<3){el.className='verdict warn';
-    el.textContent='Acquiring a customer costs '+inr(cac)+' against '+inr(val)+' of value \u2014 a '+ratio.toFixed(1)+':1 ratio. Workable but tight. Lifting the qualified rate from '+(q*100).toFixed(0)+'% to '+Math.min(95,(q*100+15)).toFixed(0)+'% would cut the budget to '+inr(budget*q/Math.min(0.95,q+0.15))+'.';}
+    el.textContent='Acquiring a customer costs '+MP.fmt(cac)+' against '+MP.fmt(val)+' of value \u2014 a '+ratio.toFixed(1)+':1 ratio. Workable but tight. Lifting the qualified rate from '+(q*100).toFixed(0)+'% to '+Math.min(95,(q*100+15)).toFixed(0)+'% would cut the budget to '+MP.fmt(budget*q/Math.min(0.95,q+0.15))+'.';}
   else {el.className='verdict good';
-    el.textContent='Comfortable. '+inr(cac)+' to acquire a customer worth '+inr(val)+' is a '+ratio.toFixed(1)+':1 ratio. The biggest lever from here is the qualified rate \u2014 every point of improvement there is worth more than a point off cost per click.';}
+    el.textContent='Comfortable. '+MP.fmt(cac)+' to acquire a customer worth '+MP.fmt(val)+' is a '+ratio.toFixed(1)+':1 ratio. The biggest lever from here is the qualified rate \u2014 every point of improvement there is worth more than a point off cost per click.';}
 }
 function v(id){var e=document.getElementById(id);return e?e.value:'';}
 function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
@@ -124,6 +125,8 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
+
+window.calc=calc;
 
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
@@ -140,7 +143,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

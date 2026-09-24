@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="row"><div class="field"><label for="leads">Leads you want per month</label><input id="leads" type="number" inputmode="decimal" step="any" min="0" value="60"></div><div class="field"><label for="cpl">Expected cost per lead (₹)</label><input id="cpl" type="number" inputmode="decimal" step="any" min="0" value="450"><p class="hint">Use your own number if you have one. Otherwise start high and correct after two weeks.</p></div><div class="field"><label for="adsets">Ad sets in the campaign</label><input id="adsets" type="number" inputmode="decimal" step="1" min="1" value="2"><p class="hint">Each one needs its own conversions to learn. Fewer is usually better.</p></div></div>
@@ -88,17 +90,16 @@ body{background:transparent;padding:0}
 <script>
 var MP_SLUG='meta-ads-budget-calculator';
 
-function inr(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN');}
 function calc(){
   var leads=+v('leads')||0, cpl=+v('cpl')||0, sets=Math.max(1,+v('adsets')||1);
   var month=leads*cpl, day=month/30.4, perSet=(leads/4.345)/sets;
-  set('o_month',inr(month)); set('o_day',inr(day));
+  set('o_month',MP.fmt(month)); set('o_day',MP.fmt(day));
   set('o_week',perSet.toFixed(1));
   var el=document.getElementById('o_verdict'), c='verdict ', t='';
   if(!leads||!cpl){c+='warn';t='Enter a lead target and an expected cost per lead.';}
   else if(perSet>=50){c+='good';t='Comfortable. At '+perSet.toFixed(0)+' conversions per ad set per week you are clear of the learning phase, so Meta can optimise properly.';}
-  else if(perSet>=25){c+='warn';t='Borderline. Meta wants around 50 conversions per ad set per week. At '+perSet.toFixed(0)+' you will learn slowly. Try '+(sets>1?'merging ad sets, or ':'')+'raising the budget to '+inr(50*sets*4.345*cpl)+' a month.';}
-  else {c+='bad';t='Too thin. At '+perSet.toFixed(1)+' conversions per ad set per week the campaign cannot leave the learning phase, so cost per lead will stay high and unstable. You need roughly '+inr(50*sets*4.345*cpl)+' a month at this cost per lead \u2014 or one ad set instead of '+sets+'.';}
+  else if(perSet>=25){c+='warn';t='Borderline. Meta wants around 50 conversions per ad set per week. At '+perSet.toFixed(0)+' you will learn slowly. Try '+(sets>1?'merging ad sets, or ':'')+'raising the budget to '+MP.fmt(50*sets*4.345*cpl)+' a month.';}
+  else {c+='bad';t='Too thin. At '+perSet.toFixed(1)+' conversions per ad set per week the campaign cannot leave the learning phase, so cost per lead will stay high and unstable. You need roughly '+MP.fmt(50*sets*4.345*cpl)+' a month at this cost per lead \u2014 or one ad set instead of '+sets+'.';}
   el.className=c; el.textContent=t;
 }
 function v(id){var e=document.getElementById(id);return e?e.value:'';}
@@ -110,6 +111,8 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
+
+window.calc=calc;
 
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
@@ -126,7 +129,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

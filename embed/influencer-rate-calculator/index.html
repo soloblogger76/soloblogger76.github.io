@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="row"><div class="field"><label for="followers">Followers</label><input id="followers" type="number" inputmode="decimal" step="1" min="0" value="85000"></div><div class="field"><label for="reach">Average reach per post</label><input id="reach" type="number" inputmode="decimal" step="1" min="0" value="19000"><p class="hint">From their insights screenshot. If you only have views, use that.</p></div><div class="field"><label for="eng">Average likes + comments per post</label><input id="eng" type="number" inputmode="decimal" step="1" min="0" value="2400"></div></div><div class="row"><div class="field"><label for="quote">Their quote for one post (₹)</label><input id="quote" type="number" inputmode="decimal" step="any" min="0" value="35000"></div><div class="field"><label for="aov">Your average order value (₹)</label><input id="aov" type="number" inputmode="decimal" step="any" min="0" value="1800"></div><div class="field"><label for="margin">Your gross margin (%)</label><input id="margin" type="number" inputmode="decimal" step="any" min="0" value="45"></div></div>
@@ -87,7 +89,6 @@ body{background:transparent;padding:0}
 </main>
 <script>
 var MP_SLUG='influencer-rate-calculator';
-function inr(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN');}
 function calc(){
   var f=+v('followers')||0,rc=+v('reach')||0,e=+v('eng')||0,q=+v('quote')||0,
       a=+v('aov')||0,m=(+v('margin')||0)/100;
@@ -98,12 +99,12 @@ function calc(){
   var er = rc>0 ? e/rc*100 : (f>0 ? e/f*100 : 0);
   set('o_er', er.toFixed(2)+'%');
   document.getElementById('o_er-s').textContent = rc>0 ? 'on reach' : 'on followers (reach unknown)';
-  set('o_cpm', rc>0 ? inr(q/rc*1000) : '\u2014');
-  set('o_cpe', e>0 ? inr(q/e) : '\u2014');
+  set('o_cpm', rc>0 ? MP.fmt(q/rc*1000) : '\u2014');
+  set('o_cpe', e>0 ? MP.fmt2(q/e) : '\u2014');
   var gp = a*m;
   var orders = gp>0 ? q/gp : 0;
   set('o_orders', gp>0 ? Math.ceil(orders) : '\u2014');
-  document.getElementById('o_orders-s').textContent = gp>0 ? 'at '+inr(gp)+' gross profit each' : 'add margin';
+  document.getElementById('o_orders-s').textContent = gp>0 ? 'at '+MP.fmt(gp)+' gross profit each' : 'add margin';
   set('o_cr', (rc>0&&gp>0) ? (orders/rc*100).toFixed(2)+'%' : '\u2014');
   var ratio = f>0 ? rc/f*100 : 0;
   set('o_ratio', rc>0 ? ratio.toFixed(1)+'%' : '\u2014');
@@ -131,6 +132,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
 
+window.calc=calc;
+
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
 (function(){
@@ -146,7 +149,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

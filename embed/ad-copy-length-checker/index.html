@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="field"><label for="c_primary">Primary text / description</label><textarea id="c_primary" placeholder="Paste your ad body copy">Most agencies sell you leads. We sell you a filter. Every enquiry that reaches your WhatsApp has already answered a budget question — so your team stops calling people who were never going to buy.</textarea></div><div class="field"><label for="c_head">Headline</label><textarea id="c_head" placeholder="Paste your headline">Stop paying for leads that never pick up</textarea></div>
@@ -135,6 +137,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
 
+window.calc=calc;
+
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
 (function(){
@@ -150,7 +154,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

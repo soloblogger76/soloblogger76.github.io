@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="field"><label for="u_url">Destination URL</label><input id="u_url" type="text" value="https://mediapuppies.com/lead-generation/" placeholder="https://example.com/page"></div><div class="row"><div class="field"><label for="u_source">Campaign source *</label><input id="u_source" type="text" value="facebook" placeholder="google, facebook, newsletter"><p class="hint">Where the traffic comes from.</p></div><div class="field"><label for="u_medium">Campaign medium *</label><input id="u_medium" type="text" value="cpc" placeholder="cpc, email, social, referral"><p class="hint">The channel type.</p></div></div><div class="row"><div class="field"><label for="u_campaign">Campaign name *</label><input id="u_campaign" type="text" value="diwali-2026" placeholder="spring-sale"></div><div class="field"><label for="u_content">Campaign content</label><input id="u_content" type="text" value="carousel-a" placeholder="Use it to tell two ads apart."></div><div class="field"><label for="u_term">Campaign term</label><input id="u_term" type="text" value="" placeholder="Paid search keyword. Usually left blank."></div></div>
@@ -143,6 +145,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
 
+window.calc=calc;
+
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
 (function(){
@@ -158,7 +162,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

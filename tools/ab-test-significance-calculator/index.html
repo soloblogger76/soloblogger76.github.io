@@ -162,6 +162,7 @@ details[open] .plus{transform:rotate(45deg)}
 <script src="/assets/js/pixel.js?v=20260924b" defer></script>
 <script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
 <script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 
@@ -277,6 +278,8 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
+
+window.calc=calc;
 
 </script>
 </body>

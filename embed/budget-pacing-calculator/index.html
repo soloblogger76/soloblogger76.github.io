@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Customer lifetime value calculator — Media Puppies</title>
+<title>Budget pacing calculator — Media Puppies</title>
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://mediapuppies.com/tools/ltv-calculator/">
+<link rel="canonical" href="https://mediapuppies.com/tools/budget-pacing-calculator/">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
@@ -76,44 +76,58 @@ body{background:transparent;padding:0}
   <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
-    <div class="row"><div class="field"><label for="aov">Average order value (₹)</label><input id="aov" type="number" inputmode="decimal" step="any" min="0" value="2500"></div><div class="field"><label for="freq">Purchases per customer per year</label><input id="freq" type="number" inputmode="decimal" step="any" min="0" value="2.4"></div><div class="field"><label for="years">Average customer lifespan (years)</label><input id="years" type="number" inputmode="decimal" step="any" min="0" value="2"></div><div class="field"><label for="margin">Gross margin (%)</label><input id="margin" type="number" inputmode="decimal" step="any" min="0" value="45"><p class="hint">What is left after cost of goods and fulfilment.</p></div><div class="field"><label for="cac">What you pay to acquire a customer (₹)</label><input id="cac" type="number" inputmode="decimal" step="any" min="0" value="900"><p class="hint">Total marketing spend ÷ new customers.</p></div></div>
+    <div class="row"><div class="field"><label for="budget">Budget for the period (₹)</label><input id="budget" type="number" inputmode="decimal" step="any" min="0" value="300000"></div><div class="field"><label for="spent">Spent so far (₹)</label><input id="spent" type="number" inputmode="decimal" step="any" min="0" value="96000"></div><div class="field"><label for="days">Days in the period</label><input id="days" type="number" inputmode="decimal" step="1" min="1" value="30"></div><div class="field"><label for="elapsed">Days elapsed</label><input id="elapsed" type="number" inputmode="decimal" step="1" min="0" value="14"></div><div class="field"><label for="cpa">Current cost per result (₹)</label><input id="cpa" type="number" inputmode="decimal" step="any" min="0" value="480"><p class="hint">Leave at zero if you only want the pacing figures.</p></div><div class="field"><label for="target">Target cost per result (₹)</label><input id="target" type="number" inputmode="decimal" step="any" min="0" value="450"></div></div>
     <div class="out">
-      <div class="row"><div class="metric"><div class="k">Lifetime revenue</div><div class="v" id="o_rev">—</div><div class="s" id="o_rev-s"></div></div><div class="metric"><div class="k">LTV (gross profit)</div><div class="v" id="o_ltv">—</div><div class="s" id="o_ltv-s"></div></div><div class="metric"><div class="k">LTV : CAC</div><div class="v" id="o_ratio">—</div><div class="s" id="o_ratio-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Payback</div><div class="v" id="o_pay">—</div><div class="s" id="o_pay-s">orders to recover CAC</div></div><div class="metric"><div class="k">First-order profit</div><div class="v" id="o_first">—</div><div class="s" id="o_first-s"></div></div><div class="metric"><div class="k">Max sustainable CAC</div><div class="v" id="o_max">—</div><div class="s" id="o_max-s">at 3:1</div></div></div><div id="o_verdict" class="verdict"></div>
+      <div class="row"><div class="metric"><div class="k">Pacing</div><div class="v" id="o_pace">—</div><div class="s" id="o_pace-s"></div></div><div class="metric"><div class="k">Should have spent by now</div><div class="v" id="o_should">—</div><div class="s" id="o_should-s"></div></div><div class="metric"><div class="k">Ahead / behind</div><div class="v" id="o_gap">—</div><div class="s" id="o_gap-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Daily spend needed</div><div class="v" id="o_daily">—</div><div class="s" id="o_daily-s">for the rest</div></div><div class="metric"><div class="k">Projected spend</div><div class="v" id="o_proj">—</div><div class="s" id="o_proj-s">at current rate</div></div><div class="metric"><div class="k">Projected results</div><div class="v" id="o_results">—</div><div class="s" id="o_results-s"></div></div></div><div id="o_verdict" class="verdict"></div>
     </div>
   </div>
   <p class="credit">
-    <span><a href="https://mediapuppies.com/tools/ltv-calculator/" target="_blank" rel="noopener">Customer lifetime value calculator</a> by
+    <span><a href="https://mediapuppies.com/tools/budget-pacing-calculator/" target="_blank" rel="noopener">Budget pacing calculator</a> by
     <a href="https://mediapuppies.com/" target="_blank" rel="noopener"><strong>Media Puppies</strong></a></span>
     <a href="https://mediapuppies.com/tools/" target="_blank" rel="noopener">More free tools →</a>
   </p>
 </main>
 <script>
-var MP_SLUG='ltv-calculator';
-
+var MP_SLUG='budget-pacing-calculator';
 function calc(){
-  var aov=+v('aov')||0, f=+v('freq')||0, y=+v('years')||0, m=(+v('margin')||0)/100, cac=+v('cac')||0;
-  var orders=f*y, rev=aov*orders, ltv=rev*m, gpOrder=aov*m;
-  set('o_rev',MP.fmt(rev));
-  document.getElementById('o_rev-s').textContent=orders.toFixed(1)+' orders';
-  set('o_ltv',MP.fmt(ltv));
-  set('o_first',MP.fmt(gpOrder-cac));
-  set('o_max',MP.fmt(ltv/3));
+  var b=+v('budget')||0, sp=+v('spent')||0, d=Math.max(1,+v('days')||1),
+      e=+v('elapsed')||0, cpa=+v('cpa')||0, tg=+v('target')||0;
+  var ids=['o_pace','o_should','o_gap','o_daily','o_proj','o_results'];
   var el=document.getElementById('o_verdict');
-  if(cac<=0||ltv<=0){set('o_ratio','\u2014');set('o_pay','\u2014');
-    el.className='verdict warn';el.textContent='Enter margin and acquisition cost to see the ratio.';return;}
-  var ratio=ltv/cac;
-  set('o_ratio',ratio.toFixed(2)+':1');
-  var pay = gpOrder>0 ? cac/gpOrder : 0;
-  set('o_pay', gpOrder>0 ? pay.toFixed(1) : '\u2014');
-  if(ratio<1){el.className='verdict bad';
-    el.textContent='You lose money on every customer over their whole lifetime. This is not an ad problem \u2014 pricing, margin or retention has to change before more spend makes sense.';}
-  else if(ratio<3){el.className='verdict warn';
-    el.textContent='At '+ratio.toFixed(1)+':1 you are profitable but thin. The usual benchmark is 3:1, which leaves room for overheads and mistakes. Either raise repeat rate or bring acquisition cost below '+MP.fmt(ltv/3)+'.';}
-  else if(ratio<=5){el.className='verdict good';
-    el.textContent='Healthy at '+ratio.toFixed(1)+':1. You can afford to spend up to '+MP.fmt(ltv/3)+' per customer and stay at the 3:1 benchmark \u2014 which usually means there is room to scale.';}
-  else {el.className='verdict good';
-    el.textContent='At '+ratio.toFixed(1)+':1 you are almost certainly under-investing in acquisition. Spending more per customer would buy growth you are currently leaving to competitors.';}
+  if(b<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Enter a budget.'; return;}
+  e=Math.min(e,d);
+  var should=b*(e/d), left=b-sp, daysLeft=d-e;
+  var pace = should>0 ? sp/should : 0;
+  var perDay = daysLeft>0 ? left/daysLeft : 0;
+  var run = e>0 ? sp/e : 0;
+  var proj = run*d;
+  set('o_pace', should>0 ? (pace*100).toFixed(0)+'%' : '\u2014');
+  document.getElementById('o_pace-s').textContent='100% is exactly on plan';
+  set('o_should',MP.fmt(should));
+  set('o_gap',MP.fmt(sp-should));
+  document.getElementById('o_gap-s').textContent = sp>=should ? 'ahead of plan' : 'behind plan';
+  set('o_daily', daysLeft>0 ? MP.fmt(perDay) : '\u2014');
+  document.getElementById('o_daily-s').textContent = daysLeft>0 ? 'over '+daysLeft+' days' : 'period finished';
+  set('o_proj',MP.fmt(proj));
+  set('o_results', cpa>0 ? Math.floor(b/cpa).toLocaleString() : '\u2014');
+  document.getElementById('o_results-s').textContent = cpa>0 ? 'if the full budget is spent' : 'add a cost per result';
+  var msgs=[];
+  if(daysLeft<=0) msgs.push('The period is over. You spent '+MP.fmt(sp)+' of '+MP.fmt(b)+'.');
+  else if(pace<0.85){
+    var jump = run>0 ? perDay/run : 0;
+    msgs.push('Under-pacing at '+(pace*100).toFixed(0)+'%. To use the budget you need '+MP.fmt(perDay)+' a day for the remaining '+daysLeft+' \u2014 that is '+jump.toFixed(1)+'x your current rate. Raise budgets in steps of about 20%, not in one jump, or you will reset the learning phase and lose days.');
+  }
+  else if(pace>1.15) msgs.push('Over-pacing at '+(pace*100).toFixed(0)+'%. At this rate you finish the budget on day '+Math.floor(b/run)+' of '+d+', then go dark for '+(d-Math.floor(b/run))+' days. Cutting daily budget now is better than stopping later.');
+  else msgs.push('On track at '+(pace*100).toFixed(0)+'% of plan. Keep daily spend near '+MP.fmt(perDay)+'.');
+  if(cpa>0&&tg>0){
+    if(cpa>tg*1.15) msgs.push('Cost per result is '+MP.fmt(cpa)+' against a '+MP.fmt(tg)+' target, so spending the full budget buys fewer results than planned. Fix efficiency before chasing the spend number.');
+    else if(cpa<tg*0.85) msgs.push('Cost per result is under target at '+MP.fmt(cpa)+' \u2014 this is the case for spending more, not less.');
+  }
+  el.className='verdict '+((pace<0.85||pace>1.15)?'warn':'good');
+  el.textContent=msgs.join(' ');
 }
+
 function v(id){var e=document.getElementById(id);return e?e.value:'';}
 function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
 document.addEventListener('DOMContentLoaded',function(){
@@ -123,7 +137,6 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
-
 window.calc=calc;
 
 /* Tell the host page how tall we are, so a fixed iframe height is only a

@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="row"><div class="field"><label for="spend">Amount spent (₹)</label><input id="spend" type="number" inputmode="decimal" step="any" min="0" value="50000"></div><div class="field"><label for="impr">Impressions</label><input id="impr" type="number" inputmode="decimal" step="1" min="0" value="420000"></div><div class="field"><label for="clicks">Link clicks</label><input id="clicks" type="number" inputmode="decimal" step="1" min="0" value="6300"></div><div class="field"><label for="convs">Conversions</label><input id="convs" type="number" inputmode="decimal" step="1" min="0" value="95"></div></div>
@@ -88,14 +90,13 @@ body{background:transparent;padding:0}
 <script>
 var MP_SLUG='media-math-calculator';
 
-function inr(n){return '\u20b9'+(n>=100?Math.round(n).toLocaleString('en-IN'):n.toFixed(2));}
 function calc(){
   var s=+v('spend')||0, i=+v('impr')||0, c=+v('clicks')||0, k=+v('convs')||0;
-  set('o_cpm', i? inr(s/i*1000):'\u2014');
-  set('o_cpc', c? inr(s/c):'\u2014');
+  set('o_cpm', i? MP.fmt2(s/i*1000):'\u2014');
+  set('o_cpc', c? MP.fmt2(s/c):'\u2014');
   set('o_ctr', i? (c/i*100).toFixed(2)+'%':'\u2014');
   set('o_cvr', c? (k/c*100).toFixed(2)+'%':'\u2014');
-  set('o_cpa', k? inr(s/k):'\u2014');
+  set('o_cpa', k? MP.fmt2(s/k):'\u2014');
   set('o_reach', i? (c/i*1000).toFixed(1):'\u2014');
   var el=document.getElementById('o_verdict');
   if(!s||!i){el.className='verdict warn';el.textContent='Enter at least spend and impressions.';return;}
@@ -117,6 +118,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
 
+window.calc=calc;
+
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
 (function(){
@@ -132,7 +135,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

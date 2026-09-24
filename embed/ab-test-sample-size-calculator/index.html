@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Customer lifetime value calculator — Media Puppies</title>
+<title>A/B test sample size calculator — Media Puppies</title>
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://mediapuppies.com/tools/ltv-calculator/">
+<link rel="canonical" href="https://mediapuppies.com/tools/ab-test-sample-size-calculator/">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
@@ -76,44 +76,61 @@ body{background:transparent;padding:0}
   <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
-    <div class="row"><div class="field"><label for="aov">Average order value (₹)</label><input id="aov" type="number" inputmode="decimal" step="any" min="0" value="2500"></div><div class="field"><label for="freq">Purchases per customer per year</label><input id="freq" type="number" inputmode="decimal" step="any" min="0" value="2.4"></div><div class="field"><label for="years">Average customer lifespan (years)</label><input id="years" type="number" inputmode="decimal" step="any" min="0" value="2"></div><div class="field"><label for="margin">Gross margin (%)</label><input id="margin" type="number" inputmode="decimal" step="any" min="0" value="45"><p class="hint">What is left after cost of goods and fulfilment.</p></div><div class="field"><label for="cac">What you pay to acquire a customer (₹)</label><input id="cac" type="number" inputmode="decimal" step="any" min="0" value="900"><p class="hint">Total marketing spend ÷ new customers.</p></div></div>
+    <div class="row"><div class="field"><label for="base">Current conversion rate (%)</label><input id="base" type="number" inputmode="decimal" step="any" min="0" value="3.2"></div><div class="field"><label for="mde">Smallest lift worth detecting (%)</label><input id="mde" type="number" inputmode="decimal" step="any" min="0" value="20"><p class="hint">Relative. A 20% lift on 3.2% means getting to 3.84%.</p></div><div class="field"><label for="traffic">Visitors per day (both variants combined)</label><input id="traffic" type="number" inputmode="decimal" step="1" min="0" value="800"></div><div class="field"><label for="conf">Confidence level (%)</label><input id="conf" type="number" inputmode="decimal" step="any" min="0" value="95"><p class="hint">95% is the convention. 90% is defensible for low-risk changes.</p></div><div class="field"><label for="power">Statistical power (%)</label><input id="power" type="number" inputmode="decimal" step="any" min="0" value="80"><p class="hint">The chance of spotting a real effect. 80% is standard.</p></div><div class="field"><label for="vars">Number of variants</label><input id="vars" type="number" inputmode="decimal" step="1" min="2" value="2"><p class="hint">Including the control.</p></div></div>
     <div class="out">
-      <div class="row"><div class="metric"><div class="k">Lifetime revenue</div><div class="v" id="o_rev">—</div><div class="s" id="o_rev-s"></div></div><div class="metric"><div class="k">LTV (gross profit)</div><div class="v" id="o_ltv">—</div><div class="s" id="o_ltv-s"></div></div><div class="metric"><div class="k">LTV : CAC</div><div class="v" id="o_ratio">—</div><div class="s" id="o_ratio-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Payback</div><div class="v" id="o_pay">—</div><div class="s" id="o_pay-s">orders to recover CAC</div></div><div class="metric"><div class="k">First-order profit</div><div class="v" id="o_first">—</div><div class="s" id="o_first-s"></div></div><div class="metric"><div class="k">Max sustainable CAC</div><div class="v" id="o_max">—</div><div class="s" id="o_max-s">at 3:1</div></div></div><div id="o_verdict" class="verdict"></div>
+      <div class="row"><div class="metric"><div class="k">Visitors per variant</div><div class="v" id="o_per">—</div><div class="s" id="o_per-s"></div></div><div class="metric"><div class="k">Total visitors needed</div><div class="v" id="o_total">—</div><div class="s" id="o_total-s"></div></div><div class="metric"><div class="k">Days to run</div><div class="v" id="o_days">—</div><div class="s" id="o_days-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Target conversion rate</div><div class="v" id="o_target">—</div><div class="s" id="o_target-s"></div></div><div class="metric"><div class="k">Conversions per variant</div><div class="v" id="o_conv">—</div><div class="s" id="o_conv-s"></div></div><div class="metric"><div class="k">Full weeks</div><div class="v" id="o_weeks">—</div><div class="s" id="o_weeks-s">round up to these</div></div></div><div id="o_verdict" class="verdict"></div>
     </div>
   </div>
   <p class="credit">
-    <span><a href="https://mediapuppies.com/tools/ltv-calculator/" target="_blank" rel="noopener">Customer lifetime value calculator</a> by
+    <span><a href="https://mediapuppies.com/tools/ab-test-sample-size-calculator/" target="_blank" rel="noopener">A/B test sample size calculator</a> by
     <a href="https://mediapuppies.com/" target="_blank" rel="noopener"><strong>Media Puppies</strong></a></span>
     <a href="https://mediapuppies.com/tools/" target="_blank" rel="noopener">More free tools →</a>
   </p>
 </main>
 <script>
-var MP_SLUG='ltv-calculator';
-
+var MP_SLUG='ab-test-sample-size-calculator';
+/* Two-proportion sample size. z values for the common confidence and power
+   levels; anything else falls back to the nearest standard pair. */
+function zA(c){var m={80:1.2816,85:1.4395,90:1.6449,95:1.9600,99:2.5758};
+  var k=Object.keys(m).map(Number).reduce(function(a,b){return Math.abs(b-c)<Math.abs(a-c)?b:a;});
+  return m[k];}
+function zB(p){var m={70:0.5244,80:0.8416,85:1.0364,90:1.2816,95:1.6449};
+  var k=Object.keys(m).map(Number).reduce(function(a,b){return Math.abs(b-p)<Math.abs(a-p)?b:a;});
+  return m[k];}
 function calc(){
-  var aov=+v('aov')||0, f=+v('freq')||0, y=+v('years')||0, m=(+v('margin')||0)/100, cac=+v('cac')||0;
-  var orders=f*y, rev=aov*orders, ltv=rev*m, gpOrder=aov*m;
-  set('o_rev',MP.fmt(rev));
-  document.getElementById('o_rev-s').textContent=orders.toFixed(1)+' orders';
-  set('o_ltv',MP.fmt(ltv));
-  set('o_first',MP.fmt(gpOrder-cac));
-  set('o_max',MP.fmt(ltv/3));
+  var p1=(+v('base')||0)/100, mde=(+v('mde')||0)/100, tr=+v('traffic')||0,
+      cf=+v('conf')||95, pw=+v('power')||80, k=Math.max(2,+v('vars')||2);
+  var ids=['o_per','o_total','o_days','o_target','o_conv','o_weeks'];
   var el=document.getElementById('o_verdict');
-  if(cac<=0||ltv<=0){set('o_ratio','\u2014');set('o_pay','\u2014');
-    el.className='verdict warn';el.textContent='Enter margin and acquisition cost to see the ratio.';return;}
-  var ratio=ltv/cac;
-  set('o_ratio',ratio.toFixed(2)+':1');
-  var pay = gpOrder>0 ? cac/gpOrder : 0;
-  set('o_pay', gpOrder>0 ? pay.toFixed(1) : '\u2014');
-  if(ratio<1){el.className='verdict bad';
-    el.textContent='You lose money on every customer over their whole lifetime. This is not an ad problem \u2014 pricing, margin or retention has to change before more spend makes sense.';}
-  else if(ratio<3){el.className='verdict warn';
-    el.textContent='At '+ratio.toFixed(1)+':1 you are profitable but thin. The usual benchmark is 3:1, which leaves room for overheads and mistakes. Either raise repeat rate or bring acquisition cost below '+MP.fmt(ltv/3)+'.';}
-  else if(ratio<=5){el.className='verdict good';
-    el.textContent='Healthy at '+ratio.toFixed(1)+':1. You can afford to spend up to '+MP.fmt(ltv/3)+' per customer and stay at the 3:1 benchmark \u2014 which usually means there is room to scale.';}
+  if(p1<=0||p1>=1||mde<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn';
+    el.textContent='Enter a conversion rate between 0 and 100, and a lift above zero.';return;}
+  var p2=p1*(1+mde);
+  if(p2>=1){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict bad';
+    el.textContent='That lift would push the conversion rate past 100%. Lower the target.';return;}
+  var za=zA(cf), zb=zB(pw), pbar=(p1+p2)/2;
+  var n=Math.ceil(Math.pow(za*Math.sqrt(2*pbar*(1-pbar))+zb*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2)/Math.pow(p2-p1,2));
+  var total=n*k;
+  var days = tr>0 ? total/tr : 0;
+  set('o_per',n.toLocaleString()); set('o_total',total.toLocaleString());
+  set('o_target',(p2*100).toFixed(2)+'%');
+  document.getElementById('o_target-s').textContent='up from '+(p1*100).toFixed(2)+'%';
+  set('o_conv',Math.ceil(n*p1).toLocaleString());
+  set('o_days', tr>0 ? Math.ceil(days) : '\u2014');
+  set('o_weeks', tr>0 ? Math.ceil(days/7) : '\u2014');
+  if(!tr){el.className='verdict warn';
+    el.textContent='Add your daily traffic to see how long this would take.';return;}
+  if(days>90){el.className='verdict bad';
+    el.textContent='About '+Math.ceil(days/30)+' months at your traffic. That is too long \u2014 seasonality and site changes will contaminate it. Test a bigger change, or accept a lower confidence level, or stop testing this and change it on judgement.';}
+  else if(days>28){el.className='verdict warn';
+    el.textContent=Math.ceil(days)+' days. Workable but long. Anything over a month risks being disturbed by other changes to the site \u2014 freeze everything else while it runs.';}
+  else if(days<7){el.className='verdict warn';
+    el.textContent='The sample arrives in '+Math.ceil(days)+' days, but run it for a full 7 anyway. Weekday and weekend behaviour differ, and a test that skips a weekend measures Tuesday.';}
   else {el.className='verdict good';
-    el.textContent='At '+ratio.toFixed(1)+':1 you are almost certainly under-investing in acquisition. Spending more per customer would buy growth you are currently leaving to competitors.';}
+    el.textContent=Math.ceil(days)+' days, or '+Math.ceil(days/7)+' full weeks. Decide now that you will not look at significance before then \u2014 checking daily and stopping on the first green reading is how false winners get shipped.';}
 }
+
 function v(id){var e=document.getElementById(id);return e?e.value:'';}
 function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
 document.addEventListener('DOMContentLoaded',function(){
@@ -123,7 +140,6 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
-
 window.calc=calc;
 
 /* Tell the host page how tall we are, so a fixed iframe height is only a

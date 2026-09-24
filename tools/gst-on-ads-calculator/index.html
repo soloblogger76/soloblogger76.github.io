@@ -162,6 +162,7 @@ details[open] .plus{transform:rotate(45deg)}
 <script src="/assets/js/pixel.js?v=20260924b" defer></script>
 <script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
 <script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 
@@ -175,7 +176,7 @@ details[open] .plus{transform:rotate(45deg)}
   </div>
 </div>
 
-<main class="wrap" style="padding:34px 0 10px">
+<main class="wrap" style="padding:34px 0 10px" data-inr-only>
   <span class="pill">India · Tax</span>
   <h1 style="margin:16px 0 0">GST on ad spend calculator</h1>
   <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Meta and Google invoice you without GST. That does not mean there is none. Here is what marketing actually costs once reverse charge and input credit are counted.</p>
@@ -185,7 +186,7 @@ details[open] .plus{transform:rotate(45deg)}
     <div class="out">
       <div class="row"><div class="metric"><div class="k">Cash out</div><div class="v" id="o_gross">—</div><div class="s" id="o_gross-s">per month</div></div><div class="metric"><div class="k">Input credit</div><div class="v" id="o_credit">—</div><div class="s" id="o_credit-s"></div></div><div class="metric"><div class="k">True marketing cost</div><div class="v" id="o_net">—</div><div class="s" id="o_net-s">after credit</div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Reverse charge self-assessed</div><div class="v" id="o_rcm">—</div><div class="s" id="o_rcm-s"></div></div><div class="metric"><div class="k">Uplift on headline spend</div><div class="v" id="o_uplift">—</div><div class="s" id="o_uplift-s"></div></div><div class="metric"><div class="k">True cost per year</div><div class="v" id="o_year">—</div><div class="s" id="o_year-s"></div></div></div><div id="o_verdict" class="verdict"></div>
     </div>
-    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+    <p class="note">Rupees only — this one is specific to India. Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
   </div>
 
   

@@ -162,6 +162,7 @@ details[open] .plus{transform:rotate(45deg)}
 <script src="/assets/js/pixel.js?v=20260924b" defer></script>
 <script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
 <script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 
@@ -179,6 +180,7 @@ details[open] .plus{transform:rotate(45deg)}
   <span class="pill">Unit economics</span>
   <h1 style="margin:16px 0 0">Customer lifetime value calculator</h1>
   <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">LTV on revenue flatters you. This calculates it on gross profit, which is the only version that tells you what you can afford to spend.</p>
+  <p style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0 0;font-size:.86rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.86rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency used in this calculator" style="width:auto;padding:7px 10px;background:#fff;font-size:.86rem"></select><span style="color:rgba(24,28,79,.55)">Set from your location. The maths is the same in any currency — only the labels change.</span></p>
 
   <div class="card" style="margin-top:26px">
     <div class="row"><div class="field"><label for="aov">Average order value (₹)</label><input id="aov" type="number" inputmode="decimal" step="any" min="0" value="2500"></div><div class="field"><label for="freq">Purchases per customer per year</label><input id="freq" type="number" inputmode="decimal" step="any" min="0" value="2.4"></div><div class="field"><label for="years">Average customer lifespan (years)</label><input id="years" type="number" inputmode="decimal" step="any" min="0" value="2"></div><div class="field"><label for="margin">Gross margin (%)</label><input id="margin" type="number" inputmode="decimal" step="any" min="0" value="45"><p class="hint">What is left after cost of goods and fulfilment.</p></div><div class="field"><label for="cac">What you pay to acquire a customer (₹)</label><input id="cac" type="number" inputmode="decimal" step="any" min="0" value="900"><p class="hint">Total marketing spend ÷ new customers.</p></div></div>
@@ -235,15 +237,14 @@ details[open] .plus{transform:rotate(45deg)}
 
 <script>
 
-function inr(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN');}
 function calc(){
   var aov=+v('aov')||0, f=+v('freq')||0, y=+v('years')||0, m=(+v('margin')||0)/100, cac=+v('cac')||0;
   var orders=f*y, rev=aov*orders, ltv=rev*m, gpOrder=aov*m;
-  set('o_rev',inr(rev));
+  set('o_rev',MP.fmt(rev));
   document.getElementById('o_rev-s').textContent=orders.toFixed(1)+' orders';
-  set('o_ltv',inr(ltv));
-  set('o_first',inr(gpOrder-cac));
-  set('o_max',inr(ltv/3));
+  set('o_ltv',MP.fmt(ltv));
+  set('o_first',MP.fmt(gpOrder-cac));
+  set('o_max',MP.fmt(ltv/3));
   var el=document.getElementById('o_verdict');
   if(cac<=0||ltv<=0){set('o_ratio','\u2014');set('o_pay','\u2014');
     el.className='verdict warn';el.textContent='Enter margin and acquisition cost to see the ratio.';return;}
@@ -254,9 +255,9 @@ function calc(){
   if(ratio<1){el.className='verdict bad';
     el.textContent='You lose money on every customer over their whole lifetime. This is not an ad problem \u2014 pricing, margin or retention has to change before more spend makes sense.';}
   else if(ratio<3){el.className='verdict warn';
-    el.textContent='At '+ratio.toFixed(1)+':1 you are profitable but thin. The usual benchmark is 3:1, which leaves room for overheads and mistakes. Either raise repeat rate or bring acquisition cost below '+inr(ltv/3)+'.';}
+    el.textContent='At '+ratio.toFixed(1)+':1 you are profitable but thin. The usual benchmark is 3:1, which leaves room for overheads and mistakes. Either raise repeat rate or bring acquisition cost below '+MP.fmt(ltv/3)+'.';}
   else if(ratio<=5){el.className='verdict good';
-    el.textContent='Healthy at '+ratio.toFixed(1)+':1. You can afford to spend up to '+inr(ltv/3)+' per customer and stay at the 3:1 benchmark \u2014 which usually means there is room to scale.';}
+    el.textContent='Healthy at '+ratio.toFixed(1)+':1. You can afford to spend up to '+MP.fmt(ltv/3)+' per customer and stay at the 3:1 benchmark \u2014 which usually means there is room to scale.';}
   else {el.className='verdict good';
     el.textContent='At '+ratio.toFixed(1)+':1 you are almost certainly under-investing in acquisition. Spending more per customer would buy growth you are currently leaving to competitors.';}
 }
@@ -269,6 +270,8 @@ document.addEventListener('DOMContentLoaded',function(){
   calc();
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
+
+window.calc=calc;
 
 </script>
 </body>

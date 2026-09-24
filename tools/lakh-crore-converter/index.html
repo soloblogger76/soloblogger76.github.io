@@ -162,6 +162,7 @@ details[open] .plus{transform:rotate(45deg)}
 <script src="/assets/js/pixel.js?v=20260924b" defer></script>
 <script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
 <script src="/assets/js/analytics.js?v=20260924b" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 
@@ -175,7 +176,7 @@ details[open] .plus{transform:rotate(45deg)}
   </div>
 </div>
 
-<main class="wrap" style="padding:34px 0 10px">
+<main class="wrap" style="padding:34px 0 10px" data-inr-only>
   <span class="pill">Utility</span>
   <h1 style="margin:16px 0 0">Lakh and crore converter</h1>
   <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Dashboards report 14750000. Your client says “one crore forty-seven”. This converts between the two, both directions, instantly.</p>
@@ -185,7 +186,7 @@ details[open] .plus{transform:rotate(45deg)}
     <div class="out">
       <div class="row"><div class="metric"><div class="k">Indian format</div><div class="v" id="o_indian">—</div><div class="s" id="o_indian-s"></div></div><div class="metric"><div class="k">In words</div><div class="v" id="o_words">—</div><div class="s" id="o_words-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Lakh</div><div class="v" id="o_lakh">—</div><div class="s" id="o_lakh-s"></div></div><div class="metric"><div class="k">Crore</div><div class="v" id="o_crore">—</div><div class="s" id="o_crore-s"></div></div><div class="metric"><div class="k">International</div><div class="v" id="o_intl">—</div><div class="s" id="o_intl-s"></div></div></div><div id="o_verdict" class="verdict"></div>
     </div>
-    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+    <p class="note">Rupees only — this one is specific to India. Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
   </div>
 
   

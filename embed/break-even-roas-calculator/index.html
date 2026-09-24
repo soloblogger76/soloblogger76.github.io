@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
 <main class="wrap">
+  <p style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:.82rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.82rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency" style="width:auto;padding:6px 9px;background:#fff;font-size:.82rem"></select></p>
   <div class="card">
 
     <div class="row"><div class="field"><label for="price">Average order value (₹)</label><input id="price" type="number" inputmode="decimal" step="any" min="0" value="2500"></div><div class="field"><label for="cogs">Cost of goods per order (₹)</label><input id="cogs" type="number" inputmode="decimal" step="any" min="0" value="900"><p class="hint">What the product actually costs you.</p></div><div class="field"><label for="ship">Shipping and packing per order (₹)</label><input id="ship" type="number" inputmode="decimal" step="any" min="0" value="120"></div><div class="field"><label for="fees">Payment gateway and platform fees (%)</label><input id="fees" type="number" inputmode="decimal" step="any" min="0" value="2.5"><p class="hint">Typically 2–3% in India.</p></div><div class="field"><label for="rto">Returns / RTO rate (%)</label><input id="rto" type="number" inputmode="decimal" step="any" min="0" value="12"><p class="hint">Prepaid orders are far lower than COD.</p></div><div class="field"><label for="target">Target net margin (%)</label><input id="target" type="number" inputmode="decimal" step="any" min="0" value="15"><p class="hint">What you want left after ads.</p></div></div>
@@ -99,7 +101,7 @@ function calc(){
   var rtoCost  = s*2;
   var cm = (1-r)*perDeliv - r*rtoCost;
   var pct = cm/p;
-  set('o_cm','\u20b9'+Math.round(cm).toLocaleString('en-IN'));
+  set('o_cm',MP.sym+Math.round(cm).toLocaleString('en-IN'));
   document.getElementById('o_cm-s').textContent=(pct*100).toFixed(1)+'% of order value';
   var el=document.getElementById('o_verdict');
   if(cm<=0){set('o_be','\u2014');set('o_tg','\u2014');
@@ -127,6 +129,8 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
 });
 
+window.calc=calc;
+
 /* Tell the host page how tall we are, so a fixed iframe height is only a
    fallback. Height depends on the host's column width, which we cannot guess. */
 (function(){
@@ -142,7 +146,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>

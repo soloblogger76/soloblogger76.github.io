@@ -69,9 +69,11 @@ body{background:transparent;padding:0}
 .credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
 </style>
+<script src="/assets/js/tool-currency.js?v=20260925a" defer></script>
 </head>
 <body>
-<main class="wrap">
+<main class="wrap" data-inr-only>
+  
   <div class="card">
 
     <div class="row"><div class="field"><label for="spend">Monthly spend on Meta / Google (₹)</label><input id="spend" type="number" inputmode="decimal" step="any" min="0" value="200000"><p class="hint">Billed by a foreign entity, usually with no GST on the invoice.</p></div><div class="field"><label for="fee">Monthly agency or freelancer fee (₹)</label><input id="fee" type="number" inputmode="decimal" step="any" min="0" value="50000"><p class="hint">An Indian supplier adds GST on top.</p></div><div class="field"><label for="other">Other Indian marketing invoices (₹)</label><input id="other" type="number" inputmode="decimal" step="any" min="0" value="15000"><p class="hint">Tools, design, hosting billed from India.</p></div><div class="field"><label for="reg">Are you GST registered?</label><select id="reg"><option value="yes">Yes</option><option value="no">No</option></select></div><div class="field"><label for="itc">Can you use the input credit?</label><select id="itc"><option value="full">Yes, fully</option><option value="part">Partly</option><option value="none">No — output exempt</option></select><p class="hint">Credit is only worth something against output GST.</p></div><div class="field"><label for="rate">GST rate (%)</label><input id="rate" type="number" inputmode="decimal" step="any" min="0" value="18"><p class="hint">18% is standard on advertising and marketing services.</p></div></div>
@@ -140,7 +142,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('change',function(){setTimeout(post,60);});
   setInterval(post,1000);
 })();
-
 </script>
 </body>
 </html>
