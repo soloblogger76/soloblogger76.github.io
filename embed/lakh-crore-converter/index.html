@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lakh and crore converter — Media Puppies</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://mediapuppies.com/tools/lakh-crore-converter/">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<style>
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+body{background:transparent;padding:0}
+.wrap{max-width:100%;padding:0}
+.card{box-shadow:none;margin:0}
+.credit{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:14px;font-size:.82rem;color:rgba(24,28,79,.62)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="card">
+
+    <div class="field"><label for="n_val">Enter a number, or a phrase like “2.5 crore”</label><input id="n_val" type="text" value="14750000" placeholder="e.g. 4500000 or 45 lakh"></div><p class="hint">Accepts digits, commas, ₹, and the words lakh, lac, crore, cr, k, million or billion.</p>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Indian format</div><div class="v" id="o_indian">—</div><div class="s" id="o_indian-s"></div></div><div class="metric"><div class="k">In words</div><div class="v" id="o_words">—</div><div class="s" id="o_words-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Lakh</div><div class="v" id="o_lakh">—</div><div class="s" id="o_lakh-s"></div></div><div class="metric"><div class="k">Crore</div><div class="v" id="o_crore">—</div><div class="s" id="o_crore-s"></div></div><div class="metric"><div class="k">International</div><div class="v" id="o_intl">—</div><div class="s" id="o_intl-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+  </div>
+  <p class="credit">
+    <span><a href="https://mediapuppies.com/tools/lakh-crore-converter/" target="_blank" rel="noopener">Lakh and crore converter</a> by
+    <a href="https://mediapuppies.com/" target="_blank" rel="noopener"><strong>Media Puppies</strong></a></span>
+    <a href="https://mediapuppies.com/tools/" target="_blank" rel="noopener">More free tools →</a>
+  </p>
+</main>
+<script>
+var MP_SLUG='lakh-crore-converter';
+
+function parseIn(raw){
+  var s=(raw||'').toString().toLowerCase().replace(/[\u20b9,\s]/g,'').trim();
+  if(!s) return null;
+  var m=s.match(/^(-?[0-9]*\.?[0-9]+)(.*)$/);
+  if(!m) return null;
+  var n=parseFloat(m[1]); if(isNaN(n)) return null;
+  var unit=m[2];
+  if(/^(cr|crore|crores)$/.test(unit)) n*=1e7;
+  else if(/^(l|lac|lakh|lakhs|lacs)$/.test(unit)) n*=1e5;
+  else if(/^(k|thousand)$/.test(unit)) n*=1e3;
+  else if(/^(m|mn|million)$/.test(unit)) n*=1e6;
+  else if(/^(b|bn|billion)$/.test(unit)) n*=1e9;
+  else if(unit) return null;
+  return n;
+}
+function indianGroup(n){
+  var neg=n<0; n=Math.abs(n);
+  var p=n.toFixed(Math.abs(n)<1&&n!==0?2:(n%1?2:0)).split('.');
+  var i=p[0], last=i.slice(-3), rest=i.slice(0,-3);
+  if(rest) rest=rest.replace(/\B(?=(\d{2})+(?!\d))/g,',');
+  var out=(rest?rest+',':'')+last;
+  return (neg?'-':'')+out+(p[1]?'.'+p[1]:'');
+}
+var ONES=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve',
+ 'thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+var TENS=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function twoDigit(n){ if(n<20) return ONES[n];
+  return TENS[Math.floor(n/10)]+(n%10?'-'+ONES[n%10]:''); }
+function threeDigit(n){ var out=[];
+  if(n>99){out.push(ONES[Math.floor(n/100)]+' hundred'); n%=100;}
+  if(n) out.push(twoDigit(n));
+  return out.join(' and '); }
+function words(n){
+  if(n===0) return 'zero';
+  var neg=n<0; n=Math.abs(Math.round(n));
+  if(n>=1e15) return 'too large';
+  var parts=[];
+  var cr=Math.floor(n/1e7); n%=1e7;
+  var lk=Math.floor(n/1e5);  n%=1e5;
+  var th=Math.floor(n/1e3);  n%=1e3;
+  if(cr) parts.push((cr>=100?words(cr):threeDigit(cr))+' crore');
+  if(lk) parts.push(threeDigit(lk)+' lakh');
+  if(th) parts.push(threeDigit(th)+' thousand');
+  if(n)  parts.push(threeDigit(n));
+  return (neg?'minus ':'')+parts.join(' ');
+}
+function trim(x){ return (Math.round(x*100)/100).toLocaleString('en-IN'); }
+function calc(){
+  var n=parseIn(v('n_val'));
+  var el=document.getElementById('o_verdict');
+  var ids=['o_indian','o_words','o_lakh','o_crore','o_intl'];
+  if(n===null){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn';
+    el.textContent='Enter a number, or something like \u201c2.5 crore\u201d or \u201c45 lakh\u201d.';return;}
+  set('o_indian','\u20b9'+indianGroup(n));
+  set('o_words',words(n));
+  set('o_lakh',trim(n/1e5)+' L');
+  set('o_crore',trim(n/1e7)+' Cr');
+  set('o_intl',Math.abs(n)>=1e9?trim(n/1e9)+' billion':Math.abs(n)>=1e6?trim(n/1e6)+' million':Math.abs(n)>=1e3?trim(n/1e3)+'k':trim(n));
+  el.className='verdict good';
+  el.textContent='Indian grouping puts commas after the first three digits and every two digits after that \u2014 which is why 10,00,000 and 1,000,000 are the same number written two ways.';
+}
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+/* Tell the host page how tall we are, so a fixed iframe height is only a
+   fallback. Height depends on the host's column width, which we cannot guess. */
+(function(){
+  var last=0;
+  function post(){
+    var h=Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if(h && Math.abs(h-last)>4){ last=h;
+      try{ parent.postMessage({mpHeight:h, mpSlug:MP_SLUG}, '*'); }catch(e){}
+    }
+  }
+  addEventListener('load',post); addEventListener('resize',post);
+  document.addEventListener('input',function(){setTimeout(post,60);});
+  document.addEventListener('change',function(){setTimeout(post,60);});
+  setInterval(post,1000);
+})();
+
+</script>
+</body>
+</html>

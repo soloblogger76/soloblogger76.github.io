@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace Payout Calculator — Amazon, Flipkart, Meesho | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="Work out what actually reaches your bank from a marketplace order after commission, closing, shipping and returns — using your own category rates.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Marketplace payout calculator">
+<meta property="og:description" content="Work out what actually reaches your bank from a marketplace order after commission, closing, shipping and returns — using your own category rates.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/marketplace-payout-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marketplace payout calculator">
+<meta name="twitter:description" content="Work out what actually reaches your bank from a marketplace order after commission, closing, shipping and returns — using your own category rates.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/marketplace-payout-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/marketplace-payout-calculator/#app",
+   "name": "Marketplace payout calculator",
+   "url": "https://mediapuppies.com/tools/marketplace-payout-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Work out what actually reaches your bank from a marketplace order after commission, closing, shipping and returns — using your own category rates.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Marketplace payout calculator",
+     "item": "https://mediapuppies.com/tools/marketplace-payout-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Where do I find my commission rate?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "In the fee schedule inside your seller panel, under your specific category and price band. Do not use a blog post — the rates are revised."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I include GST here?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Work in the amounts you actually keep. If you are registered and claiming input credit, use ex-GST figures throughout so the comparison is consistent."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does this cover FBA-style fulfilment?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes — put the marketplace’s fulfilment charge into the shipping field and set your own pick-and-pack to zero."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is my break-even return rate so low?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because the profit on a delivered order is small relative to what a return costs. That is normal on thin-margin categories and it is exactly why return rate is the metric to watch."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">Indian ecommerce</span>
+  <h1 style="margin:16px 0 0">Marketplace payout calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Marketplace fee schedules change by category and by month, so this asks for your rates rather than guessing them. Put your numbers in and see what is left.</p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="mrp">Selling price on the marketplace (₹)</label><input id="mrp" type="number" inputmode="decimal" step="any" min="0" value="1499"></div><div class="field"><label for="cogs">Your cost of goods (₹)</label><input id="cogs" type="number" inputmode="decimal" step="any" min="0" value="520"></div><div class="field"><label for="comm">Referral / commission (%)</label><input id="comm" type="number" inputmode="decimal" step="any" min="0" value="14"><p class="hint">Check your category’s current rate in the seller panel.</p></div></div><div class="row"><div class="field"><label for="close">Closing / fixed fee per order (₹)</label><input id="close" type="number" inputmode="decimal" step="any" min="0" value="40"></div><div class="field"><label for="shipfee">Shipping fee the marketplace charges you (₹)</label><input id="shipfee" type="number" inputmode="decimal" step="any" min="0" value="75"></div><div class="field"><label for="pickpack">Your own pick, pack and packaging (₹)</label><input id="pickpack" type="number" inputmode="decimal" step="any" min="0" value="25"></div></div><div class="row"><div class="field"><label for="ret">Return rate (%)</label><input id="ret" type="number" inputmode="decimal" step="any" min="0" value="14"><p class="hint">Marketplace returns run high in apparel and footwear.</p></div><div class="field"><label for="retcost">Cost when an order is returned (₹)</label><input id="retcost" type="number" inputmode="decimal" step="any" min="0" value="150"><p class="hint">Reverse logistics plus any fee the marketplace keeps.</p></div><div class="field"><label for="ads">Marketplace ads as % of revenue</label><input id="ads" type="number" inputmode="decimal" step="any" min="0" value="6"><p class="hint">Sponsored product spend, if you run it.</p></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Payout per delivered order</div><div class="v" id="o_pay">—</div><div class="s" id="o_pay-s"></div></div><div class="metric"><div class="k">Profit per delivered order</div><div class="v" id="o_profit">—</div><div class="s" id="o_profit-s"></div></div><div class="metric"><div class="k">Margin on delivered</div><div class="v" id="o_margin">—</div><div class="s" id="o_margin-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Profit per order placed</div><div class="v" id="o_eff">—</div><div class="s" id="o_eff-s">after returns</div></div><div class="metric"><div class="k">Break-even return rate</div><div class="v" id="o_break">—</div><div class="s" id="o_break-s"></div></div><div class="metric"><div class="k">Profit per 100 orders</div><div class="v" id="o_100">—</div><div class="s" id="o_100-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>Why this asks for your rates instead of supplying them</h2>
+<p>Referral fees on Indian marketplaces vary by category, by price band and by fulfilment method, and they get revised. Any calculator that hardcodes “Amazon charges X%” is wrong for most sellers and stale within a quarter. Your current rates are in your seller panel — use those.</p>
+<h2>The fees people forget</h2>
+<ul><li><strong>Closing fee</strong> — a flat per-order charge that hurts most on low-value items.</li>
+<li><strong>Weight-band shipping.</strong> Going one gram over a slab can cost more than the packaging.</li>
+<li><strong>Returns.</strong> The single largest variable in apparel and footwear, and the one most sellers exclude from their spreadsheet.</li>
+<li><strong>Sponsored ads.</strong> If you run them to stay visible, they are a cost of the channel, not a separate marketing line.</li>
+<li><strong>Payment cycle.</strong> Not a fee, but money locked for a fortnight is working capital you are financing.</li></ul>
+<h2>The number that actually matters</h2>
+<p>Profit per <em>delivered</em> order flatters every marketplace. Profit per order <em>placed</em> — after returns — is what lands in your bank. The gap between those two is the whole argument for or against a channel.</p>
+<p>The break-even return rate is the most useful output here. It tells you how much room you have before the channel stops paying, which is a far more practical thing to monitor than margin.</p>
+<h2>Comparing against your own site</h2>
+<p>Run the same product through the <a href="/tools/break-even-roas-calculator/">break-even ROAS calculator</a> for your own website. Marketplaces take a large, certain cut; your own site costs you advertising, which is variable. Whichever leaves more per order placed is where the next unit of effort belongs.</p>
+
+  <h2>Questions</h2>
+  <div><details><summary>Where do I find my commission rate?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">In the fee schedule inside your seller panel, under your specific category and price band. Do not use a blog post — the rates are revised.</p></details><details><summary>Should I include GST here?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Work in the amounts you actually keep. If you are registered and claiming input credit, use ex-GST figures throughout so the comparison is consistent.</p></details><details><summary>Does this cover FBA-style fulfilment?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Yes — put the marketplace’s fulfilment charge into the shipping field and set your own pick-and-pack to zero.</p></details><details><summary>Why is my break-even return rate so low?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Because the profit on a delivered order is small relative to what a return costs. That is normal on thin-margin categories and it is exactly why return rate is the metric to watch.</p></details></div>
+
+  <h2>Embed this calculator</h2>
+  <p>Free to use on your own site. Copy this into your page — the attribution line is the only condition.</p>
+  <textarea readonly rows="7" onclick="this.select()" style="width:100%;box-sizing:border-box;padding:14px;border:1.5px solid rgba(24,28,79,.16);border-radius:12px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;line-height:1.55;color:#181C4F">&lt;iframe id="mp-marketplace-payout-calculator" src="https://mediapuppies.com/embed/marketplace-payout-calculator/" width="100%" height="700" style="border:1px solid #e5e5e5;border-radius:16px" loading="lazy" title="Marketplace payout calculator"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://mediapuppies.com/tools/marketplace-payout-calculator/"&gt;Marketplace payout calculator&lt;/a&gt; by &lt;a href="https://mediapuppies.com/"&gt;Media Puppies&lt;/a&gt;&lt;/p&gt;
+&lt;script&gt;addEventListener('message',function(e){if(e.origin==='https://mediapuppies.com'&&e.data&&e.data.mpSlug==='marketplace-payout-calculator')document.getElementById('mp-marketplace-payout-calculator').style.height=e.data.mpHeight+'px'})&lt;/script&gt;</textarea>
+  <p class="note">The paragraph below the iframe is the part that matters: an iframe's contents are served from our domain, so a link inside it is not a link from your page. The paragraph is. The small script just resizes the frame to fit your column — drop it if you prefer, the fixed height still works.</p>
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/cod-vs-prepaid-calculator/">COD vs prepaid profit calculator</a></li><li><a href="/tools/break-even-roas-calculator/">Break-even ROAS calculator</a></li><li><a href="/tools/ltv-calculator/">Customer lifetime value calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+function inr(n){var s=n<0?'-':'';return s+'\u20b9'+Math.abs(Math.round(n)).toLocaleString('en-IN');}
+function calc(){
+  var p=+v('mrp')||0,c=+v('cogs')||0,cm=(+v('comm')||0)/100,cl=+v('close')||0,
+      sf=+v('shipfee')||0,pk=+v('pickpack')||0,r=(+v('ret')||0)/100,rc=+v('retcost')||0,
+      ad=(+v('ads')||0)/100;
+  var ids=['o_pay','o_profit','o_margin','o_eff','o_break','o_100'];
+  var el=document.getElementById('o_verdict');
+  if(p<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Enter a selling price.'; return;}
+  var fees = p*cm + cl + sf;
+  var payout = p - fees;
+  var profit = payout - c - pk - p*ad;
+  set('o_pay',inr(payout));
+  document.getElementById('o_pay-s').textContent=(payout/p*100).toFixed(1)+'% of selling price';
+  set('o_profit',inr(profit));
+  set('o_margin',(profit/p*100).toFixed(1)+'%');
+  /* A return earns nothing and costs you the reverse-logistics bill. */
+  var eff = (1-r)*profit - r*rc;
+  set('o_eff',inr(eff));
+  set('o_100',inr(eff*100));
+  var be = (profit+rc)>0 ? profit/(profit+rc) : 0;
+  set('o_break', profit>0 ? (be*100).toFixed(1)+'%' : '\u2014');
+  document.getElementById('o_break-s').textContent = profit>0 ? 'returns above this lose money' : 'already unprofitable';
+  if(profit<=0){el.className='verdict bad';
+    el.textContent='You lose '+inr(-profit)+' on every order that is delivered successfully, before a single return. Fees plus cost of goods exceed the selling price \u2014 the price or the product cost has to move.';}
+  else if(eff<=0){el.className='verdict bad';
+    el.textContent='Delivered orders make '+inr(profit)+', but at a '+(r*100).toFixed(0)+'% return rate the channel loses '+inr(-eff)+' per order placed. Your break-even return rate is '+(be*100).toFixed(1)+'% \u2014 you are above it.';}
+  else if(eff < p*0.05){el.className='verdict warn';
+    el.textContent='Thin. '+inr(eff)+' per order placed is '+(eff/p*100).toFixed(1)+'% of selling price. One fee revision or a rise in returns wipes it out. Break-even return rate is '+(be*100).toFixed(1)+'%.';}
+  else {el.className='verdict good';
+    el.textContent=inr(eff)+' per order placed, and returns can rise to '+(be*100).toFixed(1)+'% before the channel stops paying. That is the headroom you are working with.';}
+}
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+</script>
+</body>
+</html>

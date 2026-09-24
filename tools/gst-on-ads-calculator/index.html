@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GST on Ad Spend Calculator — Meta, Google &amp; Agency Fees | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="What 18% GST does to your real marketing cost, including reverse charge on Meta and Google invoices and what changes if you are not registered.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="GST on ad spend calculator">
+<meta property="og:description" content="What 18% GST does to your real marketing cost, including reverse charge on Meta and Google invoices and what changes if you are not registered.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/gst-on-ads-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GST on ad spend calculator">
+<meta name="twitter:description" content="What 18% GST does to your real marketing cost, including reverse charge on Meta and Google invoices and what changes if you are not registered.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/gst-on-ads-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/gst-on-ads-calculator/#app",
+   "name": "GST on ad spend calculator",
+   "url": "https://mediapuppies.com/tools/gst-on-ads-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "What 18% GST does to your real marketing cost, including reverse charge on Meta and Google invoices and what changes if you are not registered.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "GST on ad spend calculator",
+     "item": "https://mediapuppies.com/tools/gst-on-ads-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do Meta and Google charge GST on Indian ad accounts?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Typically the invoice comes from a foreign entity with no Indian GST, which makes it an import of service, and a registered recipient self-assesses IGST under reverse charge. Billing arrangements change, so check your own invoice rather than assuming."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I claim input credit on advertising?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Generally yes where the spend is for business and you hold a valid invoice reflected in your returns. Eligibility depends on your circumstances — check with your CA."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the GST rate on advertising?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "18% is the standard rate on advertising and marketing services in India."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should a small brand register just for this?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "That depends on far more than advertising — turnover thresholds, who your customers are, and whether they need a tax invoice. This shows what the advertising side of the decision is worth."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260924b" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260924b" defer></script>
+<script src="/assets/js/analytics.js?v=20260924b" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">India · Tax</span>
+  <h1 style="margin:16px 0 0">GST on ad spend calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">Meta and Google invoice you without GST. That does not mean there is none. Here is what marketing actually costs once reverse charge and input credit are counted.</p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="spend">Monthly spend on Meta / Google (₹)</label><input id="spend" type="number" inputmode="decimal" step="any" min="0" value="200000"><p class="hint">Billed by a foreign entity, usually with no GST on the invoice.</p></div><div class="field"><label for="fee">Monthly agency or freelancer fee (₹)</label><input id="fee" type="number" inputmode="decimal" step="any" min="0" value="50000"><p class="hint">An Indian supplier adds GST on top.</p></div><div class="field"><label for="other">Other Indian marketing invoices (₹)</label><input id="other" type="number" inputmode="decimal" step="any" min="0" value="15000"><p class="hint">Tools, design, hosting billed from India.</p></div><div class="field"><label for="reg">Are you GST registered?</label><select id="reg"><option value="yes">Yes</option><option value="no">No</option></select></div><div class="field"><label for="itc">Can you use the input credit?</label><select id="itc"><option value="full">Yes, fully</option><option value="part">Partly</option><option value="none">No — output exempt</option></select><p class="hint">Credit is only worth something against output GST.</p></div><div class="field"><label for="rate">GST rate (%)</label><input id="rate" type="number" inputmode="decimal" step="any" min="0" value="18"><p class="hint">18% is standard on advertising and marketing services.</p></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Cash out</div><div class="v" id="o_gross">—</div><div class="s" id="o_gross-s">per month</div></div><div class="metric"><div class="k">Input credit</div><div class="v" id="o_credit">—</div><div class="s" id="o_credit-s"></div></div><div class="metric"><div class="k">True marketing cost</div><div class="v" id="o_net">—</div><div class="s" id="o_net-s">after credit</div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Reverse charge self-assessed</div><div class="v" id="o_rcm">—</div><div class="s" id="o_rcm-s"></div></div><div class="metric"><div class="k">Uplift on headline spend</div><div class="v" id="o_uplift">—</div><div class="s" id="o_uplift-s"></div></div><div class="metric"><div class="k">True cost per year</div><div class="v" id="o_year">—</div><div class="s" id="o_year-s"></div></div></div><div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+  
+<h2>The part most advertisers miss</h2>
+<p>Meta and Google bill Indian advertisers from a foreign entity and the invoice usually shows no GST. Many people read that as “no tax on ad spend”. It is not — it is an import of service, and a registered recipient is expected to self-assess IGST on it under the reverse charge mechanism, then claim the same amount back as input credit.</p>
+<p>For a registered business with taxable output that nets to zero and is purely cash flow and compliance. For a business that is unregistered, or whose output is exempt, it does not net to zero.</p>
+<h2>Where the cost actually lands</h2>
+<table><tr><th>Situation</th><th>What GST does to you</th></tr>
+<tr><td>Registered, fully taxable output</td><td>A timing difference — pay now, credit later.</td></tr>
+<tr><td>Registered, partly exempt</td><td>Part of the credit is lost and becomes real cost.</td></tr>
+<tr><td>Registered, exempt output</td><td>The whole 18% sticks.</td></tr>
+<tr><td>Not registered</td><td>Suppliers’ GST is unrecoverable. No reverse-charge obligation, but no credit either.</td></tr></table>
+<h2>Why this changes your ROAS target</h2>
+<p>If the tax is real cost rather than timing, your break-even moves. A brand paying an unrecoverable 18% on agency fees and tools is running a higher cost base than the one it modelled. Put the “true marketing cost” figure into the <a href="/tools/break-even-roas-calculator/">break-even ROAS calculator</a> rather than the headline spend.</p>
+<p class="note">This is a planning tool, not tax advice. Rates, reverse-charge treatment and credit eligibility depend on your registration, your state and what you supply. Confirm the specifics with your CA before filing anything.</p>
+
+  <h2>Questions</h2>
+  <div><details><summary>Do Meta and Google charge GST on Indian ad accounts?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Typically the invoice comes from a foreign entity with no Indian GST, which makes it an import of service, and a registered recipient self-assesses IGST under reverse charge. Billing arrangements change, so check your own invoice rather than assuming.</p></details><details><summary>Can I claim input credit on advertising?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Generally yes where the spend is for business and you hold a valid invoice reflected in your returns. Eligibility depends on your circumstances — check with your CA.</p></details><details><summary>What is the GST rate on advertising?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">18% is the standard rate on advertising and marketing services in India.</p></details><details><summary>Should a small brand register just for this?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">That depends on far more than advertising — turnover thresholds, who your customers are, and whether they need a tax invoice. This shows what the advertising side of the decision is worth.</p></details></div>
+
+  <h2>Embed this calculator</h2>
+  <p>Free to use on your own site. Copy this into your page — the attribution line is the only condition.</p>
+  <textarea readonly rows="7" onclick="this.select()" style="width:100%;box-sizing:border-box;padding:14px;border:1.5px solid rgba(24,28,79,.16);border-radius:12px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;line-height:1.55;color:#181C4F">&lt;iframe id="mp-gst-on-ads-calculator" src="https://mediapuppies.com/embed/gst-on-ads-calculator/" width="100%" height="700" style="border:1px solid #e5e5e5;border-radius:16px" loading="lazy" title="GST on ad spend calculator"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://mediapuppies.com/tools/gst-on-ads-calculator/"&gt;GST on ad spend calculator&lt;/a&gt; by &lt;a href="https://mediapuppies.com/"&gt;Media Puppies&lt;/a&gt;&lt;/p&gt;
+&lt;script&gt;addEventListener('message',function(e){if(e.origin==='https://mediapuppies.com'&&e.data&&e.data.mpSlug==='gst-on-ads-calculator')document.getElementById('mp-gst-on-ads-calculator').style.height=e.data.mpHeight+'px'})&lt;/script&gt;</textarea>
+  <p class="note">The paragraph below the iframe is the part that matters: an iframe's contents are served from our domain, so a link inside it is not a link from your page. The paragraph is. The small script just resizes the frame to fit your column — drop it if you prefer, the fixed height still works.</p>
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/break-even-roas-calculator/">Break-even ROAS calculator</a></li><li><a href="/tools/meta-ads-budget-calculator/">Meta ads budget calculator</a></li><li><a href="/tools/cod-vs-prepaid-calculator/">COD vs prepaid profit calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for Indian businesses where one customer is worth real money. You will get a straight answer on whether paid works for you — including “not yet”.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan →</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+function inr(n){return '\u20b9'+Math.round(n).toLocaleString('en-IN');}
+function calc(){
+  var s=+v('spend')||0,f=+v('fee')||0,o=+v('other')||0,
+      r=(+v('rate')||0)/100,reg=v('reg'),itc=v('itc');
+  /* Foreign platforms bill without Indian GST: a registered recipient
+     self-assesses IGST under reverse charge and reclaims it as credit. */
+  var rcm = reg==='yes' ? s*r : 0;
+  var indianGst=(f+o)*r;
+  var cashOut=s+f+o+indianGst+rcm;
+  var share= itc==='full'?1:itc==='part'?0.5:0;
+  var credit= reg==='yes' ? (indianGst+rcm)*share : 0;
+  var net=cashOut-credit, base=s+f+o;
+  set('o_gross',inr(cashOut)); set('o_credit',inr(credit)); set('o_net',inr(net));
+  set('o_rcm', reg==='yes'?inr(rcm):'\u2014');
+  document.getElementById('o_rcm-s').textContent = reg==='yes' ? 'IGST on the foreign invoice' : 'not applicable if unregistered';
+  set('o_uplift', base? ((net/base-1)*100).toFixed(1)+'%':'\u2014');
+  set('o_year', inr(net*12));
+  var el=document.getElementById('o_verdict');
+  if(reg==='no'){el.className='verdict bad';
+    el.textContent='Unregistered, the '+(r*100).toFixed(0)+'% your Indian suppliers charge is unrecoverable \u2014 '+inr(indianGst)+' a month, '+inr(indianGst*12)+' a year. Above the registration threshold this is usually the cheapest thing to fix.';}
+  else if(itc==='none'){el.className='verdict bad';
+    el.textContent='Registered but with no output tax to set credit against, the whole '+inr(indianGst+rcm)+' a month sticks. Worth confirming with your CA whether any of your supply is actually taxable.';}
+  else if(itc==='part'){el.className='verdict warn';
+    el.textContent='Half the credit is usable, so '+inr((indianGst+rcm)*0.5)+' a month is genuine cost rather than a timing difference.';}
+  else {el.className='verdict good';
+    el.textContent='Fully credited, GST is cash flow rather than cost \u2014 you pay '+inr(cashOut)+' and recover '+inr(credit)+'. Budget for the gap between paying and claiming, typically about a month.';}
+}
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+
+</script>
+</body>
+</html>
