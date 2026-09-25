@@ -66,7 +66,7 @@
   if (typeof MP_SUPABASE_READY === 'undefined' || !MP_SUPABASE_READY) return;
 
   var w = window.innerWidth || 0;
-  var row = {
+  var base = {
     session_id: sessionId(),
     path: location.pathname,
     referrer: attr.referrer,
@@ -80,9 +80,12 @@
     screen_w: w
   };
 
-  /* Fire and forget — a failed beacon must never affect the page */
-  try {
-    fetch(MP_SUPABASE_URL + '/rest/v1/page_views', {
+  function post(row) {
+    /* Fire and forget — a failed beacon must never affect the page.
+       PostgREST rejects the whole row for one unknown column, so if the
+       geo columns have not been added to the table yet, fall back to the
+       base row rather than losing the view entirely. */
+    return fetch(MP_SUPABASE_URL + '/rest/v1/page_views', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,6 +95,47 @@
       },
       body: JSON.stringify(row),
       keepalive: true
-    }).catch(function () {});
-  } catch (e) {}
+    });
+  }
+
+  function send(row) {
+    try {
+      post(row).then(function (r) {
+        if (!r.ok && row !== base) post(base).catch(function () {});
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  /* Country comes from Cloudflare's own edge, same origin, no third party
+     and no IP stored. Timezone is a useful proxy for region when a visitor
+     is on a VPN. Both are coarse enough not to identify anyone. */
+  var tz = '', lang = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  try { lang = (navigator.language || '').slice(0, 10); } catch (e) {}
+
+  var done = false;
+  function fire(country) {
+    if (done) return;
+    done = true;
+    var row = base;
+    if (country || tz || lang) {
+      row = {};
+      for (var k in base) row[k] = base[k];
+      row.country = country || null;
+      row.tz = tz || null;
+      row.lang = lang || null;
+    }
+    send(row);
+  }
+
+  fetch('/cdn-cgi/trace', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.text() : Promise.reject(); })
+    .then(function (t) {
+      var m = /(?:^|\n)loc=([A-Z]{2})/.exec(t);
+      fire(m ? m[1] : null);
+    })
+    .catch(function () { fire(null); });
+
+  /* Don't let a slow or blocked trace lose the view. */
+  setTimeout(function () { fire(null); }, 2500);
 })();

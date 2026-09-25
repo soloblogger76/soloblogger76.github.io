@@ -43,7 +43,7 @@ tr.row:hover{background:rgba(48,56,216,.03)}
 select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:999px;width:auto;min-width:112px}
 @media(max-width:800px){.tablewrap{overflow-x:auto}table{min-width:760px}}
 </style>
-<script src="/assets/js/supabase-config.js?v=20260923b"></script>
+<script src="/assets/js/supabase-config.js?v=20260926a"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0/dist/umd/supabase.min.js"></script>
 </head>
 <body>
@@ -125,7 +125,41 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
 
 
     <!-- TRAFFIC -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <h2 style="font-size:1.1rem;font-weight:600">Traffic</h2>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <label for="range" class="muted" style="font-size:.85rem;font-weight:700">Period</label>
+        <select id="range" style="width:auto;padding:8px 12px;font-size:.87rem">
+          <option value="1">Today</option>
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+      </div>
+    </div>
     <div id="trafficTiles" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:14px;margin-bottom:22px"></div>
+
+    <div class="card" style="padding:24px;margin-bottom:22px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <h2 style="font-size:1.1rem;font-weight:600">Visits per day</h2>
+        <span id="tChartTotal" class="muted" style="font-size:.85rem"></span>
+      </div>
+      <div id="tChart" style="display:flex;align-items:flex-end;gap:3px;height:110px"></div>
+      <div id="tChartAxis" class="muted" style="display:flex;justify-content:space-between;font-size:.72rem;margin-top:8px"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;margin-bottom:22px">
+      <div class="card" style="padding:24px">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:6px">Countries</h2>
+        <p class="muted" style="margin:0 0 16px;font-size:.85rem">From Cloudflare's edge. Blank until the geo columns are added.</p>
+        <div id="countries"></div>
+      </div>
+      <div class="card" style="padding:24px">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:6px">Referring sites</h2>
+        <p class="muted" style="margin:0 0 16px;font-size:.85rem">Where the click actually came from, tagged or not.</p>
+        <div id="referrers"></div>
+      </div>
+    </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px;margin-bottom:22px">
       <div class="card" style="padding:24px">
@@ -137,6 +171,18 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
         <p class="muted" style="margin:0 0 16px;font-size:.85rem">Sessions, the leads they produced, and what share converted.</p>
         <div class="tablewrap"><table id="campaignTable"><thead><tr><th>Campaign / source</th><th style="width:78px">Sessions</th><th style="width:66px">Leads</th><th style="width:66px">Conv.</th></tr></thead><tbody></tbody></table></div>
       </div>
+    </div>
+
+    <div class="card" style="padding:24px;margin-bottom:22px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+        <h2 style="font-size:1.1rem;font-weight:600">Recent visits</h2>
+        <span id="visitCount" class="muted" style="font-size:.85rem"></span>
+      </div>
+      <p class="muted" style="margin:0 0 16px;font-size:.85rem">The last 100 page views in this period — when, what they opened, and where from.</p>
+      <div class="tablewrap"><table id="visitTable"><thead><tr>
+        <th style="width:150px">When</th><th>Page</th><th style="width:70px">Country</th>
+        <th style="width:150px">Source</th><th style="width:80px">Device</th>
+      </tr></thead><tbody></tbody></table></div>
     </div>
 
     <!-- FILTERS -->
@@ -235,14 +281,29 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
     sb.auth.signOut().then(function () { location.reload(); });
   });
   $('refresh').addEventListener('click', load);
+  $('range').addEventListener('change', load);
 
   /* ---------- data ---------- */
+  function days() { return parseInt($('range').value, 10) || 30; }
+  function windowStart() {
+    var d = days();
+    if (d === 1) { var t = new Date(); t.setHours(0, 0, 0, 0); return t; }
+    return new Date(Date.now() - d * 864e5);
+  }
+
   function load() {
-    var since = new Date(Date.now() - 30 * 864e5).toISOString();
+    var since = windowStart().toISOString();
+    /* referrer, country, tz and lang are requested with a fallback below:
+       asking for a column the table does not have yet fails the whole query. */
+    var cols = 'session_id,path,referrer,utm_source,utm_campaign,device,created_at,country,tz,lang';
+    var base = 'session_id,path,referrer,utm_source,utm_campaign,device,created_at';
+    function pv(sel) {
+      return sb.from('page_views').select(sel)
+        .gte('created_at', since).order('created_at', { ascending: false }).limit(20000);
+    }
     Promise.all([
       sb.from('leads').select('*').order('created_at', { ascending: false }).limit(2000),
-      sb.from('page_views').select('session_id,path,utm_source,utm_campaign,device,created_at')
-        .gte('created_at', since).order('created_at', { ascending: false }).limit(20000)
+      pv(cols).then(function (r) { return r.error ? pv(base) : r; })
     ]).then(function (res) {
       if (res[0].error) { alert('Could not load leads: ' + res[0].error.message); return; }
       all = res[0].data || [];
@@ -390,18 +451,57 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
   }
 
 
+  var COUNTRY = {IN:'India',US:'United States',GB:'United Kingdom',AE:'UAE',CA:'Canada',
+    AU:'Australia',SG:'Singapore',DE:'Germany',FR:'France',NL:'Netherlands',IE:'Ireland',
+    PK:'Pakistan',BD:'Bangladesh',LK:'Sri Lanka',NP:'Nepal',SA:'Saudi Arabia',QA:'Qatar',
+    KW:'Kuwait',OM:'Oman',BH:'Bahrain',MY:'Malaysia',PH:'Philippines',ID:'Indonesia',
+    ZA:'South Africa',NG:'Nigeria',KE:'Kenya',BR:'Brazil',ES:'Spain',IT:'Italy',
+    NZ:'New Zealand',JP:'Japan',CN:'China',TR:'Turkey'};
+  function countryName(c) { return c ? (COUNTRY[c] || c) : 'Unknown'; }
+
+  /* A referrer is only interesting as the site it came from. */
+  function refHost(r) {
+    if (!r) return null;
+    try {
+      var h = new URL(r).hostname.replace(/^www\./, '');
+      /* Our own pages are not a traffic source. Match the live host explicitly
+         as well as the current one, so a preview domain does not skew this. */
+      return (h === location.hostname || h === 'mediapuppies.com') ? null : h;
+    } catch (e) { return null; }
+  }
+
+  function bars(rows, total) {
+    if (!rows.length) return '<p class="muted" style="font-size:.88rem;margin:0">Nothing recorded yet.</p>';
+    return rows.map(function (r) {
+      var pct = total ? Math.round(r[1] / total * 100) : 0;
+      return '<div style="margin-bottom:11px">' +
+        '<div style="display:flex;justify-content:space-between;gap:12px;font-size:.88rem;margin-bottom:5px">' +
+        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(r[0]) + '</span>' +
+        '<strong style="flex:none">' + r[1] + '<span class="muted" style="font-weight:400"> · ' + pct + '%</span></strong></div>' +
+        '<div style="height:7px;border-radius:999px;background:rgba(24,28,79,.09);overflow:hidden">' +
+        '<i style="display:block;height:100%;width:' + pct + '%;background:linear-gradient(90deg,#3038D8,#FFAC1C)"></i></div></div>';
+    }).join('');
+  }
+
   function renderTraffic() {
     var t = document.getElementById('trafficTiles');
+    var d = days();
+    var label = d === 1 ? 'today' : d + 'd';
     if (!views.length) {
       t.innerHTML = '<div class="card" style="padding:20px 18px;grid-column:1/-1">' +
-        '<strong style="font-family:\'Clash Display\',sans-serif">No traffic recorded yet</strong>' +
-        '<div class="muted" style="font-size:.88rem;margin-top:4px">Page views start appearing as soon as someone visits the site. Your own visits to /admin/ are never counted.</div></div>';
-      document.getElementById('topPages').innerHTML = '';
+        '<strong style="font-family:\'Clash Display\',sans-serif">No traffic in this period</strong>' +
+        '<div class="muted" style="font-size:.88rem;margin-top:4px">Try a longer period. Views appear as soon as someone visits; your own visits to /admin/ are never counted.</div></div>';
+      ['topPages','countries','referrers','tChart','tChartAxis'].forEach(function (id) {
+        var e = document.getElementById(id); if (e) e.innerHTML = '';
+      });
       document.querySelector('#campaignTable tbody').innerHTML = '';
+      document.querySelector('#visitTable tbody').innerHTML = '';
+      document.getElementById('visitCount').textContent = '';
+      document.getElementById('tChartTotal').textContent = '';
       return;
     }
 
-    var since = Date.now() - 30 * 864e5;
+    var since = windowStart().getTime();
     var sessions = {};
     views.forEach(function (v) { sessions[v.session_id] = 1; });
     var sessionCount = Object.keys(sessions).length;
@@ -411,9 +511,9 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
     var mobilePct = views.length ? Math.round(mobile / views.length * 100) : 0;
 
     var tiles = [
-      ['Page views · 30d', views.length, '#3038D8'],
-      ['Sessions · 30d', sessionCount, '#3038D8'],
-      ['Leads · 30d', leads30, '#3038D8'],
+      ['Page views · ' + label, views.length, '#3038D8'],
+      ['Sessions · ' + label, sessionCount, '#3038D8'],
+      ['Leads · ' + label, leads30, '#3038D8'],
       ['Conversion', conv.toFixed(1) + '%', conv >= 2 ? '#1F8A3B' : '#181C4F'],
       ['On mobile', mobilePct + '%', '#181C4F']
     ];
@@ -465,6 +565,69 @@ select.status{padding:6px 10px;font-size:.78rem;font-weight:700;border-radius:99
       return '<tr><td><strong>' + esc(k) + '</strong></td>' +
         '<td>' + (sc || '—') + '</td><td>' + ld + '</td>' +
         '<td style="color:' + tone + ';font-weight:700">' + (sc ? pct.toFixed(1) + '%' : '—') + '</td></tr>';
+    }).join('');
+
+    /* --- visits per day --- */
+    var dayKeys = [], perDay = {};
+    for (var i = d - 1; i >= 0; i--) {
+      var k = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+      dayKeys.push(k); perDay[k] = 0;
+    }
+    views.forEach(function (v) {
+      var k = (v.created_at || '').slice(0, 10);
+      if (k in perDay) perDay[k]++;
+    });
+    var peak = Math.max(1, Math.max.apply(null, dayKeys.map(function (k) { return perDay[k]; })));
+    document.getElementById('tChartTotal').textContent = views.length + ' views over ' + dayKeys.length + ' days';
+    document.getElementById('tChart').innerHTML = dayKeys.map(function (k) {
+      var h = Math.round(perDay[k] / peak * 100);
+      return '<div title="' + k + ': ' + perDay[k] + ' views" style="flex:1;min-width:2px;height:' +
+        Math.max(2, h) + '%;border-radius:3px 3px 0 0;background:' +
+        (perDay[k] ? 'linear-gradient(180deg,#3038D8,#6E74F0)' : 'rgba(24,28,79,.10)') + '"></div>';
+    }).join('');
+    document.getElementById('tChartAxis').innerHTML =
+      '<span>' + dayKeys[0] + '</span><span>' + dayKeys[dayKeys.length - 1] + '</span>';
+
+    /* --- countries --- */
+    var byCountry = {}, known = 0;
+    views.forEach(function (v) {
+      var c = countryName(v.country);
+      byCountry[c] = (byCountry[c] || 0) + 1;
+      if (v.country) known++;
+    });
+    var cRows = Object.keys(byCountry).map(function (k) { return [k, byCountry[k]]; })
+      .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 8);
+    document.getElementById('countries').innerHTML = known
+      ? bars(cRows, views.length)
+      : '<p class="muted" style="font-size:.88rem;margin:0">No country data yet. Run <code>supabase-add-geo.sql</code> in Supabase, then new visits will carry it — older rows stay blank.</p>';
+
+    /* --- referring sites --- */
+    var byRef = {};
+    views.forEach(function (v) {
+      var h = refHost(v.referrer);
+      if (h) byRef[h] = (byRef[h] || 0) + 1;
+    });
+    var rRows = Object.keys(byRef).map(function (k) { return [k, byRef[k]]; })
+      .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 8);
+    var direct = views.length - rRows.reduce(function (a, r) { return a + r[1]; }, 0);
+    if (direct > 0) rRows.push(['Direct / none', direct]);
+    document.getElementById('referrers').innerHTML = bars(rRows, views.length);
+
+    /* --- recent visits --- */
+    var recent = views.slice(0, 100);
+    document.getElementById('visitCount').textContent =
+      'showing ' + recent.length + ' of ' + views.length;
+    document.querySelector('#visitTable tbody').innerHTML = recent.map(function (v) {
+      var dt = new Date(v.created_at);
+      var when = isNaN(dt) ? '' : dt.toLocaleString('en-IN',
+        { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+      var src = v.utm_campaign || v.utm_source || refHost(v.referrer) || 'Direct';
+      return '<tr>' +
+        '<td class="muted" style="white-space:nowrap">' + esc(when) + '</td>' +
+        '<td><a href="' + esc(v.path || '/') + '" target="_blank" rel="noopener">' + esc(v.path || '/') + '</a></td>' +
+        '<td>' + esc(v.country || '—') + '</td>' +
+        '<td style="overflow:hidden;text-overflow:ellipsis;max-width:150px">' + esc(src) + '</td>' +
+        '<td class="muted">' + esc(v.device || '') + '</td></tr>';
     }).join('');
   }
 
