@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hostinger KVM 2 vs KVM 4 for n8n: Which VPS?</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="KVM 2 at ₹799 or KVM 4 at ₹1,099 for self-hosted n8n? The five workloads that need 16 GB, and the four settings that keep you on the cheaper plan.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Hostinger KVM 2 vs KVM 4 for n8n: which VPS do you actually need?">
+<meta property="og:description" content="KVM 2 at ₹799 or KVM 4 at ₹1,099 for self-hosted n8n? The five workloads that need 16 GB, and the four settings that keep you on the cheaper plan.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/blog/hostinger-kvm2-vs-kvm4-n8n.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hostinger KVM 2 vs KVM 4 for n8n: which VPS do you actually need?">
+<meta name="twitter:description" content="KVM 2 at ₹799 or KVM 4 at ₹1,099 for self-hosted n8n? The five workloads that need 16 GB, and the four settings that keep you on the cheaper plan.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/blog/hostinger-kvm2-vs-kvm4-n8n.jpg">
+<meta property="article:published_time" content="2026-10-08">
+<meta property="article:modified_time" content="2026-10-08">
+<meta property="article:author" content="Sanjay Kumar">
+<meta property="og:url" content="https://mediapuppies.com/blog/hostinger-kvm2-vs-kvm4-n8n/">
+<link rel="canonical" href="https://mediapuppies.com/blog/hostinger-kvm2-vs-kvm4-n8n/">
+<style>
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%;position:relative}
+section,header,footer,nav{max-width:100vw}
+a{color:#181C4F;text-decoration:none}
+a:hover{color:#3038D8}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+[data-sticky-cta]{display:none}
+@media (max-width:720px){[data-sticky-cta]{display:flex}[data-desktop-link]{display:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+article h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.02em;line-height:1.18;margin:48px 0 14px}
+article h3{font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.18rem;letter-spacing:-.01em;margin:32px 0 10px}
+article p{margin:0 0 18px;font-size:1.07rem;color:rgba(24,28,79,.78)}
+article ul,article ol{margin:0 0 18px;padding-left:22px;color:rgba(24,28,79,.78);font-size:1.07rem}
+article li{margin-bottom:9px}
+article strong{color:#181C4F}
+article a{color:#3038D8;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+article blockquote{margin:28px 0;padding:22px 26px;background:#FFFFFF;border-left:4px solid #FFAC1C;border-radius:0 16px 16px 0;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article blockquote p{margin:0;font-family:'Clash Display',sans-serif;font-weight:500;font-size:1.15rem;color:#181C4F}
+article table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:.98rem;background:#FFFFFF;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article th{text-align:left;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3038D8;padding:14px 18px;border-bottom:1px solid rgba(24,28,79,.12)}
+article td{padding:14px 18px;border-bottom:1px solid rgba(24,28,79,.08);color:rgba(24,28,79,.78)}
+article tr:last-child td{border-bottom:none}
+article .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 22px;border-radius:16px;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article .tw table{margin:0;border-radius:0;box-shadow:none;min-width:540px}
+article figure{margin:0 0 26px}
+article figure img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 14px 36px rgba(24,28,79,.1)}
+article figcaption{margin-top:9px;font-size:.8rem;color:rgba(24,28,79,.55)}
+article figcaption a{font-weight:500;color:rgba(24,28,79,.62);text-decoration:underline}
+.toc{background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:18px;padding:22px 26px;margin:0 0 30px;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+.toc p{margin:0 0 10px;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3038D8}
+.toc ol{margin:0;padding-left:20px;font-size:1rem}
+.toc li{margin-bottom:6px}
+.disclosure{background:rgba(255,172,28,.14);border:1px solid rgba(255,172,28,.5);border-radius:14px;padding:14px 18px;margin:0 0 28px;font-size:.92rem;color:rgba(24,28,79,.8)}
+.disclosure p{margin:0;font-size:.92rem}
+.affbox{background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #FFAC1C;border-radius:16px;padding:22px 26px;margin:40px 0 0;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+.affbox p{margin:0 0 12px;font-size:1rem}
+.affbox a.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.97rem;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:12px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px rgba(255,172,28,.35)}
+.faq{margin-top:48px}
+.faq h3{margin:26px 0 8px}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Hostinger KVM 2 vs KVM 4 for n8n: which VPS do you actually need?", "description": "KVM 2 at ₹799 or KVM 4 at ₹1,099 for self-hosted n8n? The five workloads that need 16 GB, and the four settings that keep you on the cheaper plan.", "image": "https://mediapuppies.com/assets/img/blog/hostinger-kvm2-vs-kvm4-n8n.jpg", "datePublished": "2026-10-08", "dateModified": "2026-10-08", "wordCount": 1567, "articleSection": "Hosting", "inLanguage": "en-IN", "author": {"@type": "Person", "name": "Sanjay Kumar", "url": "https://mediapuppies.com/about/", "worksFor": {"@type": "Organization", "name": "Media Puppies", "url": "https://mediapuppies.com/"}}, "publisher": {"@type": "Organization", "name": "Media Puppies", "url": "https://mediapuppies.com/", "logo": {"@type": "ImageObject", "url": "https://mediapuppies.com/assets/img/logo-full.png"}}, "mainEntityOfPage": "https://mediapuppies.com/blog/hostinger-kvm2-vs-kvm4-n8n/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://mediapuppies.com/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://mediapuppies.com/blog/"},
+{"@type":"ListItem","position":3,"name":"Hostinger KVM 2 vs KVM 4 for n8n: which VPS do you actually need?","item":"https://mediapuppies.com/blog/hostinger-kvm2-vs-kvm4-n8n/"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is KVM 1 enough for n8n?", "acceptedAnswer": {"@type": "Answer", "text": "It can be. KVM 1 gives you 1 vCPU and 4 GB of RAM, which comfortably exceeds n8n's documented minimum of 1 vCPU and 2 GB. It is fine for testing, personal projects and a handful of simple scheduled workflows. For anything a business depends on, KVM 2's second core and 8 GB of RAM give you the headroom to survive a workflow that misbehaves."}}, {"@type": "Question", "name": "Can I upgrade from KVM 2 to KVM 4 later?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and this is the main reason to start small. Hostinger lets you scale a VPS up by paying the difference and rebooting — there is no reinstall, no migration and no DNS change. Downgrading is the awkward direction, so the risk of starting on KVM 2 is far lower than the risk of over-buying."}}, {"@type": "Question", "name": "How many n8n workflows can KVM 2 handle?", "acceptedAnswer": {"@type": "Answer", "text": "Workflow count is the wrong unit. A box can run a hundred lightweight JSON workflows and fall over on three that process PDFs. As a rough guide, KVM 2 handles twenty to fifty active workflows and a few thousand executions a month without complaint, provided none of them run headless browsers or hold large files in memory."}}, {"@type": "Question", "name": "Does running AI nodes need more RAM?", "acceptedAnswer": {"@type": "Answer", "text": "Not if you are calling an API. OpenAI, Claude and Gemini nodes send a request and wait — the heavy computation happens on someone else's hardware, so your server is idle. RAM becomes the constraint only if you run a model locally, which is a different sizing exercise entirely."}}]}
+</script>
+<script src="/assets/js/pixel.js?v=20260926a" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260926a" defer></script>
+<script src="/assets/js/analytics.js?v=20260926a" defer></script>
+</head>
+<body>
+<div data-progress style="position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#3038D8,#FFAC1C);z-index:100;pointer-events:none"></div>
+
+<nav data-nav style="position:fixed;top:0;left:0;right:0;z-index:50;transform:translateZ(0);background:rgba(246,245,239,.96);border-bottom:1px solid rgba(24,28,79,.12);transition:box-shadow .3s ease">
+  <div style="max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px">
+    <a href="/" style="display:flex;align-items:center;gap:10px;color:#181C4F">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" style="height:38px;width:auto;display:block" width="160" height="169">
+      <span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.05rem,3.5vw,1.3rem);letter-spacing:-.02em">Media Puppies</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px">
+      <a data-desktop-link href="/services/" style="font-weight:700;font-size:.92rem">Services</a>
+      <a data-desktop-link href="/work/" style="font-weight:700;font-size:.92rem">Work</a>
+      <a data-desktop-link href="/careers/" style="font-weight:700;font-size:.92rem">Careers</a>
+      <a data-desktop-link href="/lead-generation/#leadForm" style="font-weight:700;font-size:.92rem">Contact</a>
+      <a href="/lead-generation/" data-magnet style="font-weight:700;font-size:.92rem;white-space:nowrap;background:#181C4F;color:#FFFFFF;padding:11px 22px;border-radius:999px;box-shadow:0 6px 18px rgba(24,28,79,.22);transition:background .15s ease" style-hover="background:#3038D8;color:#FFFFFF" aria-label="Start a project with Media Puppies">Get leads</a>
+    </div>
+  </div>
+</nav>
+
+<header style="padding:calc(68px + clamp(40px,6vw,64px)) 0 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <a data-reveal="0" href="/blog/" style="display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:700;color:#3038D8;margin-bottom:22px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All articles
+    </a>
+    <div data-reveal="60" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:14px">
+      <span>Hosting</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(24,28,79,.3)"></span>
+      <span style="color:rgba(24,28,79,.5)">7 min read</span>
+    </div>
+    <h1 data-reveal="120" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.4vw,3.2rem);line-height:1.08;letter-spacing:-.025em;margin:0">Hostinger KVM 2 vs KVM 4 for n8n: which VPS do you actually need?</h1>
+    <p data-reveal="200" style="margin:20px 0 0;font-size:1.14rem;color:rgba(24,28,79,.66)">₹799 or ₹1,099 a month. For most self-hosted n8n setups the cheaper plan is correct — and there are five specific workloads where it is not.</p>
+    <div data-reveal="260" style="margin-top:26px;padding-top:22px;border-top:1px solid rgba(24,28,79,.12);display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <img src="/assets/img/founder.webp" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover" width="38" height="38" loading="lazy">
+      <span style="font-size:.92rem;color:rgba(24,28,79,.78)">By <a href="/about/" style="color:#181C4F;font-weight:700">Sanjay Kumar</a> · Published <time datetime="2026-10-08">8 October 2026</time> · Updated <time datetime="2026-10-08">8 October 2026</time></span>
+    </div>
+  </div>
+</header>
+
+<section style="padding:20px 0 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <article>
+<figure>
+  <img src="/assets/img/blog/hostinger-kvm2-vs-kvm4-n8n.jpg" alt="Rows of server racks in a data centre" width="1100" height="619" fetchpriority="high" decoding="async">
+  <figcaption>Photo: <a href="https://commons.wikimedia.org/wiki/File:Cern_datacenter.jpg" rel="noopener nofollow" target="_blank">Cern datacenter.jpg</a> by Hugovanmeijeren, CC BY-SA 3.0, via Wikimedia Commons</figcaption>
+</figure>
+
+<div class="disclosure"><p><strong>Disclosure:</strong> some links to Hostinger on this page are affiliate links. If you buy through them we may earn a commission, at no extra cost to you. The plan recommendations below are the same ones we give clients, and we have said plainly where a cheaper or non-Hostinger option is the better call.</p></div>
+
+<nav class="toc" aria-label="On this page">
+<p>On this page</p>
+<ol>
+  <li><a href="#what-n8n-actually-does-to-a-server">What n8n actually does to a server</a></li>
+  <li><a href="#the-specs-side-by-side">The specs, side by side</a></li>
+  <li><a href="#what-n8n-s-own-requirements-say">What n8n&#x27;s own requirements say</a></li>
+  <li><a href="#when-kvm-2-is-genuinely-enough">When KVM 2 is genuinely enough</a></li>
+  <li><a href="#when-you-genuinely-need-kvm-4">When you genuinely need KVM 4</a></li>
+  <li><a href="#the-settings-that-keep-you-on-kvm-2">The settings that keep you on KVM 2</a></li>
+  <li><a href="#what-the-two-years-actually-cost">What the two years actually cost</a></li>
+  <li><a href="#a-ten-minute-test-that-settles-it">A ten-minute test that settles it</a></li>
+  <li><a href="#our-recommendation">Our recommendation</a></li>
+</ol>
+</nav>
+
+<p>Nearly every week someone asks us the same thing: they want to self-host n8n on a VPS, they have seen that KVM 2 costs ₹799 a month and KVM 4 costs ₹1,099, and they want to know whether the extra ₹300 buys them anything they will actually use.</p>
+<p>The honest answer for most people is no — and then there is a specific set of workloads where KVM 2 will fall over inside a fortnight and you will wish you had started one plan up. This article is about telling those two situations apart <em>before</em> you pay for two years.</p>
+
+<h2 id="what-n8n-actually-does-to-a-server">What n8n actually does to a server</h2>
+<p>n8n is a Node.js application. On a quiet box it sits there using a few hundred megabytes of RAM and almost no CPU. The cost comes in bursts: every time a workflow fires, it spins up an execution, holds the data moving between nodes in memory, writes the execution record to a database, and releases it.</p>
+<p>That shape matters because it changes what you should be buying. A web server is mostly limited by CPU and concurrent requests. A self-hosted n8n box is almost always limited by <strong>RAM</strong>, and specifically by RAM spikes — one workflow pulling a 40 MB file, or looping over 5,000 rows, can briefly ask for more memory than the whole machine has.</p>
+<p>Hostinger's own tutorial says this plainly: <a href="https://www.hostinger.com/in/tutorials/n8n-vps-requirements" rel="noopener" target="_blank">memory is more critical than CPU for n8n</a>, and you should look at upgrading once memory usage sits above 75–80%. That has matched what we see in practice.</p>
+
+<h2 id="the-specs-side-by-side">The specs, side by side</h2>
+<p>Here is what the four <a href="https://www.hostinger.in/vps-hosting" data-aff="hostinger" rel="sponsored noopener nofollow" target="_blank" data-track="Affiliate">KVM VPS plans</a> give you. Prices are the Indian promotional rates on a 24-month term, with the renewal rate next to them — because the renewal is the number that decides whether this was a good deal.</p>
+<div class="tw"><table>
+<thead><tr><th>Plan</th><th>vCPU</th><th>RAM</th><th>NVMe</th><th>Bandwidth</th><th>Promo / renewal</th></tr></thead>
+<tbody>
+<tr><td>KVM 1</td><td>1 core</td><td>4 GB</td><td>50 GB</td><td>4 TB</td><td>₹599 / ₹999 per month</td></tr>
+<tr><td><strong>KVM 2</strong></td><td>2 cores</td><td>8 GB</td><td>100 GB</td><td>8 TB</td><td>₹799 / ₹1,199 per month</td></tr>
+<tr><td><strong>KVM 4</strong></td><td>4 cores</td><td>16 GB</td><td>200 GB</td><td>16 TB</td><td>₹1,099 / ₹2,399 per month</td></tr>
+<tr><td>KVM 8</td><td>8 cores</td><td>32 GB</td><td>400 GB</td><td>32 TB</td><td>₹2,199 / ₹4,399 per month</td></tr>
+</tbody>
+</table></div>
+<p>Two things are worth noticing before anything else.</p>
+<p>First, the gap between KVM 2 and KVM 4 is a doubling of everything for about 38% more money during the promotional term. That is unusually good value <em>on the promo</em>. Second, at renewal the same upgrade costs exactly double — ₹1,199 against ₹2,399. So the decision is not "is KVM 4 worth ₹300 more", it is "is KVM 4 worth ₹1,200 more every month from year three".</p>
+
+<h2 id="what-n8n-s-own-requirements-say">What n8n's own requirements say</h2>
+<p>n8n's documentation and Hostinger's VPS guidance converge on roughly the same numbers. The floor for running n8n at all is around 1 vCPU, 2 GB of RAM and 20 GB of storage — fine for testing and personal projects with a handful of simple workflows. For a production setup that a business depends on, the recommendation moves to <strong>2–4 vCPU, 4–8 GB RAM and 40–80 GB of NVMe</strong>.</p>
+<p>Read that range against the table above and the answer falls out: KVM 2 (2 vCPU, 8 GB) sits at the top of the recommended production band. It is not the minimum. It is already comfortable.</p>
+
+<h2 id="when-kvm-2-is-genuinely-enough">When KVM 2 is genuinely enough</h2>
+<p>KVM 2 will handle all of this without complaint:</p>
+<ul>
+<li>Twenty to fifty active workflows, firing on schedules or webhooks.</li>
+<li>Lead routing, CRM syncs, WhatsApp and email follow-up, Google Sheets updates — the kind of work we describe in our piece on <a href="/blog/ai-automation-lead-follow-up/">where follow-up automation actually recovers money</a>.</li>
+<li>A few thousand executions a month, each moving JSON rather than big files.</li>
+<li>OpenAI, Claude or Gemini API calls. These are network-bound, not CPU-bound — your server is waiting on someone else's GPU, not working.</li>
+<li>n8n plus a small Postgres instance on the same box, plus Nginx and SSL.</li>
+<li>A second light application alongside it, such as a staging site or a metrics dashboard.</li>
+</ul>
+<p>If your automation looks like that — and for most Indian agencies, D2C brands and SaaS teams it does — the ₹300 you would spend upgrading is better spent on API credits.</p>
+
+<blockquote><p>The cheapest VPS upgrade is the one you don't buy because you configured the box properly.</p></blockquote>
+
+<h2 id="when-you-genuinely-need-kvm-4">When you genuinely need KVM 4</h2>
+<p>There are five workloads that break KVM 2, and all of them are memory stories rather than CPU stories.</p>
+<h3>1. Browser automation inside n8n</h3>
+<p>If your workflows run Puppeteer, Playwright, or any node that drives a headless Chrome, stop reading and buy KVM 4. A single headless Chrome instance can take 500 MB to 1 GB on its own, and scraping workflows rarely run one at a time. This is the single most common reason we see an n8n box die.</p>
+<h3>2. Large binary files</h3>
+<p>PDFs, video, image batches, big CSV exports. By default n8n holds binary data in memory as it passes between nodes. A workflow processing 200 invoices at 3 MB each is asking for well over a gigabyte in one execution — before you count the Node.js overhead around it.</p>
+<h3>3. Queue mode with multiple workers</h3>
+<p>Once you move to <a href="https://docs.n8n.io/hosting/scaling/queue-mode/" rel="noopener" target="_blank">n8n's queue mode</a> you are running a main process, Redis, and one or more worker processes, each of which is a full Node.js runtime. Two workers plus Redis plus Postgres is a four-service box. 8 GB gets tight; 16 GB does not.</p>
+<h3>4. High-concurrency webhooks</h3>
+<p>If you are receiving webhooks from a busy platform — payment gateways, a WhatsApp Business API provider, a marketplace order feed — the problem is not daily volume, it is the spike. Three hundred orders arriving in ten minutes during a flash sale will queue up executions faster than two cores can clear them.</p>
+<h3>5. n8n is not alone on the box</h3>
+<p>Running n8n alongside a real WooCommerce store, a Metabase instance, or a few client WordPress sites is a completely different sizing problem. At that point you are buying a server, not an n8n host, and 16 GB is the sane floor.</p>
+
+<h2 id="the-settings-that-keep-you-on-kvm-2">The settings that keep you on KVM 2</h2>
+<p>Before upgrading, change these four things. We have moved more than one client's workload back down a plan this way.</p>
+<ol>
+<li><strong>Prune execution data.</strong> By default n8n keeps every execution record forever, and the database quietly grows until queries slow down. Set <code>EXECUTIONS_DATA_PRUNE=true</code> and a max age of 7–14 days unless you have an audit reason to keep more.</li>
+<li><strong>Move binary data out of memory.</strong> Setting the binary data mode to filesystem means large files are written to disk instead of held in RAM between nodes. You have 100 GB of NVMe; use it.</li>
+<li><strong>Cap concurrency.</strong> n8n lets you limit how many executions run at once. Setting a sane ceiling turns a crash into a short queue, which is almost always the better failure.</li>
+<li><strong>Add swap.</strong> A 2–4 GB swap file will not make your server fast, but it will stop a one-off memory spike killing the Node process at 2am. This takes two minutes on Ubuntu and nobody does it.</li>
+</ol>
+<p>Do these four and watch memory usage for a fortnight. If it still sits above 80%, the upgrade is real and you should take it.</p>
+
+<h2 id="what-the-two-years-actually-cost">What the two years actually cost</h2>
+<p>On the 24-month term, KVM 2 comes to roughly ₹19,176 and KVM 4 to roughly ₹26,376 — a difference of about ₹7,200 across two years, or ₹300 a month. Set against one developer-hour, that is nothing. Set against renewal, it is a different story: from month 25, the same two plans cost ₹1,199 and ₹2,399 a month.</p>
+<p>So the practical advice is: buy for the next 24 months honestly, not aspirationally. Hostinger lets you <strong>scale a VPS up without reinstalling</strong> — you pay the difference and reboot. There is no reinstall, no migration, no re-pointing DNS. Downgrading is the awkward direction, not upgrading. That asymmetry is the whole argument for starting on KVM 2.</p>
+
+<h2 id="a-ten-minute-test-that-settles-it">A ten-minute test that settles it</h2>
+<p>If you already run n8n anywhere — even locally — do this before you buy:</p>
+<ol>
+<li>Run your three heaviest workflows back to back.</li>
+<li>Watch memory with <code>htop</code> or <code>free -m</code> while they run.</li>
+<li>Note the peak, not the average.</li>
+</ol>
+<p>If your peak is under about 3 GB, KVM 2 has roughly 2.5× headroom and you are fine. If the peak is over 5 GB, or you cannot see a peak because the process was killed, start at KVM 4. Guessing from workflow count is unreliable; one workflow that touches files beats forty that touch JSON.</p>
+
+<h2 id="our-recommendation">Our recommendation</h2>
+<p><strong>Start on KVM 2 unless you run browser automation, move large files, or need queue mode.</strong> Those three cases take you to KVM 4 immediately. Everyone else should take the cheaper plan, apply the four settings above, and keep the difference.</p>
+<p>If you are still deciding between self-hosting at all and paying for the managed version, we have compared the two properly in <a href="/blog/hostinger-vs-n8n-cloud/">Hostinger vs n8n Cloud</a> — including the maintenance hours that never appear on a pricing page. And if automation is something you would rather have built than build, that is one of the things we do: see <a href="/ai-automation/">AI automation for follow-up and ops</a>, or look at <a href="/blog/ai-marketing-stack-india/">the marketing stack we actually recommend to Indian businesses</a> before you commit to any of it.</p>
+
+<div class="affbox"><p><strong>Hostinger VPS plans</strong> — KVM 2 is ₹799/month and KVM 4 is ₹1,099/month on the 24-month term, and you can scale up later without reinstalling.</p><p style="margin:0"><a class="btn" href="https://www.hostinger.in/vps-hosting" data-aff="hostinger" rel="sponsored noopener nofollow" target="_blank" data-track="Affiliate">Check current pricing <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
+
+<div class="faq">
+<h2>Frequently asked questions</h2>
+<h3>Is KVM 1 enough for n8n?</h3>
+<p>It can be. KVM 1 gives you 1 vCPU and 4 GB of RAM, which comfortably exceeds n8n&#x27;s documented minimum of 1 vCPU and 2 GB. It is fine for testing, personal projects and a handful of simple scheduled workflows. For anything a business depends on, KVM 2&#x27;s second core and 8 GB of RAM give you the headroom to survive a workflow that misbehaves.</p>
+<h3>Can I upgrade from KVM 2 to KVM 4 later?</h3>
+<p>Yes, and this is the main reason to start small. Hostinger lets you scale a VPS up by paying the difference and rebooting — there is no reinstall, no migration and no DNS change. Downgrading is the awkward direction, so the risk of starting on KVM 2 is far lower than the risk of over-buying.</p>
+<h3>How many n8n workflows can KVM 2 handle?</h3>
+<p>Workflow count is the wrong unit. A box can run a hundred lightweight JSON workflows and fall over on three that process PDFs. As a rough guide, KVM 2 handles twenty to fifty active workflows and a few thousand executions a month without complaint, provided none of them run headless browsers or hold large files in memory.</p>
+<h3>Does running AI nodes need more RAM?</h3>
+<p>Not if you are calling an API. OpenAI, Claude and Gemini nodes send a request and wait — the heavy computation happens on someone else&#x27;s hardware, so your server is idle. RAM becomes the constraint only if you run a model locally, which is a different sizing exercise entirely.</p>
+</div>
+    </article>
+
+<aside data-reveal="0" style="max-width:720px;margin:44px auto 0;padding:0 24px">
+  <div style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #3038D8;border-radius:16px;padding:22px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07)">
+    <div style="font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3038D8;margin-bottom:8px">Related service</div>
+    <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.18rem;margin:0 0 6px"><a href="/ai-automation/">AI automation for follow-up and ops</a></h2>
+    <p style="margin:0;font-size:.97rem;color:rgba(24,28,79,.72)">We build and run the automation workflows — on your server or ours — so leads stop going cold while you are busy. <a href="/ai-automation/" style="font-weight:700;color:#3038D8">See how it works →</a></p>
+  </div>
+</aside>
+
+  </div>
+</section>
+
+<section style="padding:64px 0 84px">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <div data-rev="zoom" data-reveal="0" style="background:linear-gradient(160deg,#3A43E8 0%,#3038D8 60%,#232A9E 100%);border-radius:28px;color:#FFFFFF;box-shadow:0 30px 70px rgba(48,56,216,.3);text-align:center;padding:clamp(40px,6vw,58px) 24px">
+      <h2 style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.02em;margin:0;color:#FFFFFF">Want the automation built rather than debugged?</h2>
+      <p style="margin:12px auto 0;color:rgba(255,255,255,.78);font-size:1.02rem;max-width:40ch">Tell us what should happen automatically. We&#x27;ll say what&#x27;s realistic, including when the answer is no.</p>
+      <div style="margin-top:28px;display:flex;justify-content:center">
+        <a data-magnet href="/lead-generation/" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;white-space:nowrap;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:16px 32px;border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.3)" style-hover="color:#181C4F">Start a project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <h2 data-reveal="0" style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:56px 0 22px">Keep reading</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;perspective:1400px">
+      <a href="/blog/hostinger-vs-n8n-cloud/" data-tilt data-rev="up" data-reveal="0" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">Hostinger vs n8n Cloud: setup, maintenance and total cost compared</h3>
+      </a>
+      <a href="/blog/hostinger-plan-wordpress-blog/" data-tilt data-rev="up" data-reveal="140" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">The best Hostinger plan for a new WordPress blog: cost, limits and renewal</h3>
+      </a>
+      <a href="/blog/hostinger-woocommerce-india/" data-tilt data-rev="up" data-reveal="280" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">Hostinger for WooCommerce in India: which plan should a small store choose?</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:8px 0 100px;font-size:.88rem;color:rgba(24,28,79,.66)">
+  <div style="max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <img src="/assets/img/logo-full-sm.webp" alt="Media Puppies" style="height:48px;width:auto;display:block" width="420" height="180">
+      <span>Noida, Delhi NCR · India</span>
+    </div>
+    <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+      <a href="/performance-marketing/" style="font-weight:700">Performance Marketing</a>
+      <a href="/seo-services/" style="font-weight:700">SEO</a>
+      <a href="/ai-automation/" style="font-weight:700">AI Automation</a>
+      <a href="/services/" style="font-weight:700">Services</a>
+      <a href="/pricing/" style="font-weight:700">Pricing</a>
+      <a href="/work/" style="font-weight:700">Work</a>
+      <a href="/about/" style="font-weight:700">About</a>
+      <a href="/careers/" style="font-weight:700">Careers</a>
+      <a href="/lead-generation/#leadForm" style="font-weight:700">Contact</a>
+    </div>
+    <span style="display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap"><a href="tel:+918110000076" style="font-weight:700;color:#181C4F">+91 81100 00076</a><a href="https://wa.me/mediapuppies" target="_blank" rel="noopener" data-track="Contact" style="font-weight:700;color:#181C4F;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true" style="fill:#25D366;display:block;flex:none"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.3 1.6h.5c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.6-1.5-5.9-5.1-6.1-5.4-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.7 1.1 2.9.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.9-.1.2-.3 1-1.2 1.3-1.6.3-.4.6-.3.9-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.2.1 1-.2 1.7z"/></svg>WhatsApp</a></span>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.82rem">
+      <span style="display:inline-flex;align-items:center;gap:7px"><label for="mp-currency" style="font-size:.82rem;color:rgba(24,28,79,.78)">Prices in</label><select id="mp-currency" data-money-switch aria-label="Choose the currency prices are shown in" style="font-family:'Satoshi',system-ui,sans-serif;font-size:.82rem;color:#181C4F;background:#FFFFFF;border:1px solid rgba(24,28,79,.18);border-radius:8px;padding:5px 8px"></select></span>
+      <a href="/tools/" style="color:rgba(24,28,79,.78)">Free tools</a>
+      <a href="/cac-calculator/" style="color:rgba(24,28,79,.78)">CAC calculator</a>
+      <a href="/blog/" style="color:rgba(24,28,79,.78)">Blog</a>
+      <a href="/privacy-policy/" style="color:rgba(24,28,79,.78);text-decoration:underline">Privacy &amp; Terms</a>
+      <span>© 2026 Media Puppies</span>
+    </div>
+  </div>
+</footer>
+
+<div data-sticky-cta style="position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateZ(0);padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#F6F5EF;border-top:1px solid rgba(24,28,79,.12);box-shadow:0 -10px 30px rgba(24,28,79,.12)">
+  <a href="/lead-generation/" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;font-weight:700;font-size:1.02rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);padding:15px 24px;border-radius:999px;box-shadow:0 10px 26px rgba(48,56,216,.32), inset 0 1px 0 rgba(255,255,255,.25)" style-hover="color:#FFFFFF">Start a project</a>
+</div>
+<script src="/assets/js/main.js?v=20260926a" defer></script>
+<script src="/assets/js/geo-price.js?v=20260926a" defer></script>
+
+</body>
+</html>
