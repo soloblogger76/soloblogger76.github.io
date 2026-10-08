@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hostinger vs n8n Cloud: The Real Cost Compared</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="€20 a month or ₹799? A straight comparison of self-hosting n8n on a Hostinger VPS against n8n Cloud, with the execution limits and maintenance hours included.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="Hostinger vs n8n Cloud: setup, maintenance and total cost compared">
+<meta property="og:description" content="€20 a month or ₹799? A straight comparison of self-hosting n8n on a Hostinger VPS against n8n Cloud, with the execution limits and maintenance hours included.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/blog/hostinger-vs-n8n-cloud.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hostinger vs n8n Cloud: setup, maintenance and total cost compared">
+<meta name="twitter:description" content="€20 a month or ₹799? A straight comparison of self-hosting n8n on a Hostinger VPS against n8n Cloud, with the execution limits and maintenance hours included.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/blog/hostinger-vs-n8n-cloud.jpg">
+<meta property="article:published_time" content="2026-10-08">
+<meta property="article:modified_time" content="2026-10-08">
+<meta property="article:author" content="Sanjay Kumar">
+<meta property="og:url" content="https://mediapuppies.com/blog/hostinger-vs-n8n-cloud/">
+<link rel="canonical" href="https://mediapuppies.com/blog/hostinger-vs-n8n-cloud/">
+<style>
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;width:100%;max-width:100%;position:relative}
+section,header,footer,nav{max-width:100vw}
+a{color:#181C4F;text-decoration:none}
+a:hover{color:#3038D8}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+[data-sticky-cta]{display:none}
+@media (max-width:720px){[data-sticky-cta]{display:flex}[data-desktop-link]{display:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+article h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.02em;line-height:1.18;margin:48px 0 14px}
+article h3{font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.18rem;letter-spacing:-.01em;margin:32px 0 10px}
+article p{margin:0 0 18px;font-size:1.07rem;color:rgba(24,28,79,.78)}
+article ul,article ol{margin:0 0 18px;padding-left:22px;color:rgba(24,28,79,.78);font-size:1.07rem}
+article li{margin-bottom:9px}
+article strong{color:#181C4F}
+article a{color:#3038D8;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+article blockquote{margin:28px 0;padding:22px 26px;background:#FFFFFF;border-left:4px solid #FFAC1C;border-radius:0 16px 16px 0;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article blockquote p{margin:0;font-family:'Clash Display',sans-serif;font-weight:500;font-size:1.15rem;color:#181C4F}
+article table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:.98rem;background:#FFFFFF;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article th{text-align:left;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3038D8;padding:14px 18px;border-bottom:1px solid rgba(24,28,79,.12)}
+article td{padding:14px 18px;border-bottom:1px solid rgba(24,28,79,.08);color:rgba(24,28,79,.78)}
+article tr:last-child td{border-bottom:none}
+article .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 22px;border-radius:16px;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+article .tw table{margin:0;border-radius:0;box-shadow:none;min-width:540px}
+article figure{margin:0 0 26px}
+article figure img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 14px 36px rgba(24,28,79,.1)}
+article figcaption{margin-top:9px;font-size:.8rem;color:rgba(24,28,79,.55)}
+article figcaption a{font-weight:500;color:rgba(24,28,79,.62);text-decoration:underline}
+.toc{background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:18px;padding:22px 26px;margin:0 0 30px;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+.toc p{margin:0 0 10px;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3038D8}
+.toc ol{margin:0;padding-left:20px;font-size:1rem}
+.toc li{margin-bottom:6px}
+.disclosure{background:rgba(255,172,28,.14);border:1px solid rgba(255,172,28,.5);border-radius:14px;padding:14px 18px;margin:0 0 28px;font-size:.92rem;color:rgba(24,28,79,.8)}
+.disclosure p{margin:0;font-size:.92rem}
+.affbox{background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #FFAC1C;border-radius:16px;padding:22px 26px;margin:40px 0 0;box-shadow:0 12px 32px rgba(24,28,79,.07)}
+.affbox p{margin:0 0 12px;font-size:1rem}
+.affbox a.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.97rem;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:12px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px rgba(255,172,28,.35)}
+.faq{margin-top:48px}
+.faq h3{margin:26px 0 8px}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Hostinger vs n8n Cloud: setup, maintenance and total cost compared", "description": "€20 a month or ₹799? A straight comparison of self-hosting n8n on a Hostinger VPS against n8n Cloud, with the execution limits and maintenance hours included.", "image": "https://mediapuppies.com/assets/img/blog/hostinger-vs-n8n-cloud.jpg", "datePublished": "2026-10-08", "dateModified": "2026-10-08", "wordCount": 1573, "articleSection": "Hosting", "inLanguage": "en-IN", "author": {"@type": "Person", "name": "Sanjay Kumar", "url": "https://mediapuppies.com/about/", "worksFor": {"@type": "Organization", "name": "Media Puppies", "url": "https://mediapuppies.com/"}}, "publisher": {"@type": "Organization", "name": "Media Puppies", "url": "https://mediapuppies.com/", "logo": {"@type": "ImageObject", "url": "https://mediapuppies.com/assets/img/logo-full.png"}}, "mainEntityOfPage": "https://mediapuppies.com/blog/hostinger-vs-n8n-cloud/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://mediapuppies.com/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://mediapuppies.com/blog/"},
+{"@type":"ListItem","position":3,"name":"Hostinger vs n8n Cloud: setup, maintenance and total cost compared","item":"https://mediapuppies.com/blog/hostinger-vs-n8n-cloud/"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is self-hosted n8n really free?", "acceptedAnswer": {"@type": "Answer", "text": "The software is free and open source. The hosting is not — about ₹799 a month for a VPS that comfortably runs it — and neither is your time. Budget roughly two hours a month for updates, backups and the occasional broken workflow. Self-hosting is cheap, not free."}}, {"@type": "Question", "name": "How many executions do I get with self-hosted n8n?", "acceptedAnswer": {"@type": "Answer", "text": "There is no limit. You are constrained only by what the server can physically process. That is the single biggest difference from n8n Cloud, which includes 2,500 executions on Starter and 10,000 on Pro, and it is why high-frequency triggers push people towards self-hosting fast."}}, {"@type": "Question", "name": "Can I move from n8n Cloud to a self-hosted instance later?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Workflows export as JSON and import into a fresh instance in minutes. Credentials have to be re-entered by hand, which is a security design rather than an obstacle. Proving the workflows on Cloud first and moving once they matter is the path we usually recommend."}}, {"@type": "Question", "name": "Does self-hosting n8n keep data in India?", "acceptedAnswer": {"@type": "Answer", "text": "It can. Hostinger has a Mumbai data centre, so choosing it at setup keeps every record your workflows touch on a server in India. For businesses handling health, financial or education data, that is often the argument that decides the whole comparison."}}]}
+</script>
+<script src="/assets/js/pixel.js?v=20260926a" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260926a" defer></script>
+<script src="/assets/js/analytics.js?v=20260926a" defer></script>
+</head>
+<body>
+<div data-progress style="position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#3038D8,#FFAC1C);z-index:100;pointer-events:none"></div>
+
+<nav data-nav style="position:fixed;top:0;left:0;right:0;z-index:50;transform:translateZ(0);background:rgba(246,245,239,.96);border-bottom:1px solid rgba(24,28,79,.12);transition:box-shadow .3s ease">
+  <div style="max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px">
+    <a href="/" style="display:flex;align-items:center;gap:10px;color:#181C4F">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" style="height:38px;width:auto;display:block" width="160" height="169">
+      <span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.05rem,3.5vw,1.3rem);letter-spacing:-.02em">Media Puppies</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px">
+      <a data-desktop-link href="/services/" style="font-weight:700;font-size:.92rem">Services</a>
+      <a data-desktop-link href="/work/" style="font-weight:700;font-size:.92rem">Work</a>
+      <a data-desktop-link href="/careers/" style="font-weight:700;font-size:.92rem">Careers</a>
+      <a data-desktop-link href="/lead-generation/#leadForm" style="font-weight:700;font-size:.92rem">Contact</a>
+      <a href="/lead-generation/" data-magnet style="font-weight:700;font-size:.92rem;white-space:nowrap;background:#181C4F;color:#FFFFFF;padding:11px 22px;border-radius:999px;box-shadow:0 6px 18px rgba(24,28,79,.22);transition:background .15s ease" style-hover="background:#3038D8;color:#FFFFFF" aria-label="Start a project with Media Puppies">Get leads</a>
+    </div>
+  </div>
+</nav>
+
+<header style="padding:calc(68px + clamp(40px,6vw,64px)) 0 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <a data-reveal="0" href="/blog/" style="display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:700;color:#3038D8;margin-bottom:22px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All articles
+    </a>
+    <div data-reveal="60" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:14px">
+      <span>Hosting</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(24,28,79,.3)"></span>
+      <span style="color:rgba(24,28,79,.5)">7 min read</span>
+    </div>
+    <h1 data-reveal="120" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.1rem,4.4vw,3.2rem);line-height:1.08;letter-spacing:-.025em;margin:0">Hostinger vs n8n Cloud: setup, maintenance and total cost compared</h1>
+    <p data-reveal="200" style="margin:20px 0 0;font-size:1.14rem;color:rgba(24,28,79,.66)">A straight comparison for Indian businesses — including the exchange rate, the GST, the execution limit and the hours of your own time that never appear on a pricing page.</p>
+    <div data-reveal="260" style="margin-top:26px;padding-top:22px;border-top:1px solid rgba(24,28,79,.12);display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <img src="/assets/img/founder.webp" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover" width="38" height="38" loading="lazy">
+      <span style="font-size:.92rem;color:rgba(24,28,79,.78)">By <a href="/about/" style="color:#181C4F;font-weight:700">Sanjay Kumar</a> · Published <time datetime="2026-10-08">8 October 2026</time> · Updated <time datetime="2026-10-08">8 October 2026</time></span>
+    </div>
+  </div>
+</header>
+
+<section style="padding:20px 0 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <article>
+<figure>
+  <img src="/assets/img/blog/hostinger-vs-n8n-cloud.jpg" alt="Diagram of a cloud computing architecture" width="1100" height="619" fetchpriority="high" decoding="async">
+  <figcaption>Photo: <a href="https://commons.wikimedia.org/wiki/File:Cloud_Computing_Architecture.jpg" rel="noopener nofollow" target="_blank">Cloud Computing Architecture.jpg</a> by Hiren Tat, CC BY-SA 4.0, via Wikimedia Commons</figcaption>
+</figure>
+
+<div class="disclosure"><p><strong>Disclosure:</strong> some links to Hostinger on this page are affiliate links. If you buy through them we may earn a commission, at no extra cost to you. The plan recommendations below are the same ones we give clients, and we have said plainly where a cheaper or non-Hostinger option is the better call.</p></div>
+
+<nav class="toc" aria-label="On this page">
+<p>On this page</p>
+<ol>
+  <li><a href="#what-you-are-actually-choosing-between">What you are actually choosing between</a></li>
+  <li><a href="#the-prices-honestly-converted">The prices, honestly converted</a></li>
+  <li><a href="#the-number-that-actually-decides-it-executions">The number that actually decides it: executions</a></li>
+  <li><a href="#what-self-hosting-costs-in-time">What self-hosting costs in time</a></li>
+  <li><a href="#what-you-give-up-on-the-community-edition">What you give up on the Community edition</a></li>
+  <li><a href="#where-your-clients-data-sits">Where your clients&#x27; data sits</a></li>
+  <li><a href="#when-n8n-cloud-is-the-right-answer">When n8n Cloud is the right answer</a></li>
+  <li><a href="#when-a-hostinger-vps-is-the-right-answer">When a Hostinger VPS is the right answer</a></li>
+  <li><a href="#the-sensible-path-for-most-businesses">The sensible path for most businesses</a></li>
+  <li><a href="#the-question-people-forget-to-ask">The question people forget to ask</a></li>
+  <li><a href="#our-verdict">Our verdict</a></li>
+</ol>
+</nav>
+
+<p>The comparison people make is "₹799 a month versus €20 a month", decide that self-hosting is obviously cheaper, and then spend the next six months learning what the gap actually buys. Sometimes that is a good trade. Often it is not.</p>
+<p>This is a straight comparison of running n8n on a <a href="https://www.hostinger.in/vps-hosting" data-aff="hostinger" rel="sponsored noopener nofollow" target="_blank" data-track="Affiliate">Hostinger VPS</a> against paying for <a href="https://n8n.io/pricing/" rel="noopener" target="_blank">n8n Cloud</a>, written for Indian businesses — which means the exchange rate, GST and the cost of your own time all belong in the maths.</p>
+
+<h2 id="what-you-are-actually-choosing-between">What you are actually choosing between</h2>
+<p>n8n is open source. The Community edition is free, forever, and feature-complete for the thing most people want it for: connecting apps and running workflows. You can put it on any Linux server.</p>
+<p>n8n Cloud is the same software, run by the company that makes it, with the operating problems removed — updates, backups, uptime, scaling, SSL, and the parts of the product that are not in the free edition.</p>
+<p>So the decision is not really about features. It is about <strong>who carries the operational burden</strong>, and about one specific number: executions.</p>
+
+<h2 id="the-prices-honestly-converted">The prices, honestly converted</h2>
+<p>n8n Cloud prices in euros. At roughly ₹110 to the euro, and allowing for the 2–3% forex markup most Indian credit cards add on international transactions, the real monthly cost looks like this:</p>
+<div class="tw"><table>
+<thead><tr><th>Option</th><th>Headline price</th><th>Realistic ₹/month</th><th>Executions included</th></tr></thead>
+<tbody>
+<tr><td>n8n Cloud Starter</td><td>€20/mo (annual)</td><td>≈ ₹2,250</td><td>2,500</td></tr>
+<tr><td>n8n Cloud Pro</td><td>€50/mo (annual)</td><td>≈ ₹5,650</td><td>10,000</td></tr>
+<tr><td>Hostinger KVM 1</td><td>₹599/mo (24 mo)</td><td>₹599 → ₹999 at renewal</td><td>Unlimited</td></tr>
+<tr><td>Hostinger KVM 2</td><td>₹799/mo (24 mo)</td><td>₹799 → ₹1,199 at renewal</td><td>Unlimited</td></tr>
+</tbody>
+</table></div>
+<p>Two India-specific notes that pricing pages do not mention. If you are GST-registered, a foreign software subscription normally means self-assessing 18% IGST under reverse charge and reclaiming it — the same mechanic we explain in our <a href="/tools/gst-on-ads-calculator/">GST on ads calculator</a>. And a ₹799 domestic invoice from Hostinger India is a far easier thing to put through your books than a euro card charge.</p>
+
+<h2 id="the-number-that-actually-decides-it-executions">The number that actually decides it: executions</h2>
+<p>Everything else in this comparison is noise next to this. n8n Cloud charges by <strong>workflow executions</strong> — one run of one workflow counts as one execution, no matter how many steps are inside it. Self-hosting has no such limit; you are limited only by what the server can physically do.</p>
+<p>That makes the decision almost arithmetic:</p>
+<ul>
+<li><strong>Under ~2,500 executions a month</strong> — a few scheduled jobs, form submissions, CRM syncs. Cloud Starter is comfortable and self-hosting saves you about ₹1,450 a month for a server you now have to run.</li>
+<li><strong>2,500 to 10,000</strong> — Cloud Pro at ≈₹5,650 against ₹799 for a VPS. The gap is now about ₹4,850 a month, or ₹58,000 a year. That is real money, and this is where most Indian teams move.</li>
+<li><strong>Above 10,000</strong> — if you poll an API every five minutes you have already used 8,640 executions on a single workflow. At this volume Cloud economics stop making sense for anything except the enterprise tiers, and self-hosting is the obvious answer.</li>
+</ul>
+<p>Count your likely executions before anything else. A single "check this inbox every minute" trigger is 43,200 executions a month on its own.</p>
+
+<h2 id="what-self-hosting-costs-in-time">What self-hosting costs in time</h2>
+<p>This is the part that gets left out, so here it is in full.</p>
+<h3>Setup</h3>
+<p>Hostinger ships a one-click n8n template for its VPS plans — it provisions Ubuntu, installs n8n and its dependencies and gets you to a login screen. Realistically, 20 minutes to a working instance, plus another 30–60 minutes to point a subdomain at it, issue SSL, set a strong admin password and lock down SSH. Call it two hours for someone who has done it before and half a day for someone who has not.</p>
+<h3>Ongoing</h3>
+<ul>
+<li><strong>Updates.</strong> n8n ships frequently. You decide when to pull a new version, and occasionally a node changes behaviour and a workflow breaks. Budget an hour a month.</li>
+<li><strong>Backups.</strong> Hostinger includes weekly backups and snapshots on the VPS plans, which covers the server. It does not cover "someone edited a workflow wrong on Tuesday" — for that you want your workflows exported to Git.</li>
+<li><strong>Monitoring.</strong> If n8n stops at 3am, nothing tells you. Cloud tells you. You will want an uptime check and an alert.</li>
+<li><strong>Debugging.</strong> When something breaks, there is no support ticket. There is a community forum and your own logs.</li>
+</ul>
+<p>Put a conservative two hours a month against that. At even ₹500 an hour of your own time, self-hosting's ₹799 becomes ₹1,799 — still well under Cloud Pro, and still well above Cloud Starter. That is the honest shape of it.</p>
+
+<blockquote><p>Self-hosting is not free. It is cheap, and it is paid for in attention rather than rupees.</p></blockquote>
+
+<h2 id="what-you-give-up-on-the-community-edition">What you give up on the Community edition</h2>
+<p>The free self-hosted edition does not include everything. The notable omissions are SSO and LDAP, external secret stores, Git-based version control for workflows, queue mode for horizontal scaling, log streaming, extended execution-data retention, and any form of paid support.</p>
+<p>For a two-person team, none of that matters. For an agency with staff turnover handling client credentials, "no SSO and no external secret store" is a genuine governance problem worth thinking about before you commit.</p>
+
+<h2 id="where-your-clients-data-sits">Where your clients' data sits</h2>
+<p>This argument is under-used and often the one that actually closes the decision. On a VPS, every lead record, phone number and invoice that passes through a workflow stays on a server you control, in a region you chose. Hostinger has a Mumbai data centre, so an Indian business can keep Indian customer data in India without any special arrangement.</p>
+<p>If you handle health, financial or education data — the sectors where we see the most scrutiny, and where a client's legal team reads the data-processing questions carefully — being able to answer "it is on our own server in Mumbai" is worth more than ₹800 a month. It is the same reasoning behind doing <a href="/blog/server-side-tracking-explained/">server-side tracking</a> properly rather than leaving everything to third-party scripts.</p>
+
+<h2 id="when-n8n-cloud-is-the-right-answer">When n8n Cloud is the right answer</h2>
+<ul>
+<li>You are testing whether automation helps at all, and want to find out this week.</li>
+<li>Nobody on the team is comfortable in a Linux terminal, and nobody wants to be.</li>
+<li>Your volume is genuinely low — under 2,500 executions a month and unlikely to grow fast.</li>
+<li>You need SSO, audit logs or formal support for compliance reasons.</li>
+<li>An automation going down for six hours would cost you more than the subscription does in a year.</li>
+</ul>
+
+<h2 id="when-a-hostinger-vps-is-the-right-answer">When a Hostinger VPS is the right answer</h2>
+<ul>
+<li>You will cross 2,500 executions a month — which happens faster than people expect.</li>
+<li>You want unlimited workflows and triggers without watching a meter.</li>
+<li>Data residency matters to you or your clients.</li>
+<li>You already run something on a server, or you have someone who does.</li>
+<li>You want the box to do more than n8n — a staging site, a dashboard, a scraper. The <a href="/blog/hostinger-kvm2-vs-kvm4-n8n/">KVM 2 vs KVM 4 comparison</a> covers how much headroom each plan leaves for that.</li>
+</ul>
+
+<h2 id="the-sensible-path-for-most-businesses">The sensible path for most businesses</h2>
+<p>Start on n8n Cloud's trial or Starter plan. Build the three workflows you think you need. Run them for a month and look at two numbers: executions used, and how many of those workflows you still care about.</p>
+<p>Most people find that two of the three were a bad idea and the third is now critical. At that point you know your real volume, you know the workflows are worth hosting, and moving is easy: workflows export as JSON and import into a fresh instance in minutes. Credentials have to be re-entered by hand — which is a security feature, not a bug.</p>
+<p>That order — prove it, then own it — avoids both failure modes: paying a subscription for workflows nobody uses, and spending a weekend configuring a server for an automation you abandon in March.</p>
+
+<h2 id="the-question-people-forget-to-ask">The question people forget to ask</h2>
+<p>Before either option, ask what happens when an automation fails silently. Not loudly — silently. A workflow that stops firing is far more expensive than one that throws an error, because nobody notices for three weeks and by then you have lost three weeks of leads.</p>
+<p>n8n Cloud will keep the instance alive but it will not tell you that a workflow stopped producing useful output. Self-hosting will not tell you either. In both cases the answer is the same: build one workflow whose only job is to check that the others ran, and send yourself a message when they did not. It takes an hour and it is the difference between automation you can trust and automation you have to keep checking — which defeats the point.</p>
+
+<h2 id="our-verdict">Our verdict</h2>
+<p>For an Indian business past the experimenting stage, self-hosting on KVM 2 is the better economic answer by a wide margin, and the one we end up recommending most often. For a team that genuinely cannot afford an hour of downtime and has nobody to own a server, Cloud is worth every euro.</p>
+<p>What you should not do is pick self-hosting purely on the ₹799 headline and then leave it unmonitored and three versions out of date. That is the version of this decision that costs money. If you would rather have the whole thing designed, built and maintained for you, that is what our <a href="/ai-automation/">AI automation service</a> exists for — and <a href="/blog/crm-for-small-business-india/">this piece on whether you need a CRM at all</a> is a good place to start before you automate anything.</p>
+
+<div class="affbox"><p><strong>Hostinger VPS plans</strong> — KVM 2 at ₹799/month runs self-hosted n8n comfortably, with no execution limit and a Mumbai data centre option.</p><p style="margin:0"><a class="btn" href="https://www.hostinger.in/vps-hosting" data-aff="hostinger" rel="sponsored noopener nofollow" target="_blank" data-track="Affiliate">Check current pricing <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
+
+<div class="faq">
+<h2>Frequently asked questions</h2>
+<h3>Is self-hosted n8n really free?</h3>
+<p>The software is free and open source. The hosting is not — about ₹799 a month for a VPS that comfortably runs it — and neither is your time. Budget roughly two hours a month for updates, backups and the occasional broken workflow. Self-hosting is cheap, not free.</p>
+<h3>How many executions do I get with self-hosted n8n?</h3>
+<p>There is no limit. You are constrained only by what the server can physically process. That is the single biggest difference from n8n Cloud, which includes 2,500 executions on Starter and 10,000 on Pro, and it is why high-frequency triggers push people towards self-hosting fast.</p>
+<h3>Can I move from n8n Cloud to a self-hosted instance later?</h3>
+<p>Yes. Workflows export as JSON and import into a fresh instance in minutes. Credentials have to be re-entered by hand, which is a security design rather than an obstacle. Proving the workflows on Cloud first and moving once they matter is the path we usually recommend.</p>
+<h3>Does self-hosting n8n keep data in India?</h3>
+<p>It can. Hostinger has a Mumbai data centre, so choosing it at setup keeps every record your workflows touch on a server in India. For businesses handling health, financial or education data, that is often the argument that decides the whole comparison.</p>
+</div>
+    </article>
+
+<aside data-reveal="0" style="max-width:720px;margin:44px auto 0;padding:0 24px">
+  <div style="background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-left:4px solid #3038D8;border-radius:16px;padding:22px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07)">
+    <div style="font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3038D8;margin-bottom:8px">Related service</div>
+    <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.18rem;margin:0 0 6px"><a href="/ai-automation/">AI automation for follow-up and ops</a></h2>
+    <p style="margin:0;font-size:.97rem;color:rgba(24,28,79,.72)">We design, build and maintain the workflows — self-hosted or managed — so you get the automation without owning the server. <a href="/ai-automation/" style="font-weight:700;color:#3038D8">See how it works →</a></p>
+  </div>
+</aside>
+
+  </div>
+</section>
+
+<section style="padding:64px 0 84px">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <div data-rev="zoom" data-reveal="0" style="background:linear-gradient(160deg,#3A43E8 0%,#3038D8 60%,#232A9E 100%);border-radius:28px;color:#FFFFFF;box-shadow:0 30px 70px rgba(48,56,216,.3);text-align:center;padding:clamp(40px,6vw,58px) 24px">
+      <h2 style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.02em;margin:0;color:#FFFFFF">Rather not run the server yourself?</h2>
+      <p style="margin:12px auto 0;color:rgba(255,255,255,.78);font-size:1.02rem;max-width:40ch">We build automation on your stack or ours. Two minutes to tell us what it has to do.</p>
+      <div style="margin-top:28px;display:flex;justify-content:center">
+        <a data-magnet href="/lead-generation/" style="display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.02rem;white-space:nowrap;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:16px 32px;border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.3)" style-hover="color:#181C4F">Start a project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <h2 data-reveal="0" style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:56px 0 22px">Keep reading</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;perspective:1400px">
+      <a href="/blog/hostinger-plan-wordpress-blog/" data-tilt data-rev="up" data-reveal="0" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">The best Hostinger plan for a new WordPress blog: cost, limits and renewal</h3>
+      </a>
+      <a href="/blog/hostinger-woocommerce-india/" data-tilt data-rev="up" data-reveal="140" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">Hostinger for WooCommerce in India: which plan should a small store choose?</h3>
+      </a>
+      <a href="/blog/migrate-godaddy-to-hostinger/" data-tilt data-rev="up" data-reveal="280" style="display:block;background:#FFFFFF;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 12px 32px rgba(24,28,79,.07);will-change:transform;color:#181C4F">
+        <div style="font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;margin-bottom:10px">Hosting</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:1.12rem;line-height:1.25;margin:0">How to move a WordPress website from GoDaddy to Hostinger</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:8px 0 100px;font-size:.88rem;color:rgba(24,28,79,.66)">
+  <div style="max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <img src="/assets/img/logo-full-sm.webp" alt="Media Puppies" style="height:48px;width:auto;display:block" width="420" height="180">
+      <span>Noida, Delhi NCR · India</span>
+    </div>
+    <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+      <a href="/performance-marketing/" style="font-weight:700">Performance Marketing</a>
+      <a href="/seo-services/" style="font-weight:700">SEO</a>
+      <a href="/ai-automation/" style="font-weight:700">AI Automation</a>
+      <a href="/services/" style="font-weight:700">Services</a>
+      <a href="/pricing/" style="font-weight:700">Pricing</a>
+      <a href="/work/" style="font-weight:700">Work</a>
+      <a href="/about/" style="font-weight:700">About</a>
+      <a href="/careers/" style="font-weight:700">Careers</a>
+      <a href="/lead-generation/#leadForm" style="font-weight:700">Contact</a>
+    </div>
+    <span style="display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap"><a href="tel:+918110000076" style="font-weight:700;color:#181C4F">+91 81100 00076</a><a href="https://wa.me/mediapuppies" target="_blank" rel="noopener" data-track="Contact" style="font-weight:700;color:#181C4F;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true" style="fill:#25D366;display:block;flex:none"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.3 1.6h.5c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.6-1.5-5.9-5.1-6.1-5.4-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.7 1.1 2.9.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.9-.1.2-.3 1-1.2 1.3-1.6.3-.4.6-.3.9-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.2.1 1-.2 1.7z"/></svg>WhatsApp</a></span>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:.82rem">
+      <span style="display:inline-flex;align-items:center;gap:7px"><label for="mp-currency" style="font-size:.82rem;color:rgba(24,28,79,.78)">Prices in</label><select id="mp-currency" data-money-switch aria-label="Choose the currency prices are shown in" style="font-family:'Satoshi',system-ui,sans-serif;font-size:.82rem;color:#181C4F;background:#FFFFFF;border:1px solid rgba(24,28,79,.18);border-radius:8px;padding:5px 8px"></select></span>
+      <a href="/tools/" style="color:rgba(24,28,79,.78)">Free tools</a>
+      <a href="/cac-calculator/" style="color:rgba(24,28,79,.78)">CAC calculator</a>
+      <a href="/blog/" style="color:rgba(24,28,79,.78)">Blog</a>
+      <a href="/privacy-policy/" style="color:rgba(24,28,79,.78);text-decoration:underline">Privacy &amp; Terms</a>
+      <span>© 2026 Media Puppies</span>
+    </div>
+  </div>
+</footer>
+
+<div data-sticky-cta style="position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateZ(0);padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#F6F5EF;border-top:1px solid rgba(24,28,79,.12);box-shadow:0 -10px 30px rgba(24,28,79,.12)">
+  <a href="/lead-generation/" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;font-weight:700;font-size:1.02rem;color:#FFFFFF;background:linear-gradient(180deg,#3A43E8,#3038D8);padding:15px 24px;border-radius:999px;box-shadow:0 10px 26px rgba(48,56,216,.32), inset 0 1px 0 rgba(255,255,255,.25)" style-hover="color:#FFFFFF">Start a project</a>
+</div>
+<script src="/assets/js/main.js?v=20260926a" defer></script>
+<script src="/assets/js/geo-price.js?v=20260926a" defer></script>
+
+</body>
+</html>
