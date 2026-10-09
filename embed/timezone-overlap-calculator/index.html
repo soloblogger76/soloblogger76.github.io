@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time zone overlap calculator</title>
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<meta name="description" content="How many hours your working day shares with a team or client in another country, and what shift pattern fixes it when the answer is none.">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<style>body{background:transparent}.wrap{padding:0;max-width:none}.card{box-shadow:none;border-radius:16px}</style>
+<script src="/assets/js/tool-currency.js?v=20260926a" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <div class="card">
+    
+    <div class="row"><div class="field"><label for="a_start">Your day starts (hour, 24h)</label><input id="a_start" type="number" inputmode="decimal" step="1" min="0" value="9"><p class="hint">Use your local clock.</p></div><div class="field"><label for="a_end">Your day ends (hour, 24h)</label><input id="a_end" type="number" inputmode="decimal" step="1" min="0" value="18"></div><div class="field"><label for="offset">Their offset from you (hours)</label><input id="offset" type="number" inputmode="decimal" step="any" min="0" value="-9.5"><p class="hint">Negative if they are behind you. India to New York is about -9.5.</p></div><div class="field"><label for="b_start">Their day starts (hour, 24h)</label><input id="b_start" type="number" inputmode="decimal" step="1" min="0" value="9"><p class="hint">Their local clock.</p></div><div class="field"><label for="b_end">Their day ends (hour, 24h)</label><input id="b_end" type="number" inputmode="decimal" step="1" min="0" value="17"></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Overlap</div><div class="v" id="o_overlap">—</div><div class="s" id="o_overlap-s">hours a day</div></div><div class="metric"><div class="k">Shared window</div><div class="v" id="o_window">—</div><div class="s" id="o_window-s">in your time</div></div><div class="metric"><div class="k">Same window</div><div class="v" id="o_theirs">—</div><div class="s" id="o_theirs-s">in their time</div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Shift that gives 4 hours</div><div class="v" id="o_shift">—</div><div class="s" id="o_shift-s">your start time</div></div><div class="metric"><div class="k">Of your working day</div><div class="v" id="o_pct">—</div><div class="s" id="o_pct-s"></div></div><div class="metric"><div class="k">Their day, in your time</div><div class="v" id="o_verdictnum">—</div><div class="s" id="o_verdictnum-s"></div></div></div>
+      <div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span>Runs in your browser. Nothing is stored.</span>
+      <a href="https://mediapuppies.com/tools/timezone-overlap-calculator/" target="_blank" rel="noopener" style="font-weight:700">Time zone overlap calculator &rarr;</a>
+    </p>
+  </div>
+</main>
+<script>
+var MP_SLUG='timezone-overlap-calculator';
+
+function fmtH(h){
+  while(h<0)h+=24; while(h>=24)h-=24;
+  var hh=Math.floor(h), mm=Math.round((h-hh)*60);
+  if(mm===60){hh+=1;mm=0;}
+  return (hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm;
+}
+function calc(){
+  var as=+v('a_start'), ae=+v('a_end'), off=+v('offset'), bs=+v('b_start'), be=+v('b_end');
+  var el=document.getElementById('o_verdict');
+  var ids=['o_overlap','o_window','o_theirs','o_shift','o_pct','o_verdictnum'];
+  if(isNaN(as)||isNaN(ae)||isNaN(bs)||isNaN(be)||ae<=as||be<=bs){
+    ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Each day needs an end hour later than its start hour.'; return;}
+  /* Their working day, expressed on your clock. */
+  var tbs=bs-off, tbe=be-off;
+  var start=Math.max(as,tbs), end=Math.min(ae,tbe);
+  var ov=Math.max(0,end-start);
+  var mine=ae-as;
+  set('o_overlap', ov>0?ov.toFixed(1):'0');
+  set('o_window', ov>0?(fmtH(start)+'\u2013'+fmtH(end)):'none');
+  set('o_theirs', ov>0?(fmtH(start+off)+'\u2013'+fmtH(end+off)):'none');
+  set('o_pct', mine>0?(ov/mine*100).toFixed(0)+'%':'\u2014');
+  set('o_verdictnum', fmtH(tbs)+'\u2013'+fmtH(tbe));
+  /* What start time would give four hours of overlap, keeping the same day length. */
+  var want=Math.min(4, be-bs);
+  var needStart=tbe-want-mine>tbs-0.0001 ? tbe-mine : tbs;
+  if(needStart+mine>tbe) needStart=tbe-mine;
+  set('o_shift', ov>=want? 'not needed' : fmtH(needStart));
+  document.getElementById('o_shift-s').textContent = ov>=want ? 'you already have it' : 'your new start time';
+  var m=[];
+  if(ov<=0){
+    m.push('No overlap at all. Nothing is live \u2014 every exchange costs a full day. This only works with a deliberate shift on one side, or an entirely written way of working.');
+  } else if(ov<2){
+    m.push('Only '+ov.toFixed(1)+' hours a day, from '+fmtH(start)+' to '+fmtH(end)+' your time. Enough for one standing call, not enough to work together. Protect that window and put everything else in writing.');
+  } else if(ov<4){
+    m.push(ov.toFixed(1)+' hours of overlap, '+fmtH(start)+' to '+fmtH(end)+' your time. Workable: a daily call and same-day answers, provided both sides treat that window as meetings-first.');
+  } else {
+    m.push(ov.toFixed(1)+' hours \u2014 '+fmtH(start)+' to '+fmtH(end)+' your time, which is '+fmtH(start+off)+' to '+fmtH(end+off)+' theirs. That is a normal working relationship with no special arrangement needed.');
+  }
+  if(ov<want){
+    var newOv=Math.max(0, Math.min(needStart+mine, tbe) - Math.max(needStart, tbs));
+    m.push('Starting your day at '+fmtH(needStart)+' instead, same length, would give you '+newOv.toFixed(1)+' hours of overlap.');
+  }
+  el.className='verdict '+(ov>=2?'good':'warn');
+  el.textContent=m.join(' ');
+}
+
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+window.calc=calc;
+
+/* Tell the host page how tall we are, so a fixed iframe height is only a
+   fallback. Height depends on the host's column width, which we cannot guess. */
+(function(){
+  var last=0;
+  function post(){
+    var h=Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if(h && Math.abs(h-last)>4){ last=h;
+      try{ parent.postMessage({mpHeight:h, mpSlug:MP_SLUG}, '*'); }catch(e){}
+    }
+  }
+  addEventListener('load',post); addEventListener('resize',post);
+  document.addEventListener('input',function(){setTimeout(post,60);});
+  document.addEventListener('change',function(){setTimeout(post,60);});
+  setInterval(post,1000);
+})();
+</script>
+</body>
+</html>

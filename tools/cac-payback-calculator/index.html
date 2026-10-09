@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAC Payback Period Calculator for SaaS | Media Puppies</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-180.png">
+<meta name="description" content="How many months it takes to earn back what you paid to acquire a customer, and what that means for how hard you can push acquisition spend.">
+<meta property="og:site_name" content="Media Puppies">
+<meta property="og:title" content="CAC payback period calculator">
+<meta property="og:description" content="How many months it takes to earn back what you paid to acquire a customer, and what that means for how hard you can push acquisition spend.">
+<meta property="og:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<meta property="og:url" content="https://mediapuppies.com/tools/cac-payback-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC payback period calculator">
+<meta name="twitter:description" content="How many months it takes to earn back what you paid to acquire a customer, and what that means for how hard you can push acquisition spend.">
+<meta name="twitter:image" content="https://mediapuppies.com/assets/img/og-image.png">
+<link rel="canonical" href="https://mediapuppies.com/tools/cac-payback-calculator/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://mediapuppies.com/tools/cac-payback-calculator/#app",
+   "name": "CAC payback period calculator",
+   "url": "https://mediapuppies.com/tools/cac-payback-calculator/",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "How many months it takes to earn back what you paid to acquire a customer, and what that means for how hard you can push acquisition spend.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+   },
+   "publisher": {
+    "@id": "https://mediapuppies.com/#organization"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://mediapuppies.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free tools",
+     "item": "https://mediapuppies.com/tools/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "CAC payback period calculator",
+     "item": "https://mediapuppies.com/tools/cac-payback-calculator/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is a good payback period?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Under twelve months is the usual benchmark for subscription businesses, and under six is strong. What matters more is whether it is shorter than your average customer lifetime — if it is not, every sale loses money."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should I include sales salaries in CAC?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, if you want an honest number. Full CAC is all sales and marketing cost divided by new customers. Ad spend alone is a useful channel metric but it flatters the business."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I handle annual contracts?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Convert to a monthly equivalent for this calculation, then remember that cash arrived up front. Annual billing does not change the economics; it transforms the cash position, which is what payback is really about."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does churn appear here?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because it sets lifetime, and lifetime is what tells you whether payback is even reachable. A four-month payback is irrelevant if customers leave in three."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<script src="/assets/js/pixel.js?v=20260926a" defer></script>
+<script src="/assets/js/supabase-config.js?v=20260926a" defer></script>
+<script src="/assets/js/analytics.js?v=20260926a" defer></script>
+<script src="/assets/js/tool-currency.js?v=20260926a" defer></script>
+</head>
+<body>
+
+<div style="background:rgba(246,245,239,.97);border-bottom:1px solid rgba(24,28,79,.1)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px">
+    <a href="/" style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:9px;color:#181C4F;text-decoration:none">
+      <img src="/assets/img/logo-mark-sm.webp" alt="Media Puppies" width="32" height="32" style="height:32px;width:auto;display:block">
+      Media Puppies
+    </a>
+    <a href="/tools/" style="font-size:.86rem;font-weight:700;white-space:nowrap">All free tools</a>
+  </div>
+</div>
+
+<main class="wrap" style="padding:34px 0 10px">
+  <span class="pill">SaaS</span>
+  <h1 style="margin:16px 0 0">CAC payback period calculator</h1>
+  <p style="margin:14px 0 0;font-size:1.08rem;color:rgba(24,28,79,.72)">In ecommerce the constraint is margin. In subscription businesses it is cash — how long you are prepared to wait to get the acquisition cost back before you can spend it again.</p>
+  <p style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0 0;font-size:.86rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.86rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency used in this calculator" style="width:auto;padding:7px 10px;background:#fff;font-size:.86rem"></select><span style="color:rgba(24,28,79,.55)">Set from your location. The maths is the same in any currency — only the labels change.</span></p>
+
+  <div class="card" style="margin-top:26px">
+    <div class="row"><div class="field"><label for="cac">Cost to acquire a customer (₹)</label><input id="cac" type="number" inputmode="decimal" step="any" min="0" value="45000"><p class="hint">Total sales and marketing spend divided by new customers.</p></div><div class="field"><label for="mrr">Monthly revenue per customer (₹)</label><input id="mrr" type="number" inputmode="decimal" step="any" min="0" value="7500"></div><div class="field"><label for="margin">Gross margin (%)</label><input id="margin" type="number" inputmode="decimal" step="any" min="0" value="80"><p class="hint">Revenue left after hosting, support and delivery costs.</p></div><div class="field"><label for="churn">Monthly churn (%)</label><input id="churn" type="number" inputmode="decimal" step="any" min="0" value="3"><p class="hint">Share of customers who leave each month.</p></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Payback period</div><div class="v" id="o_pay">—</div><div class="s" id="o_pay-s">months</div></div><div class="metric"><div class="k">Average lifetime</div><div class="v" id="o_life">—</div><div class="s" id="o_life-s">months</div></div><div class="metric"><div class="k">Lifetime gross profit</div><div class="v" id="o_ltv">—</div><div class="s" id="o_ltv-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">LTV to CAC</div><div class="v" id="o_ratio">—</div><div class="s" id="o_ratio-s"></div></div><div class="metric"><div class="k">Profit per customer</div><div class="v" id="o_profit">—</div><div class="s" id="o_profit-s">after acquisition cost</div></div><div class="metric"><div class="k">Most you could pay</div><div class="v" id="o_room">—</div><div class="s" id="o_room-s">at a 3:1 ratio</div></div></div>
+      <div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note">Runs entirely in your browser. Nothing you type is sent to us or stored anywhere.</p>
+  </div>
+
+
+<h2>Why payback beats LTV as a decision number</h2>
+<p>Lifetime value is a forecast. It assumes a churn rate holding for years and discounts nothing. Payback period is almost a fact: it is how long before the money comes back and can be spent again. For a business funding growth out of revenue, payback is the number that decides how fast you can move.</p>
+<h2>Use gross profit, not revenue</h2>
+<p>A common mistake is dividing acquisition cost by monthly revenue. That ignores the cost of actually serving the customer — hosting, support, payment fees, third-party licences. Payback on revenue looks flattering and is wrong. This calculator uses gross margin for that reason.</p>
+<blockquote><p>If you recover the cost in five months you can spend aggressively. If it takes eighteen, you are running a lending business you did not intend to start.</p></blockquote>
+<h2>The three levers</h2>
+<ul><li><strong>Lower acquisition cost.</strong> Better targeting, better conversion rate, cheaper channels. Usually the slowest lever.</li>
+<li><strong>Raise price or margin.</strong> Immediate effect on payback, and frequently the most neglected.</li>
+<li><strong>Take payment annually.</strong> Discounting for an annual plan can reduce payback from a year to the first day. Many businesses find this is the fastest change available to them.</li></ul>
+<h2>What this does not include</h2>
+<p>Expansion revenue from upgrades, which shortens payback. Discounts and free trials, which lengthen it. The cost of your own time. Treat the result as a planning figure for comparing segments rather than an accounting statement.</p>
+<p class="note">For the longer-run view of the same numbers, use the <a href="/tools/ltv-calculator/">LTV calculator</a>. For how churn alone drives lifetime, see the <a href="/tools/churn-retention-calculator/">churn and retention calculator</a>.</p>
+
+
+  <h2>Questions</h2>
+  <div><details><summary>What is a good payback period?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Under twelve months is the usual benchmark for subscription businesses, and under six is strong. What matters more is whether it is shorter than your average customer lifetime — if it is not, every sale loses money.</p></details><details><summary>Should I include sales salaries in CAC?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Yes, if you want an honest number. Full CAC is all sales and marketing cost divided by new customers. Ad spend alone is a useful channel metric but it flatters the business.</p></details><details><summary>How do I handle annual contracts?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Convert to a monthly equivalent for this calculation, then remember that cash arrived up front. Annual billing does not change the economics; it transforms the cash position, which is what payback is really about.</p></details><details><summary>Why does churn appear here?<span class="plus">+</span></summary><p style="color:rgba(24,28,79,.74);font-size:.97rem;padding-bottom:16px">Because it sets lifetime, and lifetime is what tells you whether payback is even reachable. A four-month payback is irrelevant if customers leave in three.</p></details></div>
+
+  <h2>Embed this calculator</h2>
+  <p>Free to use on your own site. Copy this into your page &mdash; the attribution line is the only condition.</p>
+  <textarea readonly rows="7" onclick="this.select()" style="width:100%;box-sizing:border-box;padding:14px;border:1.5px solid rgba(24,28,79,.16);border-radius:12px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;line-height:1.55;color:#181C4F">&lt;iframe id="mp-cac-payback-calculator" src="https://mediapuppies.com/embed/cac-payback-calculator/" width="100%" height="740" style="border:1px solid #e5e5e5;border-radius:16px" loading="lazy" title="CAC payback period calculator"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://mediapuppies.com/tools/cac-payback-calculator/"&gt;CAC payback period calculator&lt;/a&gt; by &lt;a href="https://mediapuppies.com/"&gt;Media Puppies&lt;/a&gt;&lt;/p&gt;
+&lt;script&gt;addEventListener('message',function(e){if(e.origin==='https://mediapuppies.com'&amp;&amp;e.data&amp;&amp;e.data.mpSlug==='cac-payback-calculator')document.getElementById('mp-cac-payback-calculator').style.height=e.data.mpHeight+'px'})&lt;/script&gt;</textarea>
+  <p class="note">The paragraph below the iframe is the part that matters: an iframe's contents are served from our domain, so a link inside it is not a link from your page. The paragraph is. The small script just resizes the frame to fit your column &mdash; drop it if you prefer, the fixed height still works.</p>
+
+  <h2>Other free tools</h2>
+  <ul style="padding-left:20px;line-height:2"><li><a href="/tools/ltv-calculator/">LTV calculator</a></li><li><a href="/tools/churn-retention-calculator/">Churn and retention calculator</a></li><li><a href="/tools/lead-funnel-calculator/">Lead funnel calculator</a></li></ul>
+
+  <div class="card" style="margin:34px 0 0;background:linear-gradient(160deg,#3A43E8,#3038D8);border:none;color:#fff">
+    <h2 style="margin:0 0 8px;color:#fff;font-size:1.4rem">Want someone to run the campaigns behind these numbers?</h2>
+    <p style="margin:0 0 18px;color:rgba(255,255,255,.82)">We run Meta and Google ads for businesses where one customer is worth real money. You will get a straight answer on whether paid works for you &mdash; including &ldquo;not yet&rdquo;.</p>
+    <a href="/lead-generation/" style="display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#181C4F;background:linear-gradient(180deg,#FFC65C,#FFAC1C);padding:14px 26px;border-radius:999px;text-decoration:none">Get a free lead plan &rarr;</a>
+  </div>
+</main>
+
+<footer style="padding:34px 0 40px;font-size:.84rem;color:rgba(24,28,79,.64)">
+  <div class="wrap" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(24,28,79,.12);padding-top:20px">
+    <a href="/" style="color:rgba(24,28,79,.78);font-weight:700">Home</a>
+    <a href="/services/" style="color:rgba(24,28,79,.78);font-weight:700">Services</a>
+    <a href="/blog/" style="color:rgba(24,28,79,.78);font-weight:700">Blog</a>
+    <a href="/tools/" style="color:rgba(24,28,79,.78);font-weight:700">Free tools</a>
+    <a href="/privacy-policy/" style="color:rgba(24,28,79,.64);text-decoration:underline">Privacy &amp; Terms</a>
+    <span>© 2026 Media Puppies</span>
+  </div>
+</footer>
+
+<script>
+
+function calc(){
+  var cac=+v('cac')||0, mrr=+v('mrr')||0, gm=(+v('margin')||0)/100, ch=(+v('churn')||0)/100;
+  var el=document.getElementById('o_verdict');
+  var ids=['o_pay','o_life','o_ltv','o_ratio','o_profit','o_room'];
+  if(cac<=0||mrr<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Enter an acquisition cost and monthly revenue.'; return;}
+  var gp=mrr*gm;
+  var pay= gp>0 ? cac/gp : 0;
+  var life= ch>0 ? 1/ch : 0;
+  var ltv= life>0 ? gp*life : 0;
+  var ratio= cac>0&&ltv>0 ? ltv/cac : 0;
+  set('o_pay', gp>0 ? pay.toFixed(1) : '\u2014');
+  set('o_life', life>0 ? life.toFixed(0) : '\u2014');
+  document.getElementById('o_life-s').textContent = ch>0 ? 'at '+(ch*100).toFixed(1)+'% monthly churn' : 'add a churn rate';
+  set('o_ltv', ltv>0 ? MP.fmt(ltv) : '\u2014');
+  set('o_ratio', ratio>0 ? ratio.toFixed(1)+':1' : '\u2014');
+  set('o_profit', ltv>0 ? MP.fmt(ltv-cac) : '\u2014');
+  set('o_room', ltv>0 ? MP.fmt(ltv/3) : '\u2014');
+  var m=[];
+  if(gp<=0){ m.push('Gross margin leaves nothing per month, so the acquisition cost is never recovered.'); }
+  else if(life>0&&pay>life){
+    m.push('Payback takes '+pay.toFixed(1)+' months but the average customer only stays '+life.toFixed(0)+'. You lose money on every customer you buy. Churn or price has to change before spend does.');
+  } else {
+    m.push('You recover the acquisition cost in about '+pay.toFixed(1)+' months.');
+    if(pay<=6) m.push('Under six months is comfortable \u2014 cash comes back fast enough to reinvest, and this is the position where spending harder is usually right.');
+    else if(pay<=12) m.push('Six to twelve months is workable but it ties up cash. Growth is limited by what you can fund, not by what the channel can deliver.');
+    else m.push('Over twelve months is a financing problem as much as a marketing one. Either lower acquisition cost, raise price, or take annual payment up front.');
+  }
+  if(ratio>0){
+    if(ratio<1) m.push('A customer is worth less than you pay for them. This is not a scaling problem, it is a unit economics problem.');
+    else if(ratio<3) m.push('An LTV to CAC ratio of '+ratio.toFixed(1)+':1 is thin. Three to one is the conventional floor, and it exists to absorb the costs this calculation ignores.');
+  }
+  el.className='verdict '+((ratio>=3&&pay<=12)?'good':'warn');
+  el.textContent=m.join(' ');
+}
+
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+window.calc=calc;
+</script>
+</body>
+</html>

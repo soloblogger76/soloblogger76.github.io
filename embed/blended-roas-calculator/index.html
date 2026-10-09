@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blended ROAS and MER calculator</title>
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
+<noscript><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"></noscript>
+<meta name="description" content="Compare what the ad platforms claim against what your bank account shows. Works out blended marketing efficiency and how much revenue the platforms are double-counting.">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F6F5EF;color:#181C4F;font-family:'Satoshi',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Clash Display',sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08}
+h2{font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);margin:36px 0 12px}
+h3{font-weight:600;font-size:1.05rem;margin:20px 0 6px}
+p{margin:0 0 14px}
+a{color:#3038D8}
+code{background:rgba(24,28,79,.07);padding:1px 5px;border-radius:5px;font-size:.92em}
+.card{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:20px;padding:26px 24px;box-shadow:0 14px 36px rgba(24,28,79,.08)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:16px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid rgba(24,28,79,.16);border-radius:10px;font-family:inherit;font-size:1rem;background:#F6F5EF;color:#181C4F}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid #3038D8;outline-offset:1px;border-color:#3038D8}
+.hint{font-size:.8rem;color:rgba(24,28,79,.6);margin:6px 0 0}
+.field{margin-bottom:4px}
+.out{background:linear-gradient(160deg,#1D2260,#181C4F);color:#F6F5EF;border-radius:18px;padding:24px 22px;margin-top:22px}
+.out .row{gap:20px}
+.metric{min-width:0}
+.metric .k{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#FFAC1C;margin-bottom:5px}
+.metric .v{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.05;word-break:break-word}
+.metric .s{font-size:.84rem;color:rgba(246,245,239,.66);margin-top:4px}
+.verdict{margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.08);font-size:.95rem;color:rgba(246,245,239,.92)}
+.warn{border-left:3px solid #FFAC1C}
+.good{border-left:3px solid #4ADE80}
+.bad{border-left:3px solid #FF8A7A}
+.copy{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;color:#181C4F;background:#FFAC1C;padding:11px 18px;border-radius:999px;margin-top:12px}
+.outurl{word-break:break-all;background:rgba(0,0,0,.22);padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(24,28,79,.12)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(24,28,79,.62)}
+details{border-top:1px solid rgba(24,28,79,.12)}
+details summary{cursor:pointer;font-weight:700;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details[open] .plus{transform:rotate(45deg)}
+.plus{font-family:'Clash Display',sans-serif;font-size:1.25rem;color:#3038D8;transition:transform .2s ease;flex:none;line-height:1}
+.bar{height:10px;border-radius:999px;background:rgba(24,28,79,.1);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#3038D8,#FFAC1C)}
+.serp{background:#fff;border:1px solid rgba(24,28,79,.12);border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.serp .u{color:#202124;font-size:.82rem}
+.serp .t{color:#1a0dab;font-size:1.25rem;line-height:1.3;margin:2px 0 3px}
+.serp .d{color:#4d5156;font-size:.88rem;line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3038D8;background:#fff;border:1px solid rgba(24,28,79,.14);padding:6px 14px;border-radius:999px}
+.note{font-size:.84rem;color:rgba(24,28,79,.62);margin-top:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<style>body{background:transparent}.wrap{padding:0;max-width:none}.card{box-shadow:none;border-radius:16px}</style>
+<script src="/assets/js/tool-currency.js?v=20260926a" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <div class="card">
+    <p style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 16px;font-size:.86rem;color:rgba(24,28,79,.7)"><label for="cur" style="margin:0;font-weight:700;font-size:.86rem">Currency</label><select id="cur" data-cur-switch aria-label="Currency used in this calculator" style="width:auto;padding:7px 10px;background:#fff;font-size:.86rem"></select><span style="color:rgba(24,28,79,.55)">Set from your location. The maths is the same in any currency — only the labels change.</span></p>
+    <div class="row"><div class="field"><label for="rev">Total revenue in the period (₹)</label><input id="rev" type="number" inputmode="decimal" step="any" min="0" value="2400000"><p class="hint">From your store or accounts, not from any ad platform.</p></div><div class="field"><label for="meta">Meta spend (₹)</label><input id="meta" type="number" inputmode="decimal" step="any" min="0" value="400000"></div><div class="field"><label for="metarev">Revenue Meta claims (₹)</label><input id="metarev" type="number" inputmode="decimal" step="any" min="0" value="1450000"></div><div class="field"><label for="google">Google spend (₹)</label><input id="google" type="number" inputmode="decimal" step="any" min="0" value="250000"></div><div class="field"><label for="googlerev">Revenue Google claims (₹)</label><input id="googlerev" type="number" inputmode="decimal" step="any" min="0" value="980000"></div><div class="field"><label for="other">Other ad spend (₹)</label><input id="other" type="number" inputmode="decimal" step="any" min="0" value="50000"><p class="hint">TikTok, affiliates, anything else paid.</p></div></div>
+    <div class="out">
+      <div class="row"><div class="metric"><div class="k">Blended MER</div><div class="v" id="o_mer">—</div><div class="s" id="o_mer-s">total revenue / total spend</div></div><div class="metric"><div class="k">Total ad spend</div><div class="v" id="o_spend">—</div><div class="s" id="o_spend-s"></div></div><div class="metric"><div class="k">Platforms claim</div><div class="v" id="o_claim">—</div><div class="s" id="o_claim-s"></div></div></div><div class="row" style="margin-top:18px"><div class="metric"><div class="k">Over-claimed by</div><div class="v" id="o_over">—</div><div class="s" id="o_over-s"></div></div><div class="metric"><div class="k">Spend as % of revenue</div><div class="v" id="o_share">—</div><div class="s" id="o_share-s"></div></div><div class="metric"><div class="k">Platform ROAS</div><div class="v" id="o_plat">—</div><div class="s" id="o_plat-s">weighted average</div></div></div>
+      <div id="o_verdict" class="verdict"></div>
+    </div>
+    <p class="note" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span>Runs in your browser. Nothing is stored.</span>
+      <a href="https://mediapuppies.com/tools/blended-roas-calculator/" target="_blank" rel="noopener" style="font-weight:700">Blended ROAS and MER calculator &rarr;</a>
+    </p>
+  </div>
+</main>
+<script>
+var MP_SLUG='blended-roas-calculator';
+
+function calc(){
+  var rev=+v('rev')||0, ms=+v('meta')||0, mr=+v('metarev')||0,
+      gs=+v('google')||0, gr=+v('googlerev')||0, os=+v('other')||0;
+  var el=document.getElementById('o_verdict');
+  var ids=['o_mer','o_spend','o_claim','o_over','o_share','o_plat'];
+  var spend=ms+gs+os, claim=mr+gr;
+  if(rev<=0||spend<=0){ids.forEach(function(i){set(i,'\u2014');});
+    el.className='verdict warn'; el.textContent='Enter total revenue and at least one spend figure.'; return;}
+  var mer=rev/spend;
+  var plat=(ms+gs)>0 ? claim/(ms+gs) : 0;
+  var over=claim-rev;
+  var share=spend/rev*100;
+  set('o_mer', mer.toFixed(2)+'x');
+  set('o_spend', MP.fmt(spend));
+  set('o_claim', MP.fmt(claim));
+  set('o_over', over>0 ? MP.fmt(over) : '\u2014');
+  document.getElementById('o_over-s').textContent = over>0 ? 'more than the business took' : 'no over-claim';
+  set('o_share', share.toFixed(1)+'%');
+  set('o_plat', plat>0 ? plat.toFixed(2)+'x' : '\u2014');
+  var m=[];
+  m.push('Your real marketing efficiency is '+mer.toFixed(2)+'x \u2014 every rupee of ad spend is matched by '+mer.toFixed(2)+' of total revenue.');
+  if(over>0){
+    var pct=rev>0?(over/rev*100):0;
+    m.push('The platforms together claim '+MP.fmt(claim)+', which is '+MP.fmt(over)+' more than the business actually took \u2014 an over-claim of '+pct.toFixed(0)+'%. That is not fraud, it is two platforms counting the same sale, plus view-through credit for visits that would have happened anyway.');
+  } else {
+    m.push('Claimed revenue sits below total revenue, which is normal when a large share of sales come from organic, email or direct.');
+  }
+  if(plat>0&&mer>0&&plat>mer*1.5) m.push('Platform ROAS reads '+plat.toFixed(2)+'x against a blended '+mer.toFixed(2)+'x. Scaling decisions made on the first number will not show up in the second.');
+  if(share>35) m.push('Ad spend is '+share.toFixed(0)+'% of revenue. Check that against contribution margin before adding budget.');
+  el.className='verdict '+(over>rev*0.25?'warn':'good');
+  el.textContent=m.join(' ');
+}
+
+
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function set(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('input,select,textarea').forEach(function(el){
+    el.addEventListener('input',calc); el.addEventListener('change',calc);
+  });
+  calc();
+  if(window.mpTrack)window.mpTrack('ViewContent',{content_category:'tool',content_name:document.title});
+});
+window.calc=calc;
+
+/* Tell the host page how tall we are, so a fixed iframe height is only a
+   fallback. Height depends on the host's column width, which we cannot guess. */
+(function(){
+  var last=0;
+  function post(){
+    var h=Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if(h && Math.abs(h-last)>4){ last=h;
+      try{ parent.postMessage({mpHeight:h, mpSlug:MP_SLUG}, '*'); }catch(e){}
+    }
+  }
+  addEventListener('load',post); addEventListener('resize',post);
+  document.addEventListener('input',function(){setTimeout(post,60);});
+  document.addEventListener('change',function(){setTimeout(post,60);});
+  setInterval(post,1000);
+})();
+</script>
+</body>
+</html>
